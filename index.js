@@ -1,6 +1,7 @@
 "use strict";
 
 const Twitter = require("twitter");
+const Express = require("express");
 const Credentials = require("./credentials_twitter");
 
 let client = new Twitter({
@@ -10,17 +11,34 @@ let client = new Twitter({
   access_token_secret: Credentials.ACCESS_SECRET
 });
 
-client.get("statuses/user_timeline", {
-  screen_name: process.argv[2],
-  exclude_replies: 1,
-  include_rts: 0,
-  trim_user: 1
-}, function(err, tweets, res) {
-  if (err) {
-    console.log(err);
-  } else {
-    for (let i of tweets) {
-      console.log(i.text + "\n-----");
-    }
-  }
+const server = Express();
+server.listen(3000);
+
+// Handles landing page
+server.get("/", function(req, res) {
+  res.send("Application running.");
 });
+
+// Handles username fetching
+server.get("/:handle", function(req, res) {
+  getTweets(req.params.handle, function(tweets) {
+    console.log(tweets);
+    res.json(tweets);
+  });
+});
+
+// Handles Twitter API querying
+function getTweets(handle, callback) {
+  client.get("statuses/user_timeline", {
+    screen_name: handle,
+    exclude_replies: 1,
+    include_rts: 0,
+    trim_user: 1
+  }, function(err, tweets, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(tweets);
+    }
+  });
+}
