@@ -17,7 +17,7 @@ Make sure to add your Twitter credentials to `credentials_twitter.js`.
 
 Run `node index.js` to start the server, listening on `http://localhost:3000`.
 
-Query list of tweets of username, append username to URL, eg. `http://localhost:3000/twitterapi`.
+Query list of tweets of username, append username to URL, eg. `http://localhost:3000/twitterapi`. The list returned is in JSON format.
 
 ## TODO
 
