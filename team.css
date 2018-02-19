@@ -1,0 +1,92 @@
+.row
+{
+	margin-bottom: 0px;
+}
+.demo-card-square.mdl-card {
+   width: 400px;
+   height: 320px;
+   float: left;
+   margin: 1rem;
+   position: relative;
+}
+body{
+	position: relative;
+	padding: 20px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/ee98d6f540ed7eaed1c76086f31b6b86-1506975702278/429771a1-4fdb-4e7c-bb74-a7043638f3e4.jpg') bottom right 15% no-repeat #46B6AC;
+}
+.demo-card-square.mdl-card:hover {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  } 
+  svg {
+    display: block;
+    font: 8em 'Roboto';
+    font-family: 'Roboto', sans-serif;
+    width: 960px;
+    height: 250px;
+    margin: 0 auto;
+}
+.menu-team
+{
+	margin-top: -125px;
+	color: #000;
+}
+
+.my-team-navbar {
+    margin-top: 30px;
+    margin-bottom: -50px;
+    background-color: white;
+}
+
+.navbar-custom .navbar-nav > li > a:hover{
+  background-color: lightgray;
+  color: black;
+   font-family: 'Roboto', sans-serif;
+   border-radius: 25px;
+}
+
+.navbar-custom .navbar-nav > li > a{
+  color: black;
+   font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  border-radius: 25px;
+}
+
+.web-coder-skull {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+.web-coder-skull:nth-child(6){
+    stroke: #263238;
+	animation-delay: -1;
+}
+.web-coder-skull:nth-child(2){
+	stroke: #26abe2;
+	animation-delay: -2s;
+}
+.web-coder-skull:nth-child(3){
+	stroke: orange;
+	animation-delay: -3s;
+}
+.web-coder-skull:nth-child(4){
+	stroke: red;
+	animation-delay: -4s;
+}
+.web-coder-skull:nth-child(5){
+	stroke: #fff;
+	animation-delay: -5s;
+}
+.web-coder-skull:nth-child(1){ 
+stroke: green;
+animation-delay: -1s;
+}
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
