@@ -3,15 +3,22 @@
 const Twitter = require("twitter");
 const Express = require("express");
 const Credentials = require("./credentials_twitter");
+const AYLIENTextAPI = require('aylien_textapi');
+const aylienCreds = require('./credentials_aylien')
 // let array = ["Isis","Allahu Akbar","Caliphate","Isil","Islamic State"];
 // let array2 = ["Brothers","Cut","Death"];
-let array = ["Ireland", "Irish", "6 Nations", "#IREvWAL"];
+let array = ["#IREvWAL"];
 
 let client = new Twitter({
   consumer_key: Credentials.CONSUMER_KEY,
   consumer_secret: Credentials.CONSUMER_SECRET,
   access_token_key: Credentials.ACCESS_TOKEN,
   access_token_secret: Credentials.ACCESS_SECRET
+});
+
+let textapi = new AYLIENTextAPI({
+  application_id: aylienCreds.APP_ID,
+  application_key: aylienCreds.APP_KEY
 });
 
 const server = Express();
@@ -30,13 +37,18 @@ server.get("/:handle", function(req, res) {
     for (let i of tweets) {
       for (let j of array) {
         if (i.text.indexOf(j) > -1) {
-          console.log(i.text);
+          textapi.sentiment({
+  'text':i.text
+}, function(error, response) {
+  if (error === null) {
+    console.log(i.text);
+    console.log(response.polarity);
+  }
+});
           flaggedTweets.push(j);
         }
       }
     }
-
-    console.log(flaggedTweets);
     res.send("OK");
   });
 });
