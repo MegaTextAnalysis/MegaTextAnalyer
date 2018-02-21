@@ -33,17 +33,17 @@ server.get("/", function(req, res) {
 server.get("/:handle", function(req, res) {
   let flaggedTweets = [];
 
-  getTweets(req.params.handle, function(tweets) {
-    for (let i of tweets) {
-      for (let j of array) {
-        if (i.text.indexOf(j) > -1) {
-          textapi.sentiment({
-  'text':i.text
-}, function(error, response) {
-  if (error === null) {
-    console.log(i.text);
-    console.log(response.polarity);
-  }
+getTweets(req.params.handle, function(tweets) {
+  for (let i of tweets) {
+    for (let j of array) {
+      if (i.text.indexOf(j) > -1) {
+        textapi.sentiment(
+        { 'text':i.text},
+        function(error, response) {
+        if (error === null) {
+          console.log(i.text);
+          console.log(response.polarity);
+        }
 });
           flaggedTweets.push(j);
         }
