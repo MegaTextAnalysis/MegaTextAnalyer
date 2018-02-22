@@ -20,20 +20,40 @@ server.get("/", function(req, res) {
 });
 
 // Handles username fetching
-server.get("/:handle", function(req, res) {
+server.get("/user/:handle", function(req, res) {
   getTweets(req.params.handle, function(tweets) {
     console.log(tweets);
     res.json(tweets);
   });
 });
 
-// Handles Twitter API querying
+server.get("/search/:query", function(req, res) {
+  search(req.params.query, function(tweets) {
+    console.log(tweets);
+    res.json(tweets);
+  });
+});
+
+// Handles timeline querying
 function getTweets(handle, callback) {
   client.get("statuses/user_timeline", {
     screen_name: handle,
     exclude_replies: 1,
     include_rts: 0,
     trim_user: 1
+  }, function(err, tweets, res) {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(tweets);
+    }
+  });
+}
+
+// Handles search querying
+function search(query, callback) {
+  client.get("search/tweets", {
+    q: query
   }, function(err, tweets, res) {
     if (err) {
       console.log(err);
