@@ -21,18 +21,25 @@
 
   <style>
 
+
+  @font-face {
+   font-family: myFirstFont;
+   src: url(DIMIS___.TTF);
+	}
+
   .box{
   	height: 50px;
   	width: 100%;
   }
-  .grey{
-  	background-color: lightgrey;
+  .grey{ 
+  	background-color: #6441A4 ;
   }
 
   .titleHeader{
-  	font-family: "Courier New", Courier, monospace;
+  	font-family: myFirstFont;
   	font-size: 100px;
   	text-align: center;
+  	color: white;
   }
 
   .btn-togg{
@@ -54,11 +61,11 @@
 .container-4 input#search{
   width: 500px;
   height: 75px;
-  background: lightgrey;
+  background: #532289;
   border: none;
   font-size: 25pt;
   float: left;
-  color: darkgrey;
+  color: white;
   padding-left: 15px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -66,19 +73,19 @@
 }
 
 .container-4 input#search::-webkit-input-placeholder {
-   color: darkgrey;
+   color: white;
 }
  
 .container-4 input#search:-moz-placeholder { /* Firefox 18- */
-   color: lightgrey;  
+   color: #532289;  
 }
  
 .container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
-   color: lightgrey;  
+   color: #532289;  
 }
  
 .container-4 input#search:-ms-input-placeholder {  
-   color: lightgrey;  
+   color: #532289;  
 }
 
 .container-4 button.icon{
@@ -90,10 +97,10 @@
   border-bottom-right-radius: 5px;
  
   border: none;
-  background: lightgrey;
+  background: white;
   height: 75px;
   width: 75px;
-  color: #4f5b66;
+  color: #29163f;
   opacity: 0;
   font-size: 10pt;
  
@@ -111,7 +118,7 @@
 }
  
 .container-4:hover button.icon:hover{
-  background: white;
+  background: lightgrey;
 }
 
 .info{
@@ -139,6 +146,15 @@
 	margin-top: 0px;
 }
 
+.btn-josh{
+	background-color: #532289;
+	border-color: #532289;
+}
+
+.btn-group{
+	background-color: #532289;
+}
+
 
 
 
@@ -146,7 +162,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #6441A4 ">
 
 <header class="headerT">
 	<div class="grey box">  </div>
@@ -163,22 +179,26 @@
 
 <div class="buttons text-center">
 	<div class="btn-group">
-    	<button type="button" class="btn btn-primary btn-togg">Facebook</button>
-    	<button type="button" class="btn btn-primary btn-togg">Twitter</button>
+    	<button type="button" class="btn btn-primary btn-togg btn-josh">Facebook</button>
+    	<button type="button" class="btn btn-primary btn-togg btn-josh">Twitter</button>
   	</div>
 </div>
 
-<p class="info"> Search by <span class="label label-primary">keyword</span></p>
+<p class="info" style="color: white;"> Search by <span class="label label-primary">keyword</span></p>
 
 <div class="footerB">
 
 	<div class="grey box">  </div>
 
+
 </div>
 
-<div class="alert alert-warning text-center" role="alert" style="width: 500px; margin: auto;"><b>Oh no!</b> We're nearly ready, come back soon!</div>
+<div class="alert alert-info alert-dismissable" style="width: 500px; margin: auto;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>Oh no!</strong> We're nearly ready please come back soon.
+</div>
 
-<p class="legal"> Website designed and developed by <a href="team.html" class="alert-link"><b>Radicle</b></a> as part of a <a href="#" class="alert-link"><span class="label label-primary">Software engineering</span></a> group project</p>
+<p class="legal" style="color: white;"> Website designed and developed by <a href="team.html" class="alert-link"><b>Radicle</b></a> as part of a <a href="#" class="alert-link"><span class="label label-primary">Software engineering</span></a> group project</p>
 
 
 
