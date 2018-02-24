@@ -1,3 +1,18 @@
+
+ @font-face {
+   font-family: myFirstFont;
+   src: url(DIMIS___.TTF);
+	}
+
+  .titleHeader{
+  	font-family: myFirstFont;
+  	font-size: 80px;
+  	text-align: center;
+    margin-top: 50px;
+    color: white;
+  }
+
+
   .search-box{
   	width: 100%;
   }
@@ -5,6 +20,7 @@
   .search-by{
       width: 150px;
       margin-bottom: 15px;
+      color: lightgray;
   }
 
   .num-results{
@@ -12,13 +28,14 @@
     margin-left: 170px;
     margin-top: -74px;
     margin-bottom: 15px;
+    color: lightgray;
   }
   
 .my-navbar {
     margin-top: 30px;
     margin-bottom: -50px;
-    background-color: white;
-    width: 90%;
+    background-color: #6441A4;
+    width: 70%;
 }
 
 .twitter
@@ -26,6 +43,7 @@
   float: right;
   margin-right: 90px;
   margin-top: -40px;
+  color: white;
 }
 .navbar-custom .navbar-nav > li > a:hover{
   background-color: lightgray;
@@ -35,11 +53,13 @@
 }
 
 .navbar-custom .navbar-nav .active{
-  background-color: lightgray;
+  background-color:  lightgray;
+  color: black;
+  z-index: 10000;
 }
 
 .navbar-custom .navbar-nav > li > a{
-  color: black;
+  color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 20px;
 }
@@ -52,21 +72,16 @@
       margin-top: 15px;
   }
   .grey-box{
-  	background-color: lightgrey;
+  	background-color: #6441A4;
     width: 100%;
     height: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: -20px;
   }
-  .titleHeader{
-  	font-family: "Courier New", Courier, monospace;
-  	font-size: 80px;
-  	text-align: center;
-    margin-top: 50px;
-  }
+
   .menu
   {
-    background-color: white;
+    background-color: #6441A4 ;
   }
 
   .container-4{
@@ -74,18 +89,18 @@
   width: 450px;
   vertical-align: middle;
   white-space: nowrap;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 50px;
   margin: auto;
 }
 .container-4 input#search{
   width: 450px;
   height: 35px;
-  background: lightgrey;
+  background: white;
   border: none;
   font-size: 15pt;
   float: left;
-  color: #808080;
+  color: gray;
   padding-left: 25px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -93,19 +108,19 @@
   align-items: center;
 }
 .container-4 input#search::-webkit-input-placeholder {
-   color: darkgrey;
+    color: lightgray;  
 }
  
 .container-4 input#search:-moz-placeholder { /* Firefox 18- */
-   color: lightgrey;  
+    color: #532289;   
 }
  
 .container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
-   color: lightgrey;  
+   color: #532289;  
 }
  
 .container-4 input#search:-ms-input-placeholder {  
-   color: lightgrey;  
+   color: #532289;  
 }
 
 .container-4 button.icon{
@@ -117,10 +132,10 @@
   border-bottom-right-radius: 5px;
  
   border: none;
-  background: lightgrey;
+  background: lightgray;
   height: 35px;
   width: 75px;
-  color: #4f5b66;
+  color: #29163f;
   opacity: 0;
   font-size: 10pt;
  
@@ -137,7 +152,7 @@
 }
  
 .container-4:hover button.icon:hover{
-  background: white;
+  background: dimgray;
  
 }
 .info{
@@ -150,6 +165,8 @@
 .buttons{
 	margin: 50px;
 	margin-bottom: 10px;
+  background-color: #532289;
+  border-color: #532289;
 }
 .headerT{
 	margin-top: 0px;
@@ -159,4 +176,3 @@
 	margin-top: 0px;
     height: 50px;
 }
- 
