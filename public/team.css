@@ -23,17 +23,18 @@ body{
   } 
   svg {
     display: block;
-    font: 6.6em 'Roboto';
+    font: 80px 'Roboto';
     font-family: 'Roboto', sans-serif;
     width: 960px;
     height: 250px;
     margin: 0 auto;
-    margin-top: -20px;
+    margin-top: -50px;
 }
 .menu-team
 {
-	margin-top: -165px;
+	margin-top: -150px;
 	color: #000;
+    margin-left: -20px;
 }
 
 .my-team-navbar {
@@ -45,14 +46,22 @@ body{
 .navbar-custom .navbar-nav > li > a:hover{
   background-color: lightgray;
   color: black;
-   font-family: 'Roboto', sans-serif;
+   font-family: "Courier New", Courier, monospace;
+   font-size: 20px;
    border-radius: 25px;
 }
 
 .navbar-custom .navbar-nav > li > a{
   color: black;
-   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  border-radius: 25px;
+}
+
+.navbar-custom .navbar-nav .active{
+  background-color:  lightgray;
+  color: black;
+  z-index: 10000;
   border-radius: 25px;
 }
 

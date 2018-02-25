@@ -1,13 +1,16 @@
 $(document).ready(function () {
     showhide();
+
+
+    $("#btnSubmit").click(function () {
+    var word = document.getElementById("search");
+    var url = "radical.nguyenhi.eu/" + word.value;
+    console.log("2");
+    $.get(url, function (data) {console.log(33)});
 });
 
-$("#btnSubmit").click(function () {
-    var word = document.getElementById("search");
-    var url = "lvh.me:3000/" + word.value;
-    console.log("2");
-    $.get(url, function (data) { alert("Data: " + data); });
 });
+
 
 $('#another-location').keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
