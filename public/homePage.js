@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $("#btnSubmit").click(function () {
     var word = document.getElementById("search");
-    var url = "radical.nguyenhi.eu/" + word.value;
+    var url = "/" + word.value;
     console.log("2");
     $.get(url, function (data) {console.log(33)});
 });
