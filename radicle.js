@@ -15,6 +15,7 @@ let client = new Twitter({
 });
 
 const server = Express();
+server.use(Express.static("public"));
 server.listen(80);
 
 // Handles landing page
