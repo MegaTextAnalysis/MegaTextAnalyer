@@ -6,7 +6,7 @@ $(document).ready(function () {
         var word = document.getElementById("search");
         var url = "/" + word.value;
         console.log("2");
-        $.get(url, function (data) { console.log(data) });
+        $.get(url, function (data) { console.log(typeof data) });
     });
 
     $('#another-location').keypress(function (event) {
