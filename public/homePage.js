@@ -7,7 +7,8 @@ $(document).ready(function () {
         var url = "/" + word.value;
         console.log("2");
         $.get(url, function (data) { 
-            parseJSON(data);
+            var obj = data;
+            parseJSON(obj);
         });
     });
 
@@ -41,6 +42,5 @@ function showhide() {
 
 function parseJSON(obj)
 {
-    var file = JSON.parse(obj);
-    console.log(file);
+    console.log(obj);
 }
