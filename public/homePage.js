@@ -41,6 +41,6 @@ function showhide() {
 
 function parseJSON(obj)
 {
-    JSON.parse(obj);
-    console.log(obj);
+    var file = JSON.parse(obj);
+    console.log(file);
 }
