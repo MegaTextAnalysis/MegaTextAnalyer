@@ -6,10 +6,12 @@ $(document).ready(function () {
         var word = document.getElementById("search");
         var url = "/" + word.value;
         console.log("2");
-        $.get(url, function (data) { console.log(typeof data) });
+        $.get(url, function (data) { 
+            parseJSON(data);
+        });
     });
 
-    $('#another-location').keypress(function (event) {
+    $('#search').keypress(function (event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             alert('You pressed a "enter" key in textbox, here submit your form');
@@ -35,4 +37,10 @@ function showhide() {
     else {
         numDiv.style.display = "block";
     }
+}
+
+function parseJSON(obj)
+{
+    JSON.parse(obj);
+    console.log(obj);
 }
