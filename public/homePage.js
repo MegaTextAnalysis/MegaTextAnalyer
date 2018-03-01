@@ -1,23 +1,19 @@
-$(document).ready(function () {
+$(document).ready(function() {
     showhide();
 
     //When user clicks search
-    $("#btnSubmit").click(function () {
+    $("#btnSubmit").click(function() {
         var word = document.getElementById("search");
-        if (usernameSet()) 
-        {
+        if (usernameSet()) {
             var url = "/" + word.value;
-            $.get(url, function (data) {
+            $.get(url, function(data) {
                 var obj = data;
                 parseJSON(obj);
             });
         }
-        else {
-
-        }
     });
 
-    $('#search').keypress(function (event) {
+    $('#search').keypress(function(event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             alert('You pressed a "enter" key in textbox, here submit your form');
@@ -25,7 +21,7 @@ $(document).ready(function () {
     });
 
     //only display number of results selector when the user is searching for keywords
-    $("#s1").click(function () {
+    $("#s1").click(function() {
         showhide();
     });
 
@@ -37,8 +33,7 @@ function usernameSet() {
     var searchType = e.options[e.selectedIndex].text;
     if (searchType == "Username") {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -50,16 +45,13 @@ function showhide() {
     if (usernameSet()) {
         numDiv.style.display = "none";
         console.log("hi");
-    }
-    else {
+    } else {
         numDiv.style.display = "block";
     }
 }
 
-//parse the incoming JSON 
+//parse the incoming JSON
 function parseJSON(obj) {
 
     console.log(obj);
 }
-
-
