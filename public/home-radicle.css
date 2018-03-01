@@ -45,14 +45,14 @@
   margin-top: -40px;
 }
 .navbar-custom .navbar-nav > li > a:hover{
-  background-color: lightgray;
+  background-color: gray;
   color: black;
   font-family: "Courier New", Courier, monospace;
   border-radius: 25px;
 }
 
 .navbar-custom .navbar-nav .active{
-  background-color:  lightgray;
+  background-color:  gray;
   color: black;
   z-index: 10000;
 }

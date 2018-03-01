@@ -38,7 +38,7 @@ server.get("/:handle", function(req, res) {
     }
 
     console.log(flaggedTweets);
-    res.send("OK");
+    res.send(tweets);
   });
 });
 
