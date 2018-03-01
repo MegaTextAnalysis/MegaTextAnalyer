@@ -5,10 +5,18 @@ $(document).ready(function() {
     $("#btnSubmit").click(function() {
         var word = document.getElementById("search");
         if (usernameSet()) {
-            var url = "/" + word.value;
+            var url = "/user" + word.value;
             $.get(url, function(data) {
                 var obj = data;
-                parseJSON(obj);
+                parseUser(obj);
+            });
+        }
+        else
+        {
+             var url = "/search" + word.value;
+            $.get(url, function(data) {
+                var obj = data;
+                parseKeyword(obj);
             });
         }
     });
@@ -51,7 +59,13 @@ function showhide() {
 }
 
 //parse the incoming JSON
-function parseJSON(obj) {
+function parseUser(obj) {
+
+    console.log(obj);
+}
+
+//parse the incoming JSON
+function parseKeyword(obj) {
 
     console.log(obj);
 }
