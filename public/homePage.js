@@ -1,15 +1,20 @@
 $(document).ready(function () {
     showhide();
 
-
+    //When user clicks search
     $("#btnSubmit").click(function () {
         var word = document.getElementById("search");
-        var url = "/" + word.value;
-        console.log("2");
-        $.get(url, function (data) { 
-            var obj = data;
-            parseJSON(obj);
-        });
+        if (usernameSet()) 
+        {
+            var url = "/" + word.value;
+            $.get(url, function (data) {
+                var obj = data;
+                parseJSON(obj);
+            });
+        }
+        else {
+
+        }
     });
 
     $('#search').keypress(function (event) {
@@ -19,19 +24,30 @@ $(document).ready(function () {
         }
     });
 
+    //only display number of results selector when the user is searching for keywords
     $("#s1").click(function () {
         showhide();
     });
 
 });
 
-
-function showhide() {
+//returns if selector is set to username
+function usernameSet() {
     var e = document.getElementById("sel-1");
-    var numDiv = document.getElementById("s2");
     var searchType = e.options[e.selectedIndex].text;
-    console.log(searchType);
     if (searchType == "Username") {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+//toggles the number of results selector
+function showhide() {
+
+    var numDiv = document.getElementById("s2");
+    if (usernameSet()) {
         numDiv.style.display = "none";
         console.log("hi");
     }
@@ -40,7 +56,10 @@ function showhide() {
     }
 }
 
-function parseJSON(obj)
-{
+//parse the incoming JSON 
+function parseJSON(obj) {
+
     console.log(obj);
 }
+
+
