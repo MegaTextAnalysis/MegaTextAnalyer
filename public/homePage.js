@@ -5,7 +5,7 @@ $(document).ready(function() {
     $("#btnSubmit").click(function() {
         var word = document.getElementById("search");
         if (usernameSet()) {
-            var url = "/user" + word.value;
+            var url = "/user/" + word.value;
             $.get(url, function(data) {
                 var obj = data;
                 parseUser(obj);
@@ -13,7 +13,7 @@ $(document).ready(function() {
         }
         else
         {
-             var url = "/search" + word.value;
+             var url = "/search/" + word.value;
             $.get(url, function(data) {
                 var obj = data;
                 parseKeyword(obj);
