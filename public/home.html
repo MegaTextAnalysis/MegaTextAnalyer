@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>radical</title>
+  <meta name="description" content="radical">
+  <meta name="author" content="radical">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+    .box {
+      height: 50px;
+      width: 100%;
+    }
+
+    .grey {
+      background-color: lightgrey;
+    }
+
+    .titleHeader {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 100px;
+      text-align: center;
+    }
+
+    .btn-togg {
+      width: 100px;
+      height: 50px;
+    }
+
+
+    .container-4 {
+      overflow: hidden;
+      width: 500px;
+      vertical-align: middle;
+      white-space: nowrap;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      margin: auto;
+    }
+
+    .container-4 input#search {
+      width: 500px;
+      height: 75px;
+      background: lightgrey;
+      border: none;
+      font-size: 25pt;
+      float: left;
+      color: darkgrey;
+      padding-left: 15px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    .container-4 input#search::-webkit-input-placeholder {
+      color: darkgrey;
+    }
+
+    .container-4 input#search:-moz-placeholder {
+      /* Firefox 18- */
+      color: lightgrey;
+    }
+
+    .container-4 input#search::-moz-placeholder {
+      /* Firefox 19+ */
+      color: lightgrey;
+    }
+
+    .container-4 input#search:-ms-input-placeholder {
+      color: lightgrey;
+    }
+
+    .container-4 button.icon {
+      -webkit-border-top-right-radius: 5px;
+      -webkit-border-bottom-right-radius: 5px;
+      -moz-border-radius-topright: 5px;
+      -moz-border-radius-bottomright: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      border: none;
+      background: lightgrey;
+      height: 75px;
+      width: 75px;
+      color: #4f5b66;
+      opacity: 0;
+      font-size: 10pt;
+
+      -webkit-transition: all .55s ease;
+      -moz-transition: all .55s ease;
+      -ms-transition: all .55s ease;
+      -o-transition: all .55s ease;
+      transition: all .55s ease;
+    }
+
+    .container-4:hover button.icon,
+    .container-4:active button.icon,
+    .container-4:focus button.icon {
+      outline: none;
+      opacity: 1;
+      margin-left: -75px;
+    }
+
+    .container-4:hover button.icon:hover {
+      background: white;
+    }
+
+    .info {
+      text-align: center;
+    }
+
+    .legal {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+
+    .buttons {
+      margin: 50px;
+      margin-bottom: 10px;
+    }
+
+    .headerT {
+      margin: 50px;
+      margin-top: 0px;
+    }
+
+    .footerB {
+      margin: 50px;
+      margin-top: 0px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="headerT">
+    <div class="grey box"> </div>
+
+    <div class="titleHeader" style="margin: 50px;"> radical</div>
+  </header>
+
+  <div class="box">
+    <div class="container-4">
+      <input type="search" id="search" placeholder="Search..." />
+      <button class="icon">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="buttons text-center">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary btn-togg">Facebook</button>
+      <button type="button" class="btn btn-primary btn-togg">Twitter</button>
+    </div>
+  </div>
+
+  <p class="info"> Search by
+    <span class="label label-primary">keyword</span>
+  </p>
+
+  <div class="footerB">
+
+    <div class="grey box"> </div>
+
+  </div>
+
+  <div class="alert alert-warning text-center" role="alert" style="width: 500px; margin: auto;">
+    <b>Oh no!</b> We're nearly ready, come back soon!</div>
+
+  <p class="legal"> Website designed and developed by
+    <a href="team.html" class="alert-link">
+      <b>radical</b>
+    </a> as part of a
+    <a href="#" class="alert-link">
+      <span class="label label-primary">Software engineering</span>
+    </a> group project</p>
+
+
+
+
+
+
+  <script src="js/scripts.js"></script>
+
+
+</body>
+
+</html>
