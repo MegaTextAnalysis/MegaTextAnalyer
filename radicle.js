@@ -24,6 +24,7 @@ let textapi = new AYLIENTextAPI({
 //categories for AI
 let cat = Categories.categories;
 let keys = Flags.keywords;
+let finish=false;
 
 const server = Express();
 server.use(Express.static("public"));
@@ -41,31 +42,11 @@ server.get("/user/:handle", function(req, res) {
     jsonObj.flagged = [];
     let flaggedTweet = {};
 
-    for (let i of tweets) {
-      flaggedTweet.flags = [];
-      flaggedTweet.text = i.text;
-      flaggedTweet.threatLevel = 0;
-      flaggedTweet.Label = "";
-      let a=i.text.toUpperCase();
-
-      for (let j in keys) {
-
-        if (a.indexOf(j.toUpperCase()) > -1) {
-          flaggedTweet.flags.push(j);
-          flaggedTweet.threatLevel+=keys[j];
-        }
-      }
-      flaggedTweet.Label=callAI(flaggedTweet,i);
-      console.log("Done AI");
-
-      if (flaggedTweet.flags.length > 0) {
-        jsonObj.flagged.push(flaggedTweet);
-        flaggedTweet = {};
-      }
-    }
-
-    jsonObj.tweets = tweets;
+    flagTweets(tweets,jsonObj,flaggedTweet,function(){
+      jsonObj.tweets = tweets;
     res.json(jsonObj);
+    });
+    
   });
 });
 
@@ -89,8 +70,6 @@ server.get("/search/:query", function(req, res) {
           flaggedTweet.threatLevel+=keys[j];
         }
       }
-      flaggedTweet.Label=callAI(flaggedTweet,i);
-      console.log("Done AI");
 
       if (flaggedTweet.flags.length > 0) {
         jsonObj.flagged.push(flaggedTweet);
@@ -131,25 +110,60 @@ function search(query, callback) {
     }
   });
 }
+function flagTweets(tweets,jsonObj,flaggedTweet,callback){
+ for (let i=0;i<tweets.length;i++) {
+      flaggedTweet.flags = [];
+      flaggedTweet.text = tweets[i].text;
+      flaggedTweet.threatLevel = 0;
+      let a=tweets[i].text.toUpperCase();
+      let labels="";
 
-function callAI(flaggedTweet,i) {
-	var c;
-	textapi.classifyByTaxonomy(
-	  {'text':i.text,
-		'taxonomy': 'iptc-subjectcode'
-	  },
+      for (let j in keys) {
+
+        if (a.indexOf(j.toUpperCase()) > -1) {
+          flaggedTweet.flags.push(j);
+          flaggedTweet.threatLevel+=keys[j];
+        }
+      }
+      console.log(i);
+      callAI(i,tweets,labels,function(){
+        flaggedTweet.Label=labels;
+
+      if (flaggedTweet.flags.length > 0) {
+        jsonObj.flagged.push(flaggedTweet);
+        flaggedTweet = {};
+      }
+      if (finish) {
+        callback();
+      }
+    });
+  }
+}
+
+function callAI(i,tweets,labels,callback2) {
+  console.log(tweets[i].text);
+  textapi.classifyByTaxonomy(
+    {'text':tweets[i].text,
+    'taxonomy': 'iptc-subjectcode'
+    },
         function(error, response) {
-        	console.log("AI");
         if (error === null) {
           let x=response['categories'];
-          c=(x[0].label);
-          for (let z of cat)
-		  {
-			  if (y.indexOf(z) > -1) {
-		      flaggedTweet.threatLevel += 20;
-	          }
+          labels=(x[0].label);
+          console.log(labels);
+          if (i==tweets[i].length-1) {
+            finish=true;
+            callback2();
+          }
+          else
+          {
+            callback2();
           }
         }
-});
-	return c;
+        else
+        {
+          console.log(error);
+        }
+      }
+      );
 }
