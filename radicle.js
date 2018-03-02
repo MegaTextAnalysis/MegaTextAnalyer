@@ -3,10 +3,9 @@
 const Twitter = require("twitter");
 const Express = require("express");
 const Credentials = require("./credentials_twitter");
-const AYLIENTextAPI = require('aylien_textapi');
-const aylienCreds = require('./credentials_aylien');
+const AYLIENTextAPI = require("aylien_textapi");
+const aylienCreds = require("./credentials_aylien");
 const Flags = require("./flags");
-const Categories = require('./categories');
 
 let client = new Twitter({
   consumer_key: Credentials.CONSUMER_KEY,
@@ -20,11 +19,9 @@ let textapi = new AYLIENTextAPI({
   application_key: aylienCreds.APP_KEY
 });
 
-//Gets lists of keywords and
-//categories for AI
-let cat = Categories.categories;
+// Gets lists of keywords and
+// categories for AI
 let keys = Flags.keywords;
-let finish=false;
 
 const server = Express();
 server.use(Express.static("public"));
@@ -38,17 +35,54 @@ server.get("/", function(req, res) {
 // Handles username fetching
 server.get("/user/:handle", function(req, res) {
   getTweets(req.params.handle, function(tweets) {
-    let jsonObj = {};
-    jsonObj.flagged = [];
-    let flaggedTweet = {};
-
-    flagTweets(tweets,jsonObj,flaggedTweet,function(){
+    iterateFlagging(tweets, function(jsonObj) {
       jsonObj.tweets = tweets;
-    res.json(jsonObj);
+      res.json(jsonObj);
     });
-    
   });
 });
+
+function iterateFlagging(tweets, callback) {
+  let jsonObj = {};
+  jsonObj.flagged = [];
+
+  for (let i = 0; i < tweets.length; i++) {
+    flagTweet(tweets[i].text, function(flaggedTweet, isFlagged) {
+      callAI(tweets[i], function(labels) {
+        flaggedTweet.label = labels;
+
+        if (isFlagged) {
+          jsonObj.flagged.push(flaggedTweet);
+          console.log(flaggedTweet);
+        }
+
+        if (i === tweets.length - 1) {
+          callback(jsonObj);
+        }
+      });
+    });
+  }
+}
+
+function flagTweet(tweet, callback) {
+  let flaggedTweet = {};
+  flaggedTweet.flags = [];
+  flaggedTweet.text = tweet;
+  flaggedTweet.threatLevel = 0;
+
+  for (let i in keys) {
+    if (tweet.toUpperCase().indexOf(i.toUpperCase()) > -1) {
+      flaggedTweet.flags.push(i);
+      flaggedTweet.threatLevel += keys[i];
+    }
+  }
+
+  if (flaggedTweet.flags.length > 0) {
+    callback(flaggedTweet, true);
+  } else {
+    callback(flaggedTweet, false);
+  }
+}
 
 server.get("/search/:query", function(req, res) {
   search(req.params.query, function(tweets) {
@@ -67,7 +101,7 @@ server.get("/search/:query", function(req, res) {
       for (let j in keys) {
         if (b.indexOf(j.toUpperCase()) > -1) {
           flaggedTweet.flags.push(j);
-          flaggedTweet.threatLevel+=keys[j];
+          flaggedTweet.threatLevel += keys[j];
         }
       }
 
@@ -110,60 +144,18 @@ function search(query, callback) {
     }
   });
 }
-function flagTweets(tweets,jsonObj,flaggedTweet,callback){
- for (let i=0;i<tweets.length;i++) {
-      flaggedTweet.flags = [];
-      flaggedTweet.text = tweets[i].text;
-      flaggedTweet.threatLevel = 0;
-      let a=tweets[i].text.toUpperCase();
-      let labels="";
 
-      for (let j in keys) {
-
-        if (a.indexOf(j.toUpperCase()) > -1) {
-          flaggedTweet.flags.push(j);
-          flaggedTweet.threatLevel+=keys[j];
-        }
-      }
-      console.log(i);
-      callAI(i,tweets,labels,function(){
-        flaggedTweet.Label=labels;
-
-      if (flaggedTweet.flags.length > 0) {
-        jsonObj.flagged.push(flaggedTweet);
-        flaggedTweet = {};
-      }
-      if (finish) {
-        callback();
-      }
-    });
-  }
-}
-
-function callAI(i,tweets,labels,callback2) {
-  console.log(tweets[i].text);
-  textapi.classifyByTaxonomy(
-    {'text':tweets[i].text,
-    'taxonomy': 'iptc-subjectcode'
-    },
-        function(error, response) {
-        if (error === null) {
-          let x=response['categories'];
-          labels=(x[0].label);
-          console.log(labels);
-          if (i==tweets[i].length-1) {
-            finish=true;
-            callback2();
-          }
-          else
-          {
-            callback2();
-          }
-        }
-        else
-        {
-          console.log(error);
-        }
-      }
-      );
+function callAI(i, callback) {
+  textapi.classifyByTaxonomy({
+    "text": i.text,
+    "taxonomy": "iptc-subjectcode"
+  }, function(error, response) {
+    if (!error) {
+      let x = response["categories"];
+      let labels = x[0].label;
+      callback(labels);
+    } else {
+      console.log(error);
+    }
+  });
 }
