@@ -68,10 +68,18 @@ function parseJSON(obj) {
 function parseUser(obj) {
     var txt = "";
     console.log(obj);
-    txt += "<table border='1'>"
+    
+    txt += "<table border='1'>" 
+    txt += '<thead> <tr>' +
+                '<th><span class="text">Flagged tweets</span></th>'+
+           ' </tr>'+
+        '</thead>'
+
+    txt += "<tbody>"
     for (x in obj.flagged) {
         txt += "<tr><td>" + obj.flagged[x].text + "</td></tr>";
     }
+    txt += "</tbody>"
     txt += "</table>"
     console.log(txt);
     document.getElementById("demo").innerHTML = txt;
