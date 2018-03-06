@@ -58,20 +58,14 @@ function showhide() {
     }
 }
 
-<<<<<<< HEAD
+
 //parse the incoming JSON 
 function parseJSON(obj) {
      console.log(obj.flagged)
-=======
+
 //parse the incoming JSON
 function parseUser(obj) {
 
     console.log(obj);
->>>>>>> dd11e6d9cda68acb3301b485e8e035708d0f414b
 }
 
-//parse the incoming JSON
-function parseKeyword(obj) {
-
-    console.log(obj);
-}
