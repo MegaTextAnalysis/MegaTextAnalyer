@@ -1,27 +1,26 @@
-$(document).ready(function() {
+$(document).ready(function () {
     showhide();
 
     //When user clicks search
-    $("#btnSubmit").click(function() {
+    $("#btnSubmit").click(function () {
         var word = document.getElementById("search");
         if (usernameSet()) {
             var url = "/user/" + word.value;
-            $.get(url, function(data) {
+            $.get(url, function (data) {
                 var obj = data;
                 parseUser(obj);
             });
         }
-        else
-        {
-             var url = "/search/" + word.value;
-            $.get(url, function(data) {
+        else {
+            var url = "/search/" + word.value;
+            $.get(url, function (data) {
                 var obj = data;
                 parseKeyword(obj);
             });
         }
     });
 
-    $('#search').keypress(function(event) {
+    $('#search').keypress(function (event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             alert('You pressed a "enter" key in textbox, here submit your form');
@@ -29,7 +28,7 @@ $(document).ready(function() {
     });
 
     //only display number of results selector when the user is searching for keywords
-    $("#s1").click(function() {
+    $("#s1").click(function () {
         showhide();
     });
 
@@ -61,12 +60,21 @@ function showhide() {
 
 //parse the incoming JSON 
 function parseJSON(obj) {
-     console.log(obj.flagged)
+    console.log(obj.flagged)
 
 }
 
 //parse the incoming JSON
 function parseUser(obj) {
     console.log(obj.tweets);
+    myObj = JSON.parse(obj);
+
+    txt += "<table border='1'>"
+    for (x in myObj) {
+        txt += "<tr><td>" + myObj.flagged[x] + "</td></tr>";
+    }
+    txt += "</table>"
+    console.log(txt);
+    document.getElementById("demo").innerHTML = txt;
 }
 
