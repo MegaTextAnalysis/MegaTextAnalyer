@@ -67,10 +67,10 @@ function parseJSON(obj) {
 //parse the incoming JSON
 function parseUser(obj) {
     var txt = "";
-    console.log(obj.flagged);
+    console.log(obj);
     txt += "<table border='1'>"
-    for (x in obj) {
-        txt += "<tr><td>" + obj.flagged[x] + "</td></tr>";
+    for (x in obj.flagged) {
+        txt += "<tr><td>" + obj.flagged[x].text + "</td></tr>";
     }
     txt += "</table>"
     console.log(txt);
