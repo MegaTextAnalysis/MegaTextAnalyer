@@ -70,7 +70,7 @@ function parseUser(obj) {
     console.log(obj.tweets);
     txt += "<table border='1'>"
     for (x in obj) {
-        txt += "<tr><td>" + myObj.flagged[x] + "</td></tr>";
+        txt += "<tr><td>" + obj.flagged[x] + "</td></tr>";
     }
     txt += "</table>"
     console.log(txt);
