@@ -66,6 +66,7 @@ function parseJSON(obj) {
 
 //parse the incoming JSON
 function parseUser(obj) {
+    var txt = "";
     console.log(obj.tweets);
     txt += "<table border='1'>"
     for (x in obj) {
