@@ -63,9 +63,10 @@ function showhide() {
 function parseJSON(obj) {
      console.log(obj.flagged)
 
+}
+
 //parse the incoming JSON
 function parseUser(obj) {
-
     console.log(obj);
 }
 
