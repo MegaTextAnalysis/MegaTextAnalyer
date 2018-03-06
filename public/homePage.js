@@ -67,6 +67,6 @@ function parseJSON(obj) {
 
 //parse the incoming JSON
 function parseUser(obj) {
-    console.log(obj);
+    console.log(obj.tweets);
 }
 
