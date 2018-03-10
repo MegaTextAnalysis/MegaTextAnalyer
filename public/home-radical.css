@@ -247,7 +247,7 @@
    color: #6441A4;
 }
 
-#results{
+#userResults{
   margin-top: 5%;
 }
 
@@ -255,5 +255,5 @@
   margin-left: 5%;
   background-color: #b3b3b3;
   width: 8%;
-  margin-top: 2%;
+  margin-top: 4%;
 }

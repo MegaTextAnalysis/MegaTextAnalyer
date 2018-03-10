@@ -1,6 +1,6 @@
 $(document).ready(function () {
     showhide();
-    document.getElementById("results").style.display = 'none';
+    document.getElementById("userResults").style.display = 'none';
 
     //When user clicks search
     $("#btnSubmit").click(function () {
@@ -22,9 +22,20 @@ $(document).ready(function () {
     });
 
     $('#search').keypress(function (event) {
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13') {
-            alert('You pressed a "enter" key in textbox, here submit your form');
+        var word = document.getElementById("search");
+        if (usernameSet()) {
+            var url = "/user/" + word.value;
+            $.get(url, function (data) {
+                var obj = data;
+                parseUser(obj);
+            });
+        }
+        else {
+            var url = "/search/" + word.value;
+            $.get(url, function (data) {
+                var obj = data;
+                parseKeyword(obj);
+            });
         }
     });
 
@@ -75,25 +86,24 @@ function parseUser(obj) {
     var row = 1;
     for (x in obj.flagged) {
         txt += "<tr>" +
-        "<th scope='row'>" + row + "</th>"+
-        "<td>" + obj.flagged[x].text + "</td>"+
-        "</tr>"
+            "<th scope='row'>" + row + "</th>" +
+            "<td>" + obj.flagged[x].text + "</td>" +
+            "</tr>"
         row++;
     }
     console.log(txt);
     //set threat meter
-    document.getElementById("threat").style.width =  obj.totalRisk; + "%";
-    document.getElementById("threat").innerHTML =  obj.totalRisk;
-   
+    document.getElementById("threat").style.width = obj.totalRisk + "%";
+    document.getElementById("threat").innerHTML = obj.totalRisk;
+
     console.log(txt);
     document.getElementById("body").innerHTML = txt;
-    document.getElementById("results").style.display = 'block';
+    document.getElementById("userResults").style.display = 'block';
 
 }
 
-function backToHomepage()
-{
-    document.getElementById("results").style.display = 'none';
+function backToHomepage() {
+    document.getElementById("userResults").style.display = 'none';
     document.getElementById("m1").style.display = 'block';
     document.getElementById("sb").style.display = 'block';
 }
