@@ -191,7 +191,7 @@
   width:100%;
 }
 #table-wrapper table * {
-  background:gray;
+  background:#b3b3b3;
   color:black;
 }
 #table-wrapper table thead{ 
@@ -205,9 +205,43 @@
   z-index:2;
 }
 
+#profile
+{
+  margin-left: 10%;
+  background-color: #b3b3b3;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  padding: 1%;
+  width: 30%;
+  height: 15%;
+}
+
+#b1
+{
+  font-family: myFirstFont;
+}
+
 .progress
 {
   width: 35%;
   margin-left: 10%;
   background-color: gray;
+}
+
+#bio
+{
+  text-align: left;
+  font-size: 18px;
+  margin-left: 43%;
+  margin-top: 10%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#bio-pic
+{
+  margin-top: -30%;/* depending on how many elements of bio that there are (10% x no of elements)*/
+}
+
+#link{
+   color: #6441A4;
 }

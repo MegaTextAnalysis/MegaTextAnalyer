@@ -82,7 +82,7 @@ function parseUser(obj) {
         row++;
     }
     //set threat meter
-    //val threatLevel = obj.
+    var threatLevel  = obj.totalRisk.text;
     document.getElementById("threat").style.width = threatlevel + "%";
     document.getElementById("threat").innerHTML = threatLevel;
    
