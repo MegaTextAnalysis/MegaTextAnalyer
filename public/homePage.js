@@ -1,6 +1,6 @@
 $(document).ready(function () {
     showhide();
-    document.getElementById("results").style.display = 'block';
+    document.getElementById("results").style.display = 'none';
 
     //When user clicks search
     $("#btnSubmit").click(function () {

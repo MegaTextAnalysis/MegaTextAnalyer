@@ -250,3 +250,10 @@
 #results{
   margin-top: 5%;
 }
+
+#back-but{
+  margin-left: 5%;
+  background-color: #b3b3b3;
+  width: 8%;
+  margin-top: 2%;
+}
