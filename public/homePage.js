@@ -81,8 +81,9 @@ function parseUser(obj) {
         "</tr>"
         row++;
     }
+    console.log(txt);
     //set threat meter
-    var threatLevel  = obj.totalRisk.text;
+    var threatLevel  = obj.totalRisk;
     document.getElementById("threat").style.width = threatlevel + "%";
     document.getElementById("threat").innerHTML = threatLevel;
    
