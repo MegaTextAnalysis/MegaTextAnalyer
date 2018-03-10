@@ -27,7 +27,7 @@
     <div class="twitter">
         <img src="twitter-bird-logo.png" alt="Twitter Icon" width="80px" height "80px">
     </div>
-    <div class="menu">
+    <div class="menu" id="m1">
         <nav class="my-navbar navbar navbar-custom">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
@@ -48,7 +48,7 @@
     <div class="grey-box"> </div>
 </header>
 
-<div class="search-box">
+<div class="search-box" id="sb">
     <div class="container-4">
         <div id="s1" class="search-by">
             <label for="sel1">Search by:</label>
@@ -64,7 +64,7 @@
                     <option>10</option>
                     <option>15</option>
                     <option>20</option>
-                </select> 
+                </select>
         </div>
         <div class="search-bar">
             <input type="search" id="search" placeholder="Search..." />
@@ -77,20 +77,50 @@
 
 <p id="demo"></p>
 
-
-<div id="table-wrapper">
-  <div id="table-scroll">
-  </div>
+<div id="results">
+    <div id="profile">
+        <p id = "bio"></p>
+    </div>
+    <div id="table-wrapper">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Flagged Tweets</th>
+                    </tr>
+                </thead>
+                <tbody id="body">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="progress">
+          <div id = "threat" class="progress-bar" role="progressbar" style="width: 36%;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100">25%</div>
+    </div>
 </div>
 
-<div class="footerB">
-    <div class="grey box"> </div>
-</div>
-
+<!-- 
+<div class = "footer">
 <p class="legal"> Website designed and developed by
     <a href="team.html" class="alert-link">
         <b>radical</b>
     </a> as part of a software engineering group project</p>
+</div>
+-->
+
 </body>
 
 </html>

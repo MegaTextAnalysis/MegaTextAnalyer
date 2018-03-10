@@ -1,5 +1,6 @@
 $(document).ready(function () {
     showhide();
+    document.getElementById("results").style.display = 'block';
 
     //When user clicks search
     $("#btnSubmit").click(function () {
@@ -66,22 +67,35 @@ function parseJSON(obj) {
 
 //parse the incoming JSON
 function parseUser(obj) {
+    document.getElementById("m1").style.display = 'none';
+    document.getElementById("sb").style.display = 'none';
+
+    //construct results table
     var txt = "";
     console.log(obj);
-    
-    txt += "<table border='1'>" 
-    txt += '<thead> <tr>' +
-                '<th><span class="text">Flagged tweets</span></th>'+
-           ' </tr>'+
-        '</thead>'
-
-    txt += "<tbody>"
+    var row = 1;
     for (x in obj.flagged) {
-        txt += "<tr><td>" + obj.flagged[x].text + "</td></tr>";
+        txt += "<tr>" +
+        "<th scope='row'>" + row + "</th>"+
+        "<td>" + obj.flagged[x].text + "</td>"+
+        "</tr>"
+        row++;
     }
-    txt += "</tbody>"
-    txt += "</table>"
+    //set threat meter
+    //val threatLevel = obj.
+    document.getElementById("threat").style.width = threatlevel + "%";
+    document.getElementById("threat").innerHTML = threatLevel;
+   
     console.log(txt);
-    document.getElementById("demo").innerHTML = txt;
+    document.getElementById("body").innerHTML = txt;
+    document.getElementById("results").style.display = 'block';
+
+
 }
 
+function backToHomepage()
+{
+    document.getElementById("results").style.display = 'none';
+    document.getElementById("m1").style.display = 'block';
+    document.getElementById("sb").style.display = 'block';
+}
