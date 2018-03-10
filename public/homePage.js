@@ -82,14 +82,12 @@ function parseUser(obj) {
     }
     console.log(txt);
     //set threat meter
-    var threatLevel  = obj.totalRisk;
-    document.getElementById("threat").style.width = threatlevel + "%";
-    document.getElementById("threat").innerHTML = threatLevel;
+    document.getElementById("threat").style.width =  obj.totalRisk; + "%";
+    document.getElementById("threat").innerHTML =  obj.totalRisk;
    
     console.log(txt);
     document.getElementById("body").innerHTML = txt;
     document.getElementById("results").style.display = 'block';
-
 
 }
 
