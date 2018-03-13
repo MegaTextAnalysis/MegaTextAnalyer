@@ -102,6 +102,9 @@ function parseUser(obj, username) {
     //set image
      document.getElementById("img1").src = "https://twitter.com/" + username + "/profile_image?size=original";
 
+     //set link to profile
+      document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
+
     console.log(txt);
     document.getElementById("body").innerHTML = txt;
     document.getElementById("userResults").style.display = 'block';
