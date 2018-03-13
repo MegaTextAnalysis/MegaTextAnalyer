@@ -100,7 +100,7 @@ function parseUser(obj, username) {
     document.getElementById("threat").innerHTML = obj.totalRisk;
 
     //set image
-     document.getElementById("img1").src = "https://twitter.com/[" + username + "]/profile_image?size=original";
+     document.getElementById("img1").src = "https://twitter.com/" + username + "/profile_image?size=original";
 
     console.log(txt);
     document.getElementById("body").innerHTML = txt;
