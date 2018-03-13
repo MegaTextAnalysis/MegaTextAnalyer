@@ -21,6 +21,7 @@ $(document).ready(function () {
         }
     });
 
+    /*
     $('#search').keypress(function (event) {
         var word = document.getElementById("search");
         if (usernameSet()) {
@@ -38,6 +39,7 @@ $(document).ready(function () {
             });
         }
     });
+    */
 
     //only display number of results selector when the user is searching for keywords
     $("#s1").click(function () {
