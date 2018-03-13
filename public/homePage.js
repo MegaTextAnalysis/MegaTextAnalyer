@@ -1,35 +1,48 @@
-$(document).ready(function() {
+$(document).ready(function () {
     showhide();
+    document.getElementById("userResults").style.display = 'none';
 
     //When user clicks search
-    $("#btnSubmit").click(function() {
+    $("#btnSubmit").click(function () {
         var word = document.getElementById("search");
         if (usernameSet()) {
             var url = "/user/" + word.value;
-            $.get(url, function(data) {
+            $.get(url, function (data) {
                 var obj = data;
                 parseUser(obj);
             });
         }
-        else
-        {
-             var url = "/search/" + word.value;
-            $.get(url, function(data) {
+        else {
+            var url = "/search/" + word.value;
+            $.get(url, function (data) {
                 var obj = data;
                 parseKeyword(obj);
             });
         }
     });
 
-    $('#search').keypress(function(event) {
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13') {
-            alert('You pressed a "enter" key in textbox, here submit your form');
+    /*
+    $('#search').keypress(function (event) {
+        var word = document.getElementById("search");
+        if (usernameSet()) {
+            var url = "/user/" + word.value;
+            $.get(url, function (data) {
+                var obj = data;
+                parseUser(obj);
+            });
+        }
+        else {
+            var url = "/search/" + word.value;
+            $.get(url, function (data) {
+                var obj = data;
+                parseKeyword(obj);
+            });
         }
     });
+    */
 
     //only display number of results selector when the user is searching for keywords
-    $("#s1").click(function() {
+    $("#s1").click(function () {
         showhide();
     });
 
@@ -58,14 +71,41 @@ function showhide() {
     }
 }
 
-//parse the incoming JSON
-function parseUser(obj) {
 
-    console.log(obj);
+//parse the incoming JSON 
+function parseJSON(obj) {
+    console.log(obj.flagged)
 }
 
 //parse the incoming JSON
-function parseKeyword(obj) {
+function parseUser(obj) {
+    document.getElementById("m1").style.display = 'none';
+    document.getElementById("sb").style.display = 'none';
 
+    //construct results table
+    var txt = "";
     console.log(obj);
+    var row = 1;
+    for (x in obj.flagged) {
+        txt += "<tr>" +
+            "<th scope='row'>" + row + "</th>" +
+            "<td>" + obj.flagged[x].text + "</td>" +
+            "</tr>"
+        row++;
+    }
+    console.log(txt);
+    //set threat meter
+    document.getElementById("threat").style.width = obj.totalRisk + "%";
+    document.getElementById("threat").innerHTML = obj.totalRisk;
+
+    console.log(txt);
+    document.getElementById("body").innerHTML = txt;
+    document.getElementById("userResults").style.display = 'block';
+
+}
+
+function backToHomepage() {
+    document.getElementById("userResults").style.display = 'none';
+    document.getElementById("m1").style.display = 'block';
+    document.getElementById("sb").style.display = 'block';
 }
