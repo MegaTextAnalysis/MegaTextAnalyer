@@ -87,12 +87,21 @@ function parseUser(obj, username) {
     console.log(obj);
     var row = 1;
 
-    for (x in obj.flagged) {
-        txt += "<tr>" +
-            "<th scope='row'>" + row + "</th>" +
-            "<td>" + obj.flagged[x].text + "</td>" +
-            "</tr>"
-        row++;
+    if (obj.flagged.length !== 0) {
+        for (x in obj.flagged) {
+            txt += "<tr>" +
+                "<th scope='row'>" + row + "</th>" +
+                "<td>" + obj.flagged[x].text + "</td>" +
+                "</tr>"
+            row++;
+        }
+    }
+    else
+    {
+         txt += "<tr>" +
+                "<th scope='row'>" + row + "</th>" +
+                "<td>No tweets on this users profile have been flagged</td>" +
+                "</tr>"
     }
     console.log(txt);
     //set threat meter
@@ -100,10 +109,10 @@ function parseUser(obj, username) {
     document.getElementById("threat").innerHTML = obj.totalRisk;
 
     //set image
-     document.getElementById("img1").src = "https://twitter.com/" + username + "/profile_image?size=original";
+    document.getElementById("img1").src = "https://twitter.com/" + username + "/profile_image?size=original";
 
-     //set link to profile
-      document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
+    //set link to profile
+    document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
 
     console.log(txt);
     document.getElementById("body").innerHTML = txt;
