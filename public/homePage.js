@@ -9,7 +9,7 @@ $(document).ready(function () {
             var url = "/user/" + word.value;
             $.get(url, function (data) {
                 var obj = data;
-                parseUser(obj);
+                parseUser(obj, word.value);
             });
         }
         else {
@@ -78,7 +78,7 @@ function parseJSON(obj) {
 }
 
 //parse the incoming JSON
-function parseUser(obj) {
+function parseUser(obj, username) {
     document.getElementById("m1").style.display = 'none';
     document.getElementById("sb").style.display = 'none';
 
@@ -86,6 +86,7 @@ function parseUser(obj) {
     var txt = "";
     console.log(obj);
     var row = 1;
+
     for (x in obj.flagged) {
         txt += "<tr>" +
             "<th scope='row'>" + row + "</th>" +
@@ -97,6 +98,9 @@ function parseUser(obj) {
     //set threat meter
     document.getElementById("threat").style.width = obj.totalRisk + "%";
     document.getElementById("threat").innerHTML = obj.totalRisk;
+
+    //set image
+     document.getElementById("img1").src = "https://twitter.com/[" + username + "]/profile_image?size=original";
 
     console.log(txt);
     document.getElementById("body").innerHTML = txt;
