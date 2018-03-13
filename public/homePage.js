@@ -103,6 +103,11 @@ function parseUser(obj, username) {
                 "<td>No tweets on this users profile have been flagged</td>" +
                 "</tr>"
     }
+
+    //popuulate table and display
+    document.getElementById("body").innerHTML = txt;
+    document.getElementById("userResults").style.display = 'block';
+
     console.log(txt);
     //set threat meter
     document.getElementById("threat").style.width = obj.totalRisk + "%";
@@ -114,9 +119,7 @@ function parseUser(obj, username) {
     //set link to profile
     document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
 
-    console.log(txt);
-    document.getElementById("body").innerHTML = txt;
-    document.getElementById("userResults").style.display = 'block';
+    
 
 }
 
