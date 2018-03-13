@@ -183,6 +183,7 @@ function search(query, callback) {
   });
 }
 
+/*
 function callAI(i, callback) {
   textapi.classifyByTaxonomy({
     "text": i.text,
@@ -196,4 +197,6 @@ function callAI(i, callback) {
       console.log(error);
     }
   });
+  
 }
+*/
