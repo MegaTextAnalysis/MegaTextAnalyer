@@ -139,11 +139,12 @@ function parseKeyword(obj)
     console.log(obj);
     var row = 1;
 
-    if (obj.flagged.length !== 0) {
-        for (x in obj.flagged) {
+    if (obj.tweets.statuses.length !== 0) {
+        for (x in obj.tweets.statuses) {
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
-                "<td>" + obj.flagged[x].text + "</td>" +
+                "<td>" + obj.tweets.statuses[row - 1].user.name + "</td>" +
+                "<td>" + obj.tweets.statuses[x].text + "</td>" +
                 "</tr>"
             row++;
         }
@@ -158,6 +159,6 @@ function parseKeyword(obj)
 
     //popuulate table and display
     document.getElementById("body").innerHTML = txt;
-    document.getElementById("keyResults").style.display = 'block';
+    document.getElementById("userResults").style.display = 'block';
 
 }
