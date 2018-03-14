@@ -183,6 +183,7 @@
 #table-wrapper {
   float: right;
   margin-right: 8%;
+  margin-left: 8%;
   height: 40%;
   width:45%;
 }
@@ -240,7 +241,7 @@
 
 #bio-pic
 {
-  margin-top: -30%;/* depending on how many elements of bio that there are (10% x no of elements)*/
+  margin-top: -20%;/* depending on how many elements of bio that there are (10% x no of elements)*/
 }
 
 #link{

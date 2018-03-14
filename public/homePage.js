@@ -9,7 +9,7 @@ $(document).ready(function () {
             var url = "/user/" + word.value;
             $.get(url, function (data) {
                 var obj = data;
-                parseUser(obj);
+                parseUser(obj, word.value);
             });
         }
         else {
@@ -78,7 +78,7 @@ function parseJSON(obj) {
 }
 
 //parse the incoming JSON
-function parseUser(obj) {
+function parseUser(obj, username) {
     document.getElementById("m1").style.display = 'none';
     document.getElementById("sb").style.display = 'none';
 
@@ -86,21 +86,39 @@ function parseUser(obj) {
     var txt = "";
     console.log(obj);
     var row = 1;
-    for (x in obj.flagged) {
-        txt += "<tr>" +
-            "<th scope='row'>" + row + "</th>" +
-            "<td>" + obj.flagged[x].text + "</td>" +
-            "</tr>"
-        row++;
+
+    if (obj.flagged.length !== 0) {
+        for (x in obj.flagged) {
+            txt += "<tr>" +
+                "<th scope='row'>" + row + "</th>" +
+                "<td>" + obj.flagged[x].text + "</td>" +
+                "</tr>"
+            row++;
+        }
     }
+    else
+    {
+         txt += "<tr>" +
+                "<td>No tweets on this users profile have been flagged</td>" +
+                "</tr>"
+    }
+
+    //popuulate table and display
+    document.getElementById("body").innerHTML = txt;
+    document.getElementById("userResults").style.display = 'block';
+
     console.log(txt);
     //set threat meter
     document.getElementById("threat").style.width = obj.totalRisk + "%";
     document.getElementById("threat").innerHTML = obj.totalRisk;
 
-    console.log(txt);
-    document.getElementById("body").innerHTML = txt;
-    document.getElementById("userResults").style.display = 'block';
+    //set image
+    document.getElementById("img1").src = "https://twitter.com/" + username + "/profile_image?size=original";
+
+    //set link to profile
+    document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
+
+    
 
 }
 
