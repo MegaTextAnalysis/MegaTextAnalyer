@@ -6,11 +6,7 @@ $(document).ready(function () {
     $("#btnSubmit").click(function () {
         var word = document.getElementById("search");
         if (usernameSet()) {
-            var url = "/user/" + word.value;
-            $.get(url, function (data) {
-                var obj = data;
-                parseUser(obj, word.value);
-            });
+           getUser(word);
         }
         else {
             var url = "/search/" + word.value;
@@ -21,6 +17,15 @@ $(document).ready(function () {
         }
     });
 
+
+function getUser(word)
+{
+     var url = "/user/" + word.value;
+     $.get(url, function (data) {
+                var obj = data;
+                parseUser(obj, word.value);
+            });
+}
     /*
     $('#search').keypress(function (event) {
         var word = document.getElementById("search");
@@ -47,6 +52,9 @@ $(document).ready(function () {
     });
 
 });
+
+
+
 
 //returns if selector is set to username
 function usernameSet() {
@@ -143,7 +151,7 @@ function parseKeyword(obj)
         for (x in obj.tweets.statuses) {
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
-                "<td>" + obj.tweets.statuses[row - 1].user.name + "</td>" +
+                "<td>" + "<a onclick = '" + getUser(obj.tweets.statuses[row - 1].user.name) + "'>" + obj.tweets.statuses[row - 1].user.name) + "</a></td>" +
                 "<td>" + obj.tweets.statuses[x].text + "</td>" +
                 "</tr>"
             row++;
@@ -153,12 +161,13 @@ function parseKeyword(obj)
     {
          txt += "<tr>" +
                 "<th scope='row'></th>" +
+                "<td></td>" +
                 "<td>No tweets on this users profile have been flagged</td>" +
                 "</tr>"
     }
 
     //popuulate table and display
-    document.getElementById("body").innerHTML = txt;
-    document.getElementById("userResults").style.display = 'block';
+    document.getElementById("kbody").innerHTML = txt;
+    document.getElementById("keyResults").style.display = 'block';
 
 }
