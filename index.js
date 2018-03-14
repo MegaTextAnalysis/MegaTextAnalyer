@@ -8,6 +8,12 @@ const AYLIENTextAPI = require("aylien_textapi");
 const aylienCreds = require("./credentials_aylien");
 const Flags = require("./flags");
 const Categories = require("./categories");
+const Datastore = require("nedb");
+
+let db = new Datastore({
+  filename: "./database",
+  autoload: true
+});
 
 // Twitter credentials
 let client = new Twitter({
@@ -106,11 +112,45 @@ server.get("/user/:handle", (req, res) => {
         if (jsonObj.totalRisk > 100) {
           jsonObj.totalRisk = 100;
         }
+
         jsonObj.tweets = tweets;
+
+        if (tweets.length > 0) {
+          db.find({
+            username: req.params.handle
+          }, (err, docs) => {
+            if (err) {
+              console.log(err);
+            } else if (docs.length > 0) {
+              db.update({
+                username: req.params.handle
+              }, {
+                $set: {
+                  data: jsonObj
+                }
+              });
+            } else {
+              db.insert({
+                username: req.params.handle,
+                data: jsonObj
+              });
+            }
+          });
+        }
 
         // Return JSON object
         res.json(jsonObj);
       });
+  });
+});
+
+server.get("/db", (req, res) => {
+  db.find({}, (err, docs) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(docs);
+    }
   });
 });
 
