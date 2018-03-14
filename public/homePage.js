@@ -99,6 +99,7 @@ function parseUser(obj, username) {
     else
     {
          txt += "<tr>" +
+                "<th scope='row'></th>" +
                 "<td>No tweets on this users profile have been flagged</td>" +
                 "</tr>"
     }
@@ -126,4 +127,37 @@ function backToHomepage() {
     document.getElementById("userResults").style.display = 'none';
     document.getElementById("m1").style.display = 'block';
     document.getElementById("sb").style.display = 'block';
+}
+
+function parseKeyword(obj)
+{
+    document.getElementById("m1").style.display = 'none';
+    document.getElementById("sb").style.display = 'none';
+
+    //construct results table
+    var txt = "";
+    console.log(obj);
+    var row = 1;
+
+    if (obj.flagged.length !== 0) {
+        for (x in obj.flagged) {
+            txt += "<tr>" +
+                "<th scope='row'>" + row + "</th>" +
+                "<td>" + obj.flagged[x].text + "</td>" +
+                "</tr>"
+            row++;
+        }
+    }
+    else
+    {
+         txt += "<tr>" +
+                "<th scope='row'></th>" +
+                "<td>No tweets on this users profile have been flagged</td>" +
+                "</tr>"
+    }
+
+    //popuulate table and display
+    document.getElementById("body").innerHTML = txt;
+    document.getElementById("keyResults").style.display = 'block';
+
 }
