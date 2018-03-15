@@ -1,6 +1,7 @@
 $(document).ready(function () {
     showhide();
     document.getElementById("userResults").style.display = 'none';
+    document.getElementById("keyResults").style.display = 'none';
 
     //When user clicks search
     $("#btnSubmit").click(function () {
@@ -18,14 +19,7 @@ $(document).ready(function () {
     });
 
 
-function getUser(word)
-{
-     var url = "/user/" + word.value;
-     $.get(url, function (data) {
-                var obj = data;
-                parseUser(obj, word.value);
-            });
-}
+
     /*
     $('#search').keypress(function (event) {
         var word = document.getElementById("search");
@@ -54,7 +48,14 @@ function getUser(word)
 });
 
 
-
+function getUser(word)
+{
+     var url = "/user/" + word.value;
+     $.get(url, function (data) {
+                var obj = data;
+                parseUser(obj, word.value);
+            });
+}
 
 //returns if selector is set to username
 function usernameSet() {
@@ -133,6 +134,7 @@ function parseUser(obj, username) {
 
 function backToHomepage() {
     document.getElementById("userResults").style.display = 'none';
+    document.getElementById("keyResults").style.display = 'none';
     document.getElementById("m1").style.display = 'block';
     document.getElementById("sb").style.display = 'block';
 }
