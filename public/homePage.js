@@ -1,7 +1,5 @@
 $(document).ready(function () {
     showhide();
-    document.getElementById("userResults").style.display = 'none';
-    document.getElementById("keyResults").style.display = 'none';
 
     //When user clicks search
     $("#btnSubmit").click(function () {
