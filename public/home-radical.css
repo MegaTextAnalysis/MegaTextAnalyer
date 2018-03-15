@@ -180,7 +180,8 @@
   color: #532289;
 }
 
-#table-wrapper {
+/* user results table styling*/
+#utable-wrapper {
   float: right;
   margin-right: 8%;
   margin-left: 8%;
@@ -188,21 +189,29 @@
   width:45%;
 }
 
-#table-wrapper table {
+#ktable-wrapper {
+  margin-right: 8%;
+  margin-left: 8%;
+  height: 40%;
+  width:45%;
+}
+
+
+.table-wrapper table {
   width:100%;
 }
-#table-wrapper table * {
+.table-wrapper table * {
   background:#b3b3b3;
   color:black;
 }
-#table-wrapper table thead{ 
+.table-wrapper table thead{ 
   z-index:2;
   height: 10%;
   font-family: myFirstFont;
   font-size: 20px;
 }
 
-#table-wrapper table tbody tr {
+.table-wrapper table tbody tr {
   z-index:2;
 }
 
@@ -252,9 +261,10 @@
   margin-top: 5%;
 }
 
-#back-but{
+.back-but{
   margin-left: 5%;
   background-color: #b3b3b3;
   width: 8%;
   margin-top: 4%;
 }
+
