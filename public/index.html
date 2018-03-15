@@ -77,8 +77,8 @@
 
 <p id="demo"></p>
 
-<div id="userResults">-
-    <div id="table-wrapper">
+<div id="userResults" style = "display: none">
+    <div id="utable-wrapper">
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -107,6 +107,28 @@
     </div>
     <button type="button" class="btn" id = "back-but" onclick="backToHomepage();">< Back</button>
 </div>
+
+
+<div id = "keyResults" style = "display: none">
+    <div id="table-wrapper">
+        <div class="ktable-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Flagged Tweets</th>
+                    </tr>
+                </thead>
+                <tbody id="kbody">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button type="button" class="btn" id = "key-back-but" onclick="backToHomepage();">< Back</button>
+</div>
+
 
 <!-- 
 <div class = "footer">
