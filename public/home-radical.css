@@ -187,6 +187,8 @@
   margin-left: 8%;
   height: 40%;
   width:45%;
+  background:#b3b3b3;
+  color:black;
 }
 
 #ktable-wrapper {
@@ -194,16 +196,10 @@
   margin-left: 8%;
   height: 40%;
   width:45%;
-}
-
-
-.table-wrapper table {
-  width:100%;
-}
-.table-wrapper table * {
   background:#b3b3b3;
   color:black;
 }
+
 .table-wrapper table thead{ 
   z-index:2;
   height: 10%;
