@@ -193,9 +193,10 @@
 
 #ktable-wrapper {
   margin-right: 8%;
-  margin-left: 8%;
+  margin-left: 15%;
+  margin-top: 8%;
   height: 40%;
-  width:45%;
+  width:60%;
   background:#b3b3b3;
   color:black;
 }
