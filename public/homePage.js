@@ -149,6 +149,7 @@ function parseKeyword(obj)
 
     if (obj.tweets.statuses.length !== 0) {
         for (x in obj.tweets.statuses) {
+           console.log(getUser(obj.tweets.statuses[row - 1].user.name));
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
                 "<td>" + "<a onclick = '" + getUser(obj.tweets.statuses[row - 1].user.name) + "'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
@@ -156,7 +157,7 @@ function parseKeyword(obj)
                 "</tr>"
             row++;
         }
-        console.log(txt);
+        
     }
     else
     {
