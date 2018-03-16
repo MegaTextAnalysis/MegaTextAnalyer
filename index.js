@@ -1,13 +1,9 @@
 "use strict";
 
 // Require modules
-const Twitter = require("twitter");
 const Express = require("express");
-const Credentials = require("./credentials_twitter");
-const AYLIENTextAPI = require("aylien_textapi");
-const aylienCreds = require("./credentials_aylien");
-const Flags = require("./flags");
-const Categories = require("./categories");
+const AnalysisPromise = require("./AnalysisPromise");
+const TwitterUtils = require("./TwitterUtils");
 const Datastore = require("nedb");
 
 let db = new Datastore({
@@ -15,19 +11,8 @@ let db = new Datastore({
   autoload: true
 });
 
-// Twitter credentials
-let client = new Twitter({
-  consumer_key: Credentials.CONSUMER_KEY,
-  consumer_secret: Credentials.CONSUMER_SECRET,
-  access_token_key: Credentials.ACCESS_TOKEN,
-  access_token_secret: Credentials.ACCESS_SECRET
-});
-
-// AI credentials
-let textapi = new AYLIENTextAPI({
-  application_id: aylienCreds.APP_ID,
-  application_key: aylienCreds.APP_KEY
-});
+let twitter = new TwitterUtils();
+let analysis = new AnalysisPromise();
 
 // Express server
 const server = Express();
@@ -41,56 +26,15 @@ server.get("/", (req, res) => {
 
 // Handles username fetching
 server.get("/user/:handle", (req, res) => {
-  getTweets(req.params.handle, (tweets) => {
+  twitter.getTweets(req.params.handle, (tweets) => {
     // Create return JSON object
     let jsonObj = {};
 
-    // Create array of Promises
-    let promises = [];
     jsonObj.totalRisk = 0;
     jsonObj.flagged = [];
 
-    // Iterate over tweets and analyse
-    for (let i of tweets) {
-      promises.push(new Promise((resolve, reject) => {
-        // Each tweet has a flagging object
-        let flaggedTweet = {};
-        let text = i.text;
-        flaggedTweet.flags = [];
-        flaggedTweet.text = text;
-        flaggedTweet.threatLevel = 0;
-
-        // Call AI to analyse tweet and chain Promises to get synchronous execution
-        callAI(text)
-          .then(labels => {
-            // Get labels returned by AI
-            flaggedTweet.label = labels;
-
-            // Add 20 to threat level if a category is flagged
-            Categories.forEach((element) => {
-              if (labels.indexOf(element) > -1) {
-                flaggedTweet.threatLevel += 20;
-              }
-            });
-
-            return flaggedTweet;
-          })
-          .then(flaggedTweet => {
-            // Iterate over flag words and add threat level corresponding to the flag word
-            for (let j in Flags) {
-              if (text.toUpperCase().indexOf(j.toUpperCase()) > -1) {
-                flaggedTweet.flags.push(j);
-                flaggedTweet.threatLevel += Flags[j];
-              }
-            }
-          })
-          .then(() =>
-            resolve(flaggedTweet))
-          .catch(error => {
-            console.log(error);
-          });
-      }));
-    }
+    // Create array of Promises of analyses of tweets
+    let promises = tweets.map(entries => analysis.analyse(entries.text));
 
     // Wait for Promises to finish and get total threat level
     Promise.all(promises)
@@ -115,35 +59,15 @@ server.get("/user/:handle", (req, res) => {
 
         jsonObj.tweets = tweets;
 
-        if (tweets.length > 0) {
-          db.find({
-            username: req.params.handle
-          }, (err, docs) => {
-            if (err) {
-              console.log(err);
-            } else if (docs.length > 0) {
-              db.update({
-                username: req.params.handle
-              }, {
-                $set: {
-                  data: jsonObj
-                }
-              });
-            } else {
-              db.insert({
-                username: req.params.handle,
-                data: jsonObj
-              });
-            }
-          });
-        }
+        // Check and update database with new results
+        checkDB(tweets, req.params.handle, jsonObj);
 
-        // Return JSON object
         res.json(jsonObj);
       });
   });
 });
 
+// Get database of results
 server.get("/db", (req, res) => {
   db.find({}, (err, docs) => {
     if (err) {
@@ -156,56 +80,16 @@ server.get("/db", (req, res) => {
 
 // Handles search querying
 server.get("/search/:query", function(req, res) {
-  search(req.params.query, function(tweets) {
+  twitter.search(req.params.query, function(tweets) {
     // Create return JSON object
     let jsonObj = {};
 
     // Create array of Promises
-    let promises = [];
     jsonObj.totalRisk = 0;
     jsonObj.flagged = [];
 
     // Iterate over tweets and analyse
-    for (let i of tweets.statuses) {
-      promises.push(new Promise((resolve, reject) => {
-        // Each tweet has a flagging object
-        let flaggedTweet = {};
-        let text = i.text;
-        flaggedTweet.flags = [];
-        flaggedTweet.text = text;
-        flaggedTweet.threatLevel = 0;
-
-        // Call AI to analyse tweet and chain Promises to get synchronous execution
-        callAI(text)
-          .then(labels => {
-            // Get labels returned by AI
-            flaggedTweet.label = labels;
-
-            // Add 20 to threat level if a category is flagged
-            Categories.forEach((element) => {
-              if (labels.indexOf(element) > -1) {
-                flaggedTweet.threatLevel += 20;
-              }
-            });
-
-            return flaggedTweet;
-          })
-          .then(flaggedTweet => {
-            // Iterate over flag words and add threat level corresponding to the flag word
-            for (let j in Flags) {
-              if (text.toUpperCase().indexOf(j.toUpperCase()) > -1) {
-                flaggedTweet.flags.push(j);
-                flaggedTweet.threatLevel += Flags[j];
-              }
-            }
-          })
-          .then(() =>
-            resolve(flaggedTweet))
-          .catch(error => {
-            console.log(error);
-          });
-      }));
-    }
+    let promises = tweets.statuses.map(entries => analysis.analyse(entries.text));
 
     // Wait for Promises to finish and get total threat level
     Promise.all(promises)
@@ -228,56 +112,36 @@ server.get("/search/:query", function(req, res) {
           jsonObj.totalRisk = 100;
         }
 
-        // Return JSON object
         jsonObj.tweets = tweets;
         res.json(jsonObj);
       });
   });
 });
 
-// Handles timeline querying
-function getTweets(handle, callback) {
-  client.get("statuses/user_timeline", {
-    screen_name: handle,
-    exclude_replies: 1,
-    include_rts: 0,
-    trim_user: 1
-  }, function(err, tweets, res) {
-    if (err) {
-      console.log(err);
-    } else {
-      callback(tweets);
-    }
-  });
-}
-
-// Handles search querying
-function search(query, callback) {
-  client.get("search/tweets", {
-    q: query
-  }, function(err, tweets, res) {
-    if (err) {
-      console.log(err);
-    } else {
-      callback(tweets);
-    }
-  });
-}
-
-function callAI(i) {
-  // Create Promise for AI call
-  return new Promise(function(resolve, reject) {
-    textapi.classifyByTaxonomy({
-      "text": i,
-      "taxonomy": "iptc-subjectcode"
-    }, function(error, response) {
-      if (!error) {
-        let x = response["categories"];
-        let labels = x[0].label;
-        resolve(labels);
+function checkDB(tweets, handle, jsonObj) {
+  if (tweets.length > 0) {
+    db.find({
+      username: handle
+    }, (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else if (docs.length > 0) {
+        // If exists, update
+        db.update({
+          username: handle
+        }, {
+          $set: {
+            time: Date.now(),
+            data: jsonObj
+          }
+        });
       } else {
-        reject(new Error("Call AI failed."));
+        db.insert({
+          username: handle,
+          time: Date.now(),
+          data: jsonObj
+        });
       }
     });
-  });
+  }
 }
