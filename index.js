@@ -5,6 +5,7 @@ const Express = require("express");
 const Datastore = require("nedb");
 const AnalysisPromise = require("./AnalysisPromise");
 const TwitterUtils = require("./TwitterUtils");
+const AnalysisJSON = require("./AnalysisJSON");
 
 let db = new Datastore({
   filename: "./database",
@@ -22,11 +23,7 @@ server.listen(80);
 // Handles username fetching
 server.get("/user/:handle", (req, res) => {
   twitter.getTweets(req.params.handle, (tweets) => {
-    // Create return JSON object
-    let jsonObj = {};
-
-    jsonObj.totalRisk = 0;
-    jsonObj.flagged = [];
+    let jsonObj = new AnalysisJSON();
 
     // Create array of Promises of analyses of tweets
     let promises = tweets.map(entries => analysis.analyse(entries.text));
@@ -76,12 +73,7 @@ server.get("/db", (req, res) => {
 // Handles search querying
 server.get("/search/:query", function(req, res) {
   twitter.search(req.params.query, function(tweets) {
-    // Create return JSON object
-    let jsonObj = {};
-
-    // Create array of Promises
-    jsonObj.totalRisk = 0;
-    jsonObj.flagged = [];
+    let jsonObj = new AnalysisJSON();
 
     // Iterate over tweets and analyse
     let promises = tweets.statuses.map(entries => analysis.analyse(entries.text));
