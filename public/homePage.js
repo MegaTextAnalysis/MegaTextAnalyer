@@ -5,7 +5,7 @@ $(document).ready(function () {
     $("#btnSubmit").click(function () {
         var word = document.getElementById("search");
         if (usernameSet()) {
-           getUser(word);
+            getUser(word);
         }
         else {
             var url = "/search/" + word.value;
@@ -46,13 +46,12 @@ $(document).ready(function () {
 });
 
 
-function getUser(word)
-{
-     var url = "/user/" + word.value;
-     $.get(url, function (data) {
-                var obj = data;
-                parseUser(obj, word.value);
-            });
+function getUser(word) {
+    var url = "/user/" + word.value;
+    $.get(url, function (data) {
+        var obj = data;
+        parseUser(obj, word.value);
+    });
 }
 
 //returns if selector is set to username
@@ -103,12 +102,11 @@ function parseUser(obj, username) {
             row++;
         }
     }
-    else
-    {
-         txt += "<tr>" +
-                "<th scope='row'></th>" +
-                "<td>No tweets on this users profile have been flagged</td>" +
-                "</tr>"
+    else {
+        txt += "<tr>" +
+            "<th scope='row'></th>" +
+            "<td>No tweets on this users profile have been flagged</td>" +
+            "</tr>"
     }
 
     //popuulate table and display
@@ -126,7 +124,7 @@ function parseUser(obj, username) {
     //set link to profile
     document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
 
-    
+
 
 }
 
@@ -137,8 +135,7 @@ function backToHomepage() {
     document.getElementById("sb").style.display = 'block';
 }
 
-function parseKeyword(obj)
-{
+function parseKeyword(obj) {
     document.getElementById("m1").style.display = 'none';
     document.getElementById("sb").style.display = 'none';
 
@@ -149,23 +146,22 @@ function parseKeyword(obj)
 
     if (obj.tweets.statuses.length !== 0) {
         for (x in obj.tweets.statuses) {
-           console.log(getUser(obj.tweets.statuses[row - 1].user.name));
+
+            var username =  obj.tweets.statuses[row - 1].user.name
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
-                "<td>" + "<a onclick = '" + getUser(obj.tweets.statuses[row - 1].user.name) + "'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
+                "<td>" + "<a onclick = 'getUser(obj.tweets.statuses[row - 1].user.name) '>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
                 "<td>" + obj.tweets.statuses[x].text + "</td>" +
                 "</tr>"
             row++;
         }
-        
     }
-    else
-    {
-         txt += "<tr>" +
-                "<th scope='row'></th>" +
-                "<td></td>" +
-                "<td>No tweets on this users profile have been flagged</td>" +
-                "</tr>"
+    else {
+        txt += "<tr>" +
+            "<th scope='row'></th>" +
+            "<td></td>" +
+            "<td>No tweets on this users profile have been flagged</td>" +
+            "</tr>"
     }
 
     //popuulate table and display
