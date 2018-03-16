@@ -98,7 +98,7 @@ function parseUser(obj, username) {
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
                 "<td>" + obj.flagged[x].text + "</td>" +
-                "</tr>"
+                "</tr>";
             row++;
         }
     }
@@ -106,7 +106,7 @@ function parseUser(obj, username) {
         txt += "<tr>" +
             "<th scope='row'></th>" +
             "<td>No tweets on this users profile have been flagged</td>" +
-            "</tr>"
+            "</tr>";
     }
 
     //popuulate table and display
@@ -150,9 +150,9 @@ function parseKeyword(obj) {
             var username =  obj.tweets.statuses[row - 1].user.name
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
-                "<td id = 't" + row + "' + >" + "<a onclick = 'getUser(document.getElementById('t"  + row + "' )'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
+                "<td id = 't" + row + "' + >" + "<a onclick = 'getUser(document.getElementById('t"  + row + "').innerHTML)'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
                 "<td>" + obj.tweets.statuses[x].text + "</td>" +
-                "</tr>"
+                "</tr>";
             row++;
         }
     }
