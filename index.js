@@ -2,9 +2,9 @@
 
 // Require modules
 const Express = require("express");
+const Datastore = require("nedb");
 const AnalysisPromise = require("./AnalysisPromise");
 const TwitterUtils = require("./TwitterUtils");
-const Datastore = require("nedb");
 
 let db = new Datastore({
   filename: "./database",
@@ -18,11 +18,6 @@ let analysis = new AnalysisPromise();
 const server = Express();
 server.use(Express.static("public"));
 server.listen(80);
-
-// Handles landing page
-server.get("/", (req, res) => {
-  res.send("Application running.");
-});
 
 // Handles username fetching
 server.get("/user/:handle", (req, res) => {

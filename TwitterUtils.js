@@ -11,6 +11,7 @@ class TwitterUtils {
     });
   }
 
+  // Handle keyword searching
   search(query, callback) {
     this.client.get("search/tweets", {
       q: query
@@ -23,6 +24,7 @@ class TwitterUtils {
     });
   }
 
+  // Handle user searching
   getTweets(handle, callback) {
     this.client.get("statuses/user_timeline", {
       screen_name: handle,
