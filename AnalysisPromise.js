@@ -46,6 +46,32 @@ class AnalysisPromise {
         });
     });
   }
+
+  promiseAll(jsonObj, promises, tweets) {
+    Promise.all(promises)
+      .then(array => {
+        array.forEach(flagged => {
+          if (flagged.flags.length > 0) {
+            jsonObj.totalRisk += flagged.threatLevel;
+            jsonObj.flagged.push(flagged);
+          }
+        });
+      })
+      .then(() => {
+        // Sort flagged tweets by threat level
+        jsonObj.flagged.sort(function(a, b) {
+          return b.threatLevel - a.threatLevel;
+        });
+
+        // Set to risk to 100 if over 100
+        if (jsonObj.totalRisk > 100) {
+          jsonObj.totalRisk = 100;
+        }
+
+        jsonObj.tweets = tweets;
+        return jsonObj;
+      });
+  }
 }
 
 module.exports = AnalysisPromise;
