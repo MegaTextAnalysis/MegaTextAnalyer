@@ -150,7 +150,7 @@ function parseKeyword(obj) {
             var username =  obj.tweets.statuses[row - 1].user.name
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
-                "<td>" + "<a onclick = 'getUser(obj.tweets.statuses[row - 1].user.name) '>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
+                "<td>" + "<a onclick = 'getUser(obj.tweets.statuses[row - 1].user.name)'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
                 "<td>" + obj.tweets.statuses[x].text + "</td>" +
                 "</tr>"
             row++;
