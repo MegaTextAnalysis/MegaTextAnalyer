@@ -156,6 +156,7 @@ function parseKeyword(obj)
                 "</tr>"
             row++;
         }
+        console.log(txt);
     }
     else
     {
