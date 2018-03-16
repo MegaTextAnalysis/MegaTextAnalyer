@@ -193,7 +193,7 @@
 
 #ktable-wrapper {
   margin-right: 8%;
-  margin-left: 15%;
+  margin-left: 20%;
   margin-top: 8%;
   height: 40%;
   width:60%;
@@ -270,6 +270,7 @@
   background-color: #b3b3b3;
   width: 8%;
   margin-top: 4%;
+  margin-bottom: 4%;
 }
 
 #stat-but{
