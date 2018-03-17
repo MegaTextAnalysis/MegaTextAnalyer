@@ -8,11 +8,7 @@ $(document).ready(function () {
             getUser(word);
         }
         else {
-            var url = "/search/" + word.value;
-            $.get(url, function (data) {
-                var obj = data;
-                parseKeyword(obj);
-            });
+            getKeyword(word);
         }
     });
 
@@ -51,6 +47,14 @@ function getUser(word) {
     $.get(url, function (data) {
         var obj = data;
         parseUser(obj, word.value);
+    });
+}
+
+function getKeyword(word) {
+    var url = "/search/" + word.value;
+    $.get(url, function (data) {
+        var obj = data;
+        parseKeyword(obj);
     });
 }
 
@@ -147,10 +151,9 @@ function parseKeyword(obj) {
     if (obj.tweets.statuses.length !== 0) {
         for (x in obj.tweets.statuses) {
 
-            var username =  obj.tweets.statuses[row - 1].user.name
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
-                "<td id = 't" + row + "' + >" + "<a onclick = 'getUser(document.getElementById('t"  + row + "').innerHTML)'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
+                "<td id = 't" + row + "' + >" + "<a onclick = 'getUser(document.getElementById('t" + row + "').innerHTML)'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
                 "<td>" + obj.tweets.statuses[x].text + "</td>" +
                 "</tr>";
             row++;
