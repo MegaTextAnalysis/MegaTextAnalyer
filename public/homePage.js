@@ -154,7 +154,9 @@ function parseKeyword(obj) {
             txt += "<tr>" +
                 "<th scope='row'>" + row + "</th>" +
                 "<td id = 't" + row + "' + >" + "<a onclick = 'getUser(document.getElementById('t" + row + "').innerHTML)'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
+                "<div class='tooltip'>" +
                 "<td>" + obj.tweets.statuses[x].text + "</td>" +
+                " <span class='tooltiptext'>Tooltip text</span></div>" +
                 "</tr>";
             row++;
         }
