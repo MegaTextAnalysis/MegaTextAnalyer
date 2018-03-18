@@ -2,6 +2,8 @@ $(document).ready(function() {
   showhide();
    document.getElementById("back-but").style.display = 'none';
    document.getElementById("key-back-but").style.display = 'none';
+    document.getElementById("key-back-but").style.display = 'none';
+       document.getElementById("stat-but").style.display = 'none';
 
   //When user clicks search
   $("#btnSubmit").click(function() {
