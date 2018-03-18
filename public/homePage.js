@@ -55,6 +55,7 @@ function getUser(word, isFromUsername) {
     } else {
       parseUser(obj, word);
        document.getElementById("back-but").style.display = 'none';
+       document.getElementById("key-stat-but").style.display = 'none';
        document.getElementById("key-back-but").style.display = 'block';
     }
   });
@@ -147,8 +148,9 @@ function backToHomepage() {
 function backToKeywords()
 {
    document.getElementById("back-but").style.display = 'block';
-   document.getElementById("keyResults").style.display = 'none';
-   document.getElementById("back-but").style.display = 'block';
+   document.getElementById("keyResults").style.display = 'block';
+   
+  document.getElementById("userResults").style.display = 'none';
    document.getElementById("key-back-but").style.display = 'none';
 }
 
