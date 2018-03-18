@@ -150,9 +150,15 @@ function parseKeyword(obj) {
   var txt = "";
   console.log(obj);
   var row = 1;
+  var n = document.getElementById("sel-2");
+  var numResults= n.options[n.selectedIndex].text;
 
   if (obj.tweets.statuses.length !== 0) {
     for (let x in obj.tweets.statuses) {
+      if(row > numResults )
+      {
+        break;
+      }
       let t = "\"" + "t" + row + "\"";
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
