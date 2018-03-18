@@ -42,10 +42,10 @@ $(document).ready(function() {
 
 
 function getUser(word) {
-  var url = "/user/" + word.value;
+  var url = "/user/" + word;
   $.get(url, function(data) {
     var obj = data;
-    parseUser(obj, word.value);
+    parseUser(obj, word);
   });
 }
 
@@ -61,7 +61,7 @@ function getKeyword(word) {
 function usernameSet() {
   var e = document.getElementById("sel-1");
   var searchType = e.options[e.selectedIndex].text;
-  if (searchType == "Username") {
+  if (searchType === "Username") {
     return true;
   } else {
     return false;
@@ -70,7 +70,6 @@ function usernameSet() {
 
 //toggles the number of results selector
 function showhide() {
-
   var numDiv = document.getElementById("s2");
   if (usernameSet()) {
     numDiv.style.display = "none";
@@ -80,10 +79,9 @@ function showhide() {
   }
 }
 
-
 //parse the incoming JSON
 function parseJSON(obj) {
-  console.log(obj.flagged)
+  console.log(obj.flagged);
 }
 
 //parse the incoming JSON
@@ -97,7 +95,7 @@ function parseUser(obj, username) {
   var row = 1;
 
   if (obj.flagged.length !== 0) {
-    for (x in obj.flagged) {
+    for (let x in obj.flagged) {
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
         "<td>" + obj.flagged[x].text + "</td>" +
@@ -125,9 +123,7 @@ function parseUser(obj, username) {
 
   //set link to profile
   document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
-
-
-
+  document.getElementById("username").innerText = "Username: " + username;
 }
 
 function backToHomepage() {
@@ -147,11 +143,11 @@ function parseKeyword(obj) {
   var row = 1;
 
   if (obj.tweets.statuses.length !== 0) {
-    for (x in obj.tweets.statuses) {
-
+    for (let x in obj.tweets.statuses) {
+      let t = "\"" + "t" + row + "\"";
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
-        "<td id = 't" + row + "' + >" + "<a onclick = 'getUser(document.getElementById('t" + row + "').innerHTML)'>" + obj.tweets.statuses[row - 1].user.name + "</a></td>" +
+        "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
         "<div class='tooltip'>" +
         "<td>" + obj.tweets.statuses[x].text + "</td>" +
         " <span class='tooltiptext'>Tooltip text</span></div>" +
@@ -163,11 +159,10 @@ function parseKeyword(obj) {
       "<th scope='row'></th>" +
       "<td></td>" +
       "<td>No tweets on this users profile have been flagged</td>" +
-      "</tr>"
+      "</tr>";
   }
 
   //popuulate table and display
   document.getElementById("kbody").innerHTML = txt;
   document.getElementById("keyResults").style.display = 'block';
-
 }
