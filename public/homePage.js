@@ -54,6 +54,8 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word.value);
     } else {
       parseUser(obj, word);
+       document.getElementById("back-but").style.display = 'none';
+       document.getElementById("key-back-but").style.display = 'block';
     }
   });
 }
@@ -142,10 +144,18 @@ function backToHomepage() {
   document.getElementById("sb").style.display = 'block';
 }
 
+function backToKeywords()
+{
+   document.getElementById("back-but").style.display = 'block';
+   document.getElementById("keyResults").style.display = 'none';
+   document.getElementById("back-but").style.display = 'block';
+   document.getElementById("key-back-but").style.display = 'none';
+}
+
 function parseKeyword(obj) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
-
+ 
   //construct results table
   var txt = "";
   console.log(obj);
@@ -163,9 +173,7 @@ function parseKeyword(obj) {
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
         "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText, false)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
-        "<div class='tooltip'>" +
-        "<td>" + obj.tweets.statuses[x].text + "</td>" +
-        " <span class='tooltiptext'>Tooltip text</span></div>" +
+        "<td>" + obj.tweets.statuses[x].text + "<br>" + + "</td>" +
         "</tr>";
       row++;
     }
@@ -180,4 +188,7 @@ function parseKeyword(obj) {
   //popuulate table and display
   document.getElementById("kbody").innerHTML = txt;
   document.getElementById("keyResults").style.display = 'block';
+
+  //display back button
+   document.getElementById("back-but").style.display = 'block';
 }
