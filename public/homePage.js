@@ -196,6 +196,5 @@ function parseKeyword(obj) {
 
   //display back button
    document.getElementById("back-but").style.display = 'block';
-   document.getElementById("stat-back-but").style.display = 'block';
    document.getElementById("key-stat-but").style.display = 'block';
 }
