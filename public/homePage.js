@@ -5,13 +5,11 @@ $(document).ready(function() {
   $("#btnSubmit").click(function() {
     var word = document.getElementById("search");
     if (usernameSet()) {
-      getUser(word);
+      getUser(word, true);
     } else {
       getKeyword(word);
     }
   });
-
-
 
   /*
   $('#search').keypress(function (event) {
@@ -40,12 +38,23 @@ $(document).ready(function() {
 
 });
 
+function getUser(word, isFromUsername) {
+  var url = "/user/";
 
-function getUser(word) {
-  var url = "/user/" + word;
+  if (isFromUsername) {
+    url += word.value;
+  } else {
+    url += word;
+  }
+
   $.get(url, function(data) {
     var obj = data;
-    parseUser(obj, word);
+
+    if (isFromUsername) {
+      parseUser(obj, word.value);
+    } else {
+      parseUser(obj, word);
+    }
   });
 }
 
@@ -147,7 +156,7 @@ function parseKeyword(obj) {
       let t = "\"" + "t" + row + "\"";
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
-        "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
+        "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText, false)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
         "<div class='tooltip'>" +
         "<td>" + obj.tweets.statuses[x].text + "</td>" +
         " <span class='tooltiptext'>Tooltip text</span></div>" +
