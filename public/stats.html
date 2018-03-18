@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Radical</title>
+  <link rel="icon" href="Favicon.png">
+  <meta name="description" content="radical">
+  <meta name="author" content="radical">
+  <link rel="stylesheet" href="home-radical.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color: #6441A4 ">
+  <header class="headerT">
+    <div class="titleHeader"> radical</div>
+    <div class="twitter">
+      <img src="twitter-bird-logo.png" alt="Twitter Icon" width="80px" height "80px">
+    </div>
+    <div class="menu" id="m1">
+      <nav class="my-navbar navbar navbar-custom">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="about.html">About</a>
+            </li>
+            <li>
+              <a href="team.html">The Team</a>
+            </li>
+            <li>
+              <a href="stats.html">Stats</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="grey-box"> </div>
+  </header>
+
+  <p id="demo"></p>
+
+  <div id="userResults">
+    <div class="table-wrapper" id="utable-wrapper">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Flagged Tweets</th>
+            </tr>
+          </thead>
+          <tbody id="body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="profile" style="display: none">
+      <h2 id="b1">BIO:</h2>
+      <div id="bio">
+        <h5 id="username">Username: Stephen</h5>
+        <h5 id="about"></h5>
+        <a id="link" href="https://twitter.com/profile?lang=en">
+          <h5>Link to profile</h5>
+        </a>
+      </div>
+      <div id="bio-pic" style="display: none">
+        <img id="img1" src="sample_profile.png" alt="Profile picture" width="33%" height="33%">
+      </div>
+    </div>
+    <div class="progress" id="threatbar" style="display: none">
+      <div id="threat" class="progress-bar" role="progressbar" style="width: 36%;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100">25%</div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  let db_data;
+
+  $(document).ready(function() {
+    $.get("/db", function(json) {
+      let txt = "";
+      let row = 1;
+      db_data = json;
+
+      for (let entries of json) {
+        let username = "\"" + entries.username + "\"";
+        let json_data = "\"" + entries.data + "\"";
+        txt += "<tr>" +
+          "<th scope='row'>" + row + "</th>" +
+          "<td id = 't" + row + "'>" + "<a onclick='parseUser(" + (row - 1) + ")'>" +
+          username + "</a></td>" +
+          "<div class='tooltip'>" +
+          "<td>" + new Date(entries.time).toUTCString() + "</td>" + "</div>" +
+          "</tr>";
+        row++;
+      }
+
+      document.getElementById("body").innerHTML = txt;
+      document.getElementById("body").style = "show";
+    });
+  });
+
+  function parseUser(index) {
+    //construct results table
+    var txt = "";
+    var row = 1;
+    let obj = db_data[index].data;
+
+    if (obj.flagged.length !== 0) {
+      for (let x in obj.flagged) {
+        txt += "<tr>" +
+          "<th scope='row'>" + row + "</th>" +
+          "<td>" + obj.flagged[x].text + "</td>" +
+          "</tr>";
+        row++;
+      }
+    } else {
+      txt += "<tr>" +
+        "<th scope='row'></th>" +
+        "<td>No tweets on this users profile have been flagged</td>" +
+        "</tr>";
+    }
+
+    //popuulate table and display
+    document.getElementById("body").innerHTML = txt;
+    document.getElementById("userResults").style.display = 'block';
+
+    console.log(txt);
+    //set threat meter
+    document.getElementById("threat").style.width = obj.totalRisk + "%";
+    document.getElementById("threat").innerHTML = obj.totalRisk;
+
+    //set image
+    document.getElementById("img1").src = "https://twitter.com/" + db_data[index].username + "/profile_image?size=original";
+
+    //set link to profile
+    document.getElementById("link").href = "https://twitter.com/" + db_data[index].username + "?lang=en";
+    document.getElementById("profile").style.display = "block";
+    document.getElementById("bio-pic").style.display = "block";
+    document.getElementById("threatbar").style.display = "block";
+    document.getElementById("username").innerText = "Username: " + db_data[index].username;
+  }
+</script>
+
+</html>
