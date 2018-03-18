@@ -149,7 +149,6 @@ function backToHomepage() {
 function backToKeywords()
 {
  
-
    document.getElementById("userResults").style.display = 'none';
    document.getElementById("key-back-but").style.display = 'none';
    document.getElementById("m1").style.display = 'none';
@@ -197,5 +196,6 @@ function parseKeyword(obj) {
 
   //display back button
    document.getElementById("back-but").style.display = 'block';
+   document.getElementById("stat-back-but").style.display = 'block';
    document.getElementById("key-stat-but").style.display = 'block';
 }
