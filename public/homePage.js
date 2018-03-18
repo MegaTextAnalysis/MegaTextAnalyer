@@ -1,5 +1,7 @@
 $(document).ready(function() {
   showhide();
+   document.getElementById("back-but").style.display = 'none';
+   document.getElementById("key-back-but").style.display = 'none';
 
   //When user clicks search
   $("#btnSubmit").click(function() {
@@ -137,6 +139,9 @@ function parseUser(obj, username) {
   //set link to profile
   document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
   document.getElementById("username").innerText = "Username: " + username;
+  //display back-but
+  document.getElementById("back-but").style.display = 'block';
+  
 }
 
 function backToHomepage() {
