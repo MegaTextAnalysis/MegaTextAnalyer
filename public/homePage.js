@@ -57,6 +57,7 @@ function getUser(word, isFromUsername) {
        document.getElementById("back-but").style.display = 'none';
        document.getElementById("key-stat-but").style.display = 'none';
        document.getElementById("key-back-but").style.display = 'block';
+       document.getElementById("stat-but").style.display = 'none';
     }
   });
 }
@@ -149,9 +150,11 @@ function backToKeywords()
 {
    document.getElementById("back-but").style.display = 'block';
    document.getElementById("keyResults").style.display = 'block';
-   
-  document.getElementById("userResults").style.display = 'none';
+
+   document.getElementById("userResults").style.display = 'none';
    document.getElementById("key-back-but").style.display = 'none';
+   document.getElementById("m1").style.display = 'none';
+   document.getElementById("sb").style.display = 'none';
 }
 
 function parseKeyword(obj) {
