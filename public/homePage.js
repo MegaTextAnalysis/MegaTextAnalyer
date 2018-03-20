@@ -54,7 +54,6 @@ function getUser(word, isFromUsername) {
 
   $.get(url, function(data) {
     var obj = data;
-
     if (isFromUsername) {
       parseUser(obj, word.value);
     } else {
@@ -71,6 +70,7 @@ function getKeyword(word) {
   var url = "/search/" + word.value;
   $.get(url, function(data) {
     var obj = data;
+    drawChart(obj);
     parseKeyword(obj);
   });
 }
@@ -202,6 +202,7 @@ function parseKeyword(obj) {
 function drawShortStats()
 {
   document.getElementById("stats").style.display = 'block';
+  document.getElementById("keyResults").style.display = 'none';
 }
 
 
