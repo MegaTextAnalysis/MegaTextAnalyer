@@ -71,7 +71,7 @@ function getKeyword(word) {
   var url = "/search/" + word.value;
   $.get(url, function(data) {
     var obj = data;
-    
+
     drawChart(obj);
     parseKeyword(obj);
   });
@@ -210,9 +210,11 @@ function drawShortStats()
 
 function drawChart(obj) {
         
+        console.log(obj.flagged.length);
+
         var data = google.visualization.arrayToDataTable([
           ['Tweets', 'Number of tweets'],
-          ['Non-flagged',     obj.flagged.length],
+          ['Non-flagged',     obj.tweets.length],
           ['Flagged',      obj.flagged.length]
         ]);
 
