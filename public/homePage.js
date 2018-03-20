@@ -2,8 +2,8 @@
 $(document).ready(function() {
   showhide();
    document.getElementById("back-but").style.display = 'none';
-    document.getElementById("key-stat-but").style.display = 'none';
-       document.getElementById("stat-but").style.display = 'none';
+   document.getElementById("key-stat-but").style.display = 'none';
+   document.getElementById("stat-but").style.display = 'none';
 
   //When user clicks search
   $("#btnSubmit").click(function() {
@@ -61,6 +61,7 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word);
        document.getElementById("back-but").style.display = 'block';
        document.getElementById("key-stat-but").style.display = 'none';
+       document.getElementById("stat-but").style.display = 'block';
        
     }
   });
@@ -150,8 +151,10 @@ function backToHomepage() {
   document.getElementById("keyResults").style.display = 'none';
   document.getElementById("m1").style.display = 'block';
   document.getElementById("sb").style.display = 'block';
-   document.getElementById("back-but").style.display = 'none';
-   document.getElementById("stat-but").style.display = 'none';
+  document.getElementById("back-but").style.display = 'none';
+  document.getElementById("stat-but").style.display = 'none';
+  document.getElementById("key-stat-but").style.display = 'none';
+   
 }
 
 function parseKeyword(obj) {
@@ -193,6 +196,7 @@ function parseKeyword(obj) {
 
   //display back button
    document.getElementById("back-but").style.display = 'block';
+   document.getElementById("key-stat-but").style.display = 'block';
 }
 
 function drawShortStats()
