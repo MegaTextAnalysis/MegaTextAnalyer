@@ -208,13 +208,10 @@ function drawShortStats()
 
 function drawChart(obj) {
         
-        var flagged = obj.flagged.length;
-        var nonFlagged = obj.flagged.length;
-
         var data = google.visualization.arrayToDataTable([
           ['Tweets', 'Number of tweets'],
-          ['Non-flagged',     flagged],
-          ['Flagged',      nonFlagged]
+          ['Non-flagged',     obj.flagged.length],
+          ['Flagged',      obj.flagged.length]
         ]);
 
         var options = {
