@@ -264,17 +264,18 @@
 
 #back-but{
   margin-left: 5%;
+  margin-bottom: 5%;
   background-color: #b3b3b3;
   width: 8%;
   margin-top: 4%;
 }
 
-#key-back-but{
-  margin-left: 5%;
-  background-color: #b3b3b3;
-  width: 8%;
-  margin-top: 4%;
+#stat-back-but{
   margin-bottom: 4%;
+  margin-right: 5%;
+  background-color: #b3b3b3;
+  margin-top: 4%;
+  width: 8%;
 }
 
 #stat-but{
