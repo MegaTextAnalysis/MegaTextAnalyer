@@ -222,7 +222,7 @@ function drawChart(obj) {
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Flagged Vs Non-Flagged tweets'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
