@@ -1,7 +1,6 @@
 $(document).ready(function() {
   showhide();
    document.getElementById("back-but").style.display = 'none';
-   document.getElementById("key-back-but").style.display = 'none';
     document.getElementById("key-stat-but").style.display = 'none';
        document.getElementById("stat-but").style.display = 'none';
 
@@ -58,9 +57,9 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word.value);
     } else {
       parseUser(obj, word);
-       document.getElementById("back-but").style.display = 'none';
+       document.getElementById("back-but").style.display = 'block';
        document.getElementById("key-stat-but").style.display = 'none';
-       document.getElementById("key-back-but").style.display = 'block';
+       
     }
   });
 }
@@ -150,18 +149,7 @@ function backToHomepage() {
   document.getElementById("m1").style.display = 'block';
   document.getElementById("sb").style.display = 'block';
    document.getElementById("back-but").style.display = 'none';
-   document.getElementById("key-stat-but").style.display = 'none';
    document.getElementById("stat-but").style.display = 'none';
-}
-
-function backToKeywords()
-{
-   document.getElementById("userResults").style.display = 'none';
-   document.getElementById("key-back-but").style.display = 'none';
-   document.getElementById("m1").style.display = 'none';
-   document.getElementById("sb").style.display = 'none';
-   document.getElementById("back-but").style.display = 'block';
-   document.getElementById("keyResults").style.display = 'block';
 }
 
 function parseKeyword(obj) {
