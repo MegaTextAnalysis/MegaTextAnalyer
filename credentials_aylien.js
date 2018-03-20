@@ -5,8 +5,8 @@ module.exports = {
 	//APP_KEY: "7b559363068eec01482ecd96073fe4fd"
 	//APP_ID: "d18ca1a6",
 	//APP_KEY: "cd9e9c38e2405347bb766fea66fa40f2"
-	//APP_ID: "2c2d73f7",
-	//APP_KEY: "51407d61ac48294ef39969b2f8329ba3"
-	APP_ID: "e91175f4",
-    APP_KEY: "061fb9204aa56479087dc331c0b06fbd"
+	APP_ID: "2c2d73f7",
+	APP_KEY: "51407d61ac48294ef39969b2f8329ba3"
+	//APP_ID: "e91175f4",
+    //APP_KEY: "061fb9204aa56479087dc331c0b06fbd"
 };
