@@ -207,6 +207,8 @@ function drawShortStats()
   document.getElementById("keyResults").style.display = 'none';
 }
 
+google.charts.load("current", {packages: ["corechart"]});
+var visualization = new google.visualization.PieChart(container);
 
 function drawChart(obj) {
         
