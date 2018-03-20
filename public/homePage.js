@@ -214,7 +214,7 @@ function drawChart(obj) {
         console.log(obj.flagged.length);
 
         var flagged = obj.flagged.length;
-        var nonFlagged = obj.tweets.length;
+        var nonFlagged = obj.tweets.statuses.length;
         var data = google.visualization.arrayToDataTable([
           ['Tweets', 'Number of tweets'],
           ['Non-flagged',  nonFlagged ],
