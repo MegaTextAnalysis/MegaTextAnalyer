@@ -56,6 +56,7 @@ function getUser(word, isFromUsername) {
     var obj = data;
     if (isFromUsername) {
       parseUser(obj, word.value);
+      drawChart(obj);
     } else {
       parseUser(obj, word);
        document.getElementById("back-but").style.display = 'block';
@@ -70,6 +71,7 @@ function getKeyword(word) {
   var url = "/search/" + word.value;
   $.get(url, function(data) {
     var obj = data;
+    
     drawChart(obj);
     parseKeyword(obj);
   });
