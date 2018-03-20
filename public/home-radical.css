@@ -181,6 +181,10 @@
 }
 
 /* user results table styling*/
+.table-wrapper{
+  margin-bottom: 5%;
+}
+
 #utable-wrapper {
   float: right;
   margin-right: 8%;
