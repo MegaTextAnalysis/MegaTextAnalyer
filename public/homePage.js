@@ -208,7 +208,6 @@ function drawShortStats()
 }
 
 google.charts.load("current", {packages: ["corechart"]});
-var visualization = new google.visualization.PieChart(container);
 
 function drawChart(obj) {
         
