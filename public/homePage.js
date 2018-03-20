@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   showhide();
    document.getElementById("back-but").style.display = 'none';
@@ -14,6 +15,7 @@ $(document).ready(function() {
     }
   });
 
+  
   /*
   $('#search').keypress(function (event) {
       var word = document.getElementById("search");
@@ -192,3 +194,29 @@ function parseKeyword(obj) {
   //display back button
    document.getElementById("back-but").style.display = 'block';
 }
+
+function drawShortStats()
+{
+  document.getElementById("stats").style.display = 'block';
+}
+
+
+function drawChart(obj) {
+        
+        var flagged = obj.flagged.length;
+        var nonFlagged = obj.flagged.length;
+
+        var data = google.visualization.arrayToDataTable([
+          ['Tweets', 'Number of tweets'],
+          ['Non-flagged',     flagged],
+          ['Flagged',      nonFlagged]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+ }
