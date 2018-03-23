@@ -300,11 +300,12 @@
 
 #stats{
   margin: 10%;
+  width: 70%;
+  height: 50%;
   background-color: #b3b3b3;
 }
 
 #piechart{
    background-color: #b3b3b3;
-   width: 70%;
-   height: 50%;
+  
 }
