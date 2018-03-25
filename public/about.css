@@ -43,15 +43,15 @@
 
 .navbar-custom .navbar-nav > li {
   border-radius: 25px;
-}
+}conf
 
-#intro{
+.intro{
   float:left;
   width: 45%;
   height: 45%;
   word-wrap: break-word;
   font-family: 'roboto' ;
-  font-size: 30px;
+  font-size: 36px;
   color: white;
   background-color: #b3b3b3;
   border-radius: 10px;
@@ -61,13 +61,15 @@
   margin-bottom: 10%;
   margin-left: 8%;
   line-height: 220%;
+  font-style: bold;
+
 }
 
-#algorithm{
+.algorithm{
 
   word-wrap: break-word;
   font-family: 'roboto' ;
-  font-size: 30px;
+  font-size: 36px;
   color: white;
   background-color: #b3b3b3;
   border-radius: 10px;
@@ -75,46 +77,19 @@
   margin-top: 5%;
   margin-right: 10%;
   margin-bottom: 5%;
-  margin-left: 6%;
+  margin-left: 8%;
   line-height: 220%;
+  font-style: bold;
   width: 80%;
   height: 15%;
   
 }
 
-#disclaimer{
-  float:left;
-  width: 45%;
-  height: 45%;
-  font-family: 'roboto' ;
-  color: white;
-  background-color: #b3b3b3;
-  border-radius: 10px;
-  padding: 50px;
-  margin-top: 5%;
-  margin-right: 5%;
-  margin-bottom: 10%;
-  margin-left: 8%;
-  
-  
-}
-
-#disHeading
-{
-  color: #6441A4;
-  word-wrap: break-word;
-  line-height: 220%;
-}
-
-#disText
-{
-   font-size: 30px;
-}
 .intro-pic{
   float: right;
   margin-left: 2%;
   margin-right: 5%;
-  margin-top: 10%;
+  margin-top: 5%;
   border-radius: 10px;
 }
 
@@ -142,7 +117,7 @@
   color: white;
 }
 
-#Ebene_1{
+svg{
   width: 90%;
   height: 40%;
   display: block;
@@ -154,33 +129,4 @@
   text-align: center;
   font-family: myFirstFont;
   font-size:8em;
-}
-
-
-#development_icon{
-  margin:80px;
-  -webkit-animation: pop 0.4s ease-in;
-}
-
-/*Animate cogs*/
-#large-cog, #small-cog{
-  -webkit-animation:spin 4s linear infinite;
-  -webkit-transform-origin: 50% 50%;
-  -webkit-animation-delay:0.6s;
-}
-#small-cog{
-  -webkit-animation:spinback 2s linear infinite;
-  -webkit-animation-delay:0.6s;
-}
-
-@-webkit-keyframes pop{
-  0%{-webkit-transform: scale(0);}
-  90%{-webkit-transform: scale(1.1);}
-  100%{-webkit-transform: scale(1);}
-}
-@-webkit-keyframes spin { 
-  100% { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spinback { 
-  100% { -webkit-transform: rotate(-360deg); }
 }

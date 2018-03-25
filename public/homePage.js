@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
   showhide();
-   document.getElementById("back-but").style.display = 'none';
-   document.getElementById("key-stat-but").style.display = 'none';
+   document.getElementById("back-but").style.display = 'block';
+   document.getElementById("key-stat-but").style.display = 'nblock';
    document.getElementById("stat-but").style.display = 'none';
 
   //When user clicks search
