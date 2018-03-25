@@ -235,8 +235,8 @@ function drawChart(obj) {
   var options = {
     title: 'Flagged Vs Non-Flagged tweets',
     backgroundColor: '#b3b3b3',
-    width: '20%',
-    height: '20%',
+    width: '40%',
+    height: '40%',
     colors: ['#b185e0', '#f2ebfa']
   };
 
