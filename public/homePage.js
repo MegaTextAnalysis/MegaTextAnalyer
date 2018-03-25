@@ -1,10 +1,18 @@
 
 $(document).ready(function() {
   showhide();
-   document.getElementById("back-but").style.display = 'block';
-   document.getElementById("key-stat-but").style.display = 'nblock';
-   document.getElementById("stat-but").style.display = 'none';
+  
+  //keyword navigation
+   document.getElementById("key-back-but").style.display = 'none';
+   document.getElementById("key-stat-but").style.display = 'none';
 
+   //username navigation
+      document.getElementById("stat-but").style.display = 'none';
+      document.getElementById("back-but").style.display = 'none';
+      document.getElementById("stat-back-but").style.display = 'none';
+
+
+    
   //When user clicks search
   $("#btnSubmit").click(function() {
     var word = document.getElementById("search");
@@ -58,11 +66,11 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word.value);
       drawChart(obj);
     } else {
-      parseUser(obj, word);
-       document.getElementById("back-but").style.display = 'block';
-       document.getElementById("key-stat-but").style.display = 'none';
-       document.getElementById("stat-but").style.display = 'block';
-       
+      parseUser(obj, word);  
+      document.getElementById("stat-but").style.display = 'none';
+      document.getElementById("back-but").style.display = 'none';
+      document.getElementById("stat-back-but").style.display = 'none';   
+
     }
   });
 }
@@ -146,6 +154,7 @@ function parseUser(obj, username) {
   document.getElementById("username").innerText = "Username: " + username;
   //display back-but
   document.getElementById("back-but").style.display = 'block';
+   document.getElementById("stat-but").style.display = 'none';
 }
 
 function backToHomepage() {
@@ -157,6 +166,11 @@ function backToHomepage() {
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
    
+}
+
+function backToKeywords() {
+   document.getElementById("keyResults").style.display = 'block';
+   document.getElementById("stats").style.display = 'none';
 }
 
 function parseKeyword(obj) {
@@ -204,6 +218,7 @@ function parseKeyword(obj) {
 function drawShortStats()
 {
   document.getElementById("stats").style.display = 'block';
+
   document.getElementById("keyResults").style.display = 'none';
 }
 
