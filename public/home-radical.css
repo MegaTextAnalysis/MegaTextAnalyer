@@ -276,9 +276,8 @@
   margin-right: 5%;
   margin-left: 5%;
   background-color: #b3b3b3;
-  margin-top: 4%;
+  margin-top: 8%;
   width: 8%;
-  float: left;
 }
 
 #key-back-but{
@@ -312,12 +311,4 @@
 #stats{
   margin: 10%;
   background-color: #532289;
-}
-
-#piechart{
-   float: left;
-   width: 70%;
-   height: 50%;
-   background-color: #b3b3b3;
-  
 }
