@@ -1,41 +1,41 @@
- @font-face {
-   font-family: myFirstFont;
-   src: url(DIMIS___.TTF);
-	}
+@font-face {
+  font-family: myFirstFont;
+  src: url(DIMIS___.TTF);
+}
 
-.titleHeader{
-  	font-family: myFirstFont;
-  	font-size: 80px;
-  	text-align: center;
-    margin-top: 5px;
-    color: white;
-  }
+.titleHeader {
+  font-family: myFirstFont;
+  font-size: 80px;
+  text-align: center;
+  margin-top: 5px;
+  color: white;
+}
 
-  .headerT{
-	margin-top: 0px;
+.headerT {
+  margin-top: 0px;
 }
 
 .my-navbar {
-    margin-top: -19px;
-    margin-bottom: -50px;
-    background-color: #6441A4;
-    width: 70%;
+  margin-top: -19px;
+  margin-bottom: -50px;
+  background-color: #6441a4;
+  width: 70%;
 }
 
-.navbar-custom .navbar-nav > li > a:hover{
+.navbar-custom .navbar-nav > li > a:hover {
   background-color: #b3b3b3;
   color: black;
   font-family: "Courier New", Courier, monospace;
   border-radius: 25px;
 }
 
-.navbar-custom .navbar-nav .active{
-  background-color:  #b3b3b3;
+.navbar-custom .navbar-nav .active {
+  background-color: #b3b3b3;
   color: black;
   z-index: 10000;
 }
 
-.navbar-custom .navbar-nav > li > a{
+.navbar-custom .navbar-nav > li > a {
   color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 20px;
@@ -45,12 +45,12 @@
   border-radius: 25px;
 }
 
-#intro{
-  float:left;
+#intro {
+  float: left;
   width: 45%;
   height: 45%;
   word-wrap: break-word;
-  font-family: 'roboto' ;
+  font-family: "roboto";
   font-size: 30px;
   color: white;
   background-color: #b3b3b3;
@@ -63,10 +63,9 @@
   line-height: 220%;
 }
 
-#algorithm{
-
+#algorithm {
   word-wrap: break-word;
-  font-family: 'roboto' ;
+  font-family: "roboto";
   font-size: 30px;
   color: white;
   background-color: #b3b3b3;
@@ -79,14 +78,13 @@
   line-height: 220%;
   width: 80%;
   height: 15%;
-  
 }
 
-#disclaimer{
-  float:left;
+#disclaimer {
+  float: left;
   width: 45%;
   height: 45%;
-  font-family: 'roboto' ;
+  font-family: "roboto";
   color: white;
   background-color: #b3b3b3;
   border-radius: 10px;
@@ -95,22 +93,19 @@
   margin-right: 5%;
   margin-bottom: 10%;
   margin-left: 8%;
-  
-  
 }
 
-#disHeading
-{
-  color: #6441A4;
+#disHeading {
+  color: #6441a4;
   word-wrap: break-word;
   line-height: 220%;
 }
 
-#disText
-{
-   font-size: 30px;
+#disText {
+  font-size: 30px;
 }
-.intro-pic{
+
+.intro-pic {
   float: right;
   margin-left: 2%;
   margin-right: 5%;
@@ -118,19 +113,15 @@
   border-radius: 10px;
 }
 
-.graphic
-{
-    font-family: myFirstFont;
-  	font-size: 210px;
-  	text-align: center;
-    color: white;
+.graphic {
+  font-family: myFirstFont;
+  font-size: 210px;
+  text-align: center;
+  color: white;
 }
 
 @import "compass/css3";
-
 @import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
-
-
 .info {
   color: white;
   font-family: myFirstFont;
@@ -138,49 +129,62 @@
   text-align: center;
 }
 
-.info a{
+.info a {
   color: white;
 }
 
-#Ebene_1{
+#Ebene_1 {
   width: 90%;
   height: 40%;
   display: block;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
   margin-left: 25%;
   margin-right: 10%;
-  background:#6441A4;
+  background: #6441a4;
   text-align: center;
   font-family: myFirstFont;
-  font-size:8em;
+  font-size: 8em;
 }
 
-
-#development_icon{
-  margin:80px;
+#development_icon {
+  margin: 80px;
   -webkit-animation: pop 0.4s ease-in;
 }
-
 /*Animate cogs*/
-#large-cog, #small-cog{
-  -webkit-animation:spin 4s linear infinite;
+
+#large-cog,
+#small-cog {
+  -webkit-animation: spin 4s linear infinite;
   -webkit-transform-origin: 50% 50%;
-  -webkit-animation-delay:0.6s;
-}
-#small-cog{
-  -webkit-animation:spinback 2s linear infinite;
-  -webkit-animation-delay:0.6s;
+  -webkit-animation-delay: 0.6s;
 }
 
-@-webkit-keyframes pop{
-  0%{-webkit-transform: scale(0);}
-  90%{-webkit-transform: scale(1.1);}
-  100%{-webkit-transform: scale(1);}
+#small-cog {
+  -webkit-animation: spinback 2s linear infinite;
+  -webkit-animation-delay: 0.6s;
 }
-@-webkit-keyframes spin { 
-  100% { -webkit-transform: rotate(360deg); }
+
+@-webkit-keyframes pop {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  90% {
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
 }
-@-webkit-keyframes spinback { 
-  100% { -webkit-transform: rotate(-360deg); }
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spinback {
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
 }

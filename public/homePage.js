@@ -35,7 +35,6 @@ $(document).ready(function() {
   $("#s1").click(function() {
     showhide();
   });
-
 });
 
 function getUser(word, isFromUsername) {
@@ -54,10 +53,10 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word.value);
     } else {
       parseUser(obj, word);
-       document.getElementById("back-but").style.display = 'none';
-       document.getElementById("key-stat-but").style.display = 'none';
-       document.getElementById("key-back-but").style.display = 'block';
-       document.getElementById("stat-but").style.display = 'block';
+      document.getElementById("back-but").style.display = "none";
+      document.getElementById("key-stat-but").style.display = "none";
+      document.getElementById("key-back-but").style.display = "block";
+      document.getElementById("stat-but").style.display = "block";
     }
   });
 }
@@ -99,8 +98,8 @@ function parseJSON(obj) {
 
 //parse the incoming JSON
 function parseUser(obj, username) {
-  document.getElementById("m1").style.display = 'none';
-  document.getElementById("sb").style.display = 'none';
+  document.getElementById("m1").style.display = "none";
+  document.getElementById("sb").style.display = "none";
 
   //construct results table
   var txt = "";
@@ -109,14 +108,20 @@ function parseUser(obj, username) {
 
   if (obj.flagged.length !== 0) {
     for (let x in obj.flagged) {
-      txt += "<tr>" +
-        "<th scope='row'>" + row + "</th>" +
-        "<td>" + obj.flagged[x].text + "</td>" +
+      txt +=
+        "<tr>" +
+        "<th scope='row'>" +
+        row +
+        "</th>" +
+        "<td>" +
+        obj.flagged[x].text +
+        "</td>" +
         "</tr>";
       row++;
     }
   } else {
-    txt += "<tr>" +
+    txt +=
+      "<tr>" +
       "<th scope='row'></th>" +
       "<td>No tweets on this users profile have been flagged</td>" +
       "</tr>";
@@ -124,7 +129,7 @@ function parseUser(obj, username) {
 
   //popuulate table and display
   document.getElementById("body").innerHTML = txt;
-  document.getElementById("userResults").style.display = 'block';
+  document.getElementById("userResults").style.display = "block";
 
   console.log(txt);
   //set threat meter
@@ -132,59 +137,71 @@ function parseUser(obj, username) {
   document.getElementById("threat").innerHTML = obj.totalRisk;
 
   //set image
-  document.getElementById("img1").src = "https://twitter.com/" + username + "/profile_image?size=original";
+  document.getElementById("img1").src =
+    "https://twitter.com/" + username + "/profile_image?size=original";
 
   //set link to profile
-  document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
+  document.getElementById("link").href =
+    "https://twitter.com/" + username + "?lang=en";
   document.getElementById("username").innerText = "Username: " + username;
 }
 
 function backToHomepage() {
-  document.getElementById("userResults").style.display = 'none';
-  document.getElementById("keyResults").style.display = 'none';
-  document.getElementById("m1").style.display = 'block';
-  document.getElementById("sb").style.display = 'block';
+  document.getElementById("userResults").style.display = "none";
+  document.getElementById("keyResults").style.display = "none";
+  document.getElementById("m1").style.display = "block";
+  document.getElementById("sb").style.display = "block";
 }
 
-function backToKeywords()
-{
- 
-
-   document.getElementById("userResults").style.display = 'none';
-   document.getElementById("key-back-but").style.display = 'none';
-   document.getElementById("m1").style.display = 'none';
-   document.getElementById("sb").style.display = 'none';
-   document.getElementById("back-but").style.display = 'block';
-   document.getElementById("keyResults").style.display = 'block';
+function backToKeywords() {
+  document.getElementById("userResults").style.display = "none";
+  document.getElementById("key-back-but").style.display = "none";
+  document.getElementById("m1").style.display = "none";
+  document.getElementById("sb").style.display = "none";
+  document.getElementById("back-but").style.display = "block";
+  document.getElementById("keyResults").style.display = "block";
 }
 
 function parseKeyword(obj) {
-  document.getElementById("m1").style.display = 'none';
-  document.getElementById("sb").style.display = 'none';
- 
+  document.getElementById("m1").style.display = "none";
+  document.getElementById("sb").style.display = "none";
+
   //construct results table
   var txt = "";
   console.log(obj);
   var row = 1;
   var n = document.getElementById("sel-2");
-  var numResults= n.options[n.selectedIndex].text;
+  var numResults = n.options[n.selectedIndex].text;
 
   if (obj.tweets.statuses.length !== 0) {
     for (let x in obj.tweets.statuses) {
-      if(row > numResults )
-      {
+      if (row > numResults) {
         break;
       }
-      let t = "\"" + "t" + row + "\"";
-      txt += "<tr>" +
-        "<th scope='row'>" + row + "</th>" +
-        "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText, false)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
-        "<td>" + obj.tweets.statuses[x].text + "<br>" + + "</td>" +
+      let t = '"' + "t" + row + '"';
+      txt +=
+        "<tr>" +
+        "<th scope='row'>" +
+        row +
+        "</th>" +
+        "<td id = 't" +
+        row +
+        "'>" +
+        "<a onclick='getUser(document.getElementById(" +
+        t +
+        ").innerText, false)'>" +
+        obj.tweets.statuses[row - 1].user.screen_name +
+        "</a></td>" +
+        "<td>" +
+        obj.tweets.statuses[x].text +
+        "<br>" +
+        +"</td>" +
         "</tr>";
       row++;
     }
   } else {
-    txt += "<tr>" +
+    txt +=
+      "<tr>" +
       "<th scope='row'></th>" +
       "<td></td>" +
       "<td>No tweets on this users profile have been flagged</td>" +
@@ -193,9 +210,9 @@ function parseKeyword(obj) {
 
   //popuulate table and display
   document.getElementById("kbody").innerHTML = txt;
-  document.getElementById("keyResults").style.display = 'block';
+  document.getElementById("keyResults").style.display = "block";
 
   //display back button
-   document.getElementById("back-but").style.display = 'block';
-   document.getElementById("key-stat-but").style.display = 'block';
+  document.getElementById("back-but").style.display = "block";
+  document.getElementById("key-stat-but").style.display = "block";
 }

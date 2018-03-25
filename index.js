@@ -1,134 +1,50 @@
 "use strict";
 
 // Require modules
+const cluster = require("cluster");
 const Express = require("express");
 const Datastore = require("nedb");
-const AnalysisPromise = require("./AnalysisPromise");
-const TwitterUtils = require("./TwitterUtils");
-const AnalysisJSON = require("./AnalysisJSON");
+const SocketIO = require("socket.io");
+const http = require("http");
+const routes = require("./routes");
 
-let db = new Datastore({
-  filename: "./database",
-  autoload: true
-});
+if (cluster.isMaster) {
+  cluster.fork();
 
-let twitter = new TwitterUtils();
-let analysis = new AnalysisPromise();
-
-// Express server
-const server = Express();
-server.use(Express.static("public"));
-server.listen(80);
-
-// Handles username fetching
-server.get("/user/:handle", (req, res) => {
-  twitter.getTweets(req.params.handle, (tweets) => {
-    let jsonObj = new AnalysisJSON();
-
-    // Create array of Promises of analyses of tweets
-    let promises = tweets.map(entries => analysis.analyse(entries.text));
-
-    // Wait for Promises to finish and get total threat level
-    Promise.all(promises)
-      .then(array => {
-        array.forEach(flagged => {
-          if (flagged.flags.length > 0) {
-            jsonObj.totalRisk += flagged.threatLevel;
-            jsonObj.flagged.push(flagged);
-          }
-        });
-      })
-      .then(() => {
-        // Sort flagged tweets by threat level
-        jsonObj.flagged.sort((a, b) => {
-          return b.threatLevel - a.threatLevel;
-        });
-
-        // Set to risk to 100 if over 100
-        if (jsonObj.totalRisk > 100) {
-          jsonObj.totalRisk = 100;
-        }
-
-        jsonObj.tweets = tweets;
-
-        // Check and update database with new results
-        checkDB(tweets, req.params.handle, jsonObj);
-
-        res.json(jsonObj);
-      });
+  cluster.on("exit", (worker, code, signal) => {
+    cluster.fork();
   });
-});
-
-// Get database of results
-server.get("/db", (req, res) => {
-  db.find({}, (err, docs) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(docs);
-    }
+} else if (cluster.isWorker) {
+  let db = new Datastore({
+    filename: "./database",
+    autoload: true
   });
-});
 
-// Handles search querying
-server.get("/search/:query", function(req, res) {
-  twitter.search(req.params.query, function(tweets) {
-    let jsonObj = new AnalysisJSON();
+  // Express server
+  const app = Express();
+  const server = http.createServer(app);
+  const io = SocketIO.listen(server);
 
-    // Iterate over tweets and analyse
-    let promises = tweets.statuses.map(entries => analysis.analyse(entries.text));
+  app.use(Express.static("public"));
+  server.listen(80);
 
-    // Wait for Promises to finish and get total threat level
-    Promise.all(promises)
-      .then(array => {
-        array.forEach(flagged => {
-          if (flagged.flags.length > 0) {
-            jsonObj.totalRisk += flagged.threatLevel;
-            jsonObj.flagged.push(flagged);
-          }
-        });
-      })
-      .then(() => {
-        // Sort flagged tweets by threat level
-        jsonObj.flagged.sort(function(a, b) {
-          return b.threatLevel - a.threatLevel;
-        });
-
-        // Set to risk to 100 if over 100
-        if (jsonObj.totalRisk > 100) {
-          jsonObj.totalRisk = 100;
-        }
-
-        jsonObj.tweets = tweets;
-        res.json(jsonObj);
-      });
-  });
-});
-
-function checkDB(tweets, handle, jsonObj) {
-  if (tweets.length > 0) {
-    db.find({
-      username: handle
-    }, (err, docs) => {
-      if (err) {
-        console.log(err);
-      } else if (docs.length > 0) {
-        // If exists, update
-        db.update({
-          username: handle
-        }, {
-          $set: {
-            time: Date.now(),
-            data: jsonObj
-          }
-        });
-      } else {
-        db.insert({
-          username: handle,
-          time: Date.now(),
-          data: jsonObj
-        });
-      }
+  io.on("connection", socket => {
+    socket.emit("alert", {
+      alert: "real shit"
     });
-  }
+  });
+
+  app.get("/user/:handle", (req, res) => {
+    routes
+      .getHandle(db, req.params.handle)
+      .then(jsonHandle => res.json(jsonHandle));
+  });
+
+  app.get("/search/:query", (req, res) => {
+    routes.search(req.params.query).then(jsonSearch => res.json(jsonSearch));
+  });
+
+  app.get("/db", (req, res) => {
+    routes.db(db).then(docs => res.json(docs));
+  });
 }

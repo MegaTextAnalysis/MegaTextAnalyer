@@ -16,13 +16,14 @@ class AnalysisPromise {
       flaggedTweet.threatLevel = 0;
 
       // Call AI to analyse tweet and chain Promises to get synchronous execution
-      this.aylien.callAI(text)
+      this.aylien
+        .callAI(text)
         .then(labels => {
           // Get labels returned by AI
           flaggedTweet.label = labels;
 
           // Add 20 to threat level if a category is flagged
-          Categories.forEach((element) => {
+          Categories.forEach(element => {
             if (labels.indexOf(element) > -1) {
               flaggedTweet.threatLevel += 20;
             }
@@ -39,8 +40,7 @@ class AnalysisPromise {
             }
           }
         })
-        .then(() =>
-          resolve(flaggedTweet))
+        .then(() => resolve(flaggedTweet))
         .catch(error => {
           console.log(error);
         });

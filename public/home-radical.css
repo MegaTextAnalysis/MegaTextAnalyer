@@ -1,63 +1,61 @@
-
- @font-face {
-   font-family: myFirstFont;
-   src: url(DIMIS___.TTF);
-	}
-
-  .titleHeader{
-  	font-family: myFirstFont;
-  	font-size: 80px;
-  	text-align: center;
-    margin-top: 50px;
-    color: white;
-  }
-
-
-  .search-box{
-  	width: 100%;
-  }
-
-  .search-by{
-      width: 150px;
-      margin-bottom: 15px;
-      color: #b3b3b3;
-  }
-
-  .num-results{
-    width: 65px;
-    margin-left: 170px;
-    margin-top: -74px;
-    margin-bottom: 15px;
-    color: #b3b3b3;
-  }
-  
-.my-navbar {
-    margin-top: 30px;
-    margin-bottom: -50px;
-    background-color: #6441A4;
-    width: 70%;
+@font-face {
+  font-family: myFirstFont;
+  src: url(DIMIS___.TTF);
 }
 
-.twitter
-{
+.titleHeader {
+  font-family: myFirstFont;
+  font-size: 80px;
+  text-align: center;
+  margin-top: 50px;
+  color: white;
+}
+
+.search-box {
+  width: 100%;
+}
+
+.search-by {
+  width: 150px;
+  margin-bottom: 15px;
+  color: #b3b3b3;
+}
+
+.num-results {
+  width: 65px;
+  margin-left: 170px;
+  margin-top: -74px;
+  margin-bottom: 15px;
+  color: #b3b3b3;
+}
+
+.my-navbar {
+  margin-top: 30px;
+  margin-bottom: -50px;
+  background-color: #6441a4;
+  width: 70%;
+}
+
+.twitter {
   float: right;
   margin-right: 90px;
   margin-top: -40px;
 }
-.navbar-custom .navbar-nav > li > a:hover{
+
+.navbar-custom .navbar-nav > li > a:hover {
   background-color: #b3b3b3;
   color: black;
   font-family: "Courier New", Courier, monospace;
   border-radius: 25px;
 }
 
-.navbar-custom .navbar-nav .active{
-  background-color:  #b3b3b3;
+.navbar-custom .navbar-nav .active {
+  background-color: #b3b3b3;
   color: black;
   z-index: 10000;
 }
 
-.navbar-custom .navbar-nav > li > a{
+.navbar-custom .navbar-nav > li > a {
   color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 20px;
@@ -66,24 +64,24 @@
 .navbar-custom .navbar-nav > li {
   border-radius: 25px;
 }
- .search-bar
-{
-     margin-top: 15px;
+
+.search-bar {
+  margin-top: 15px;
 }
-.grey-box{
-  	background-color: #6441A4;
-    width: 100%;
-    height: 15px;
-    margin-bottom: 30px;
-    margin-top: -20px;
-  }
 
-  .menu
-  {
-    background-color: #6441A4 ;
-  }
+.grey-box {
+  background-color: #6441a4;
+  width: 100%;
+  height: 15px;
+  margin-bottom: 30px;
+  margin-top: -20px;
+}
 
-  .container-4{
+.menu {
+  background-color: #6441a4;
+}
+
+.container-4 {
   overflow: hidden;
   width: 450px;
   vertical-align: middle;
@@ -92,7 +90,8 @@
   margin-bottom: 50px;
   margin: auto;
 }
-.container-4 input#search{
+
+.container-4 input#search {
   width: 450px;
   height: 35px;
   background: white;
@@ -106,30 +105,32 @@
   border-radius: 5px;
   align-items: center;
 }
+
 .container-4 input#search::-webkit-input-placeholder {
-    color: #b3b3b3;  
-}
- 
-.container-4 input#search:-moz-placeholder { /* Firefox 18- */
-    color: #532289;   
-}
- 
-.container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
-   color: #532289;  
-}
- 
-.container-4 input#search:-ms-input-placeholder {  
-   color: #532289;  
+  color: #b3b3b3;
 }
 
-.container-4 button.icon{
+.container-4 input#search:-moz-placeholder {
+  /* Firefox 18- */
+  color: #532289;
+}
+
+.container-4 input#search::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #532289;
+}
+
+.container-4 input#search:-ms-input-placeholder {
+  color: #532289;
+}
+
+.container-4 button.icon {
   -webkit-border-top-right-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
   -moz-border-radius-topright: 5px;
   -moz-border-radius-bottomright: 5px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
- 
   border: none;
   background: lightgray;
   height: 35px;
@@ -137,58 +138,63 @@
   color: #29163f;
   opacity: 0;
   font-size: 10pt;
- 
-  -webkit-transition: all .55s ease;
-  -moz-transition: all .55s ease;
-  -ms-transition: all .55s ease;
-  -o-transition: all .55s ease;
-  transition: all .55s ease;
+  -webkit-transition: all 0.55s ease;
+  -moz-transition: all 0.55s ease;
+  -ms-transition: all 0.55s ease;
+  -o-transition: all 0.55s ease;
+  transition: all 0.55s ease;
 }
-.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+
+.container-4:hover button.icon,
+.container-4:active button.icon,
+.container-4:focus button.icon {
   outline: none;
   opacity: 1;
   margin-left: -75px;
 }
- 
-.container-4:hover button.icon:hover{
+
+.container-4:hover button.icon:hover {
   background: dimgray;
- 
 }
-.info{
-	text-align: center;
+
+.info {
+  text-align: center;
 }
-.legal{
-	text-align: center;
+
+.legal {
+  text-align: center;
   background-color: #b3b3b3;
 }
 
-.buttons{
-	margin: 50px;
-	margin-bottom: 10px;
+.buttons {
+  margin: 50px;
+  margin-bottom: 10px;
   background-color: #532289;
   border-color: #532289;
 }
-.headerT{
-	margin-top: 0px;
+
+.headerT {
+  margin-top: 0px;
 }
 
-
-.option{
+.option {
   color: black;
 }
-.alert-link{
+
+.alert-link {
   color: #532289;
 }
 
 /* user results table styling*/
+
 #utable-wrapper {
   float: right;
   margin-right: 8%;
   margin-left: 8%;
   height: 40%;
-  width:45%;
-  background:#b3b3b3;
-  color:black;
+  width: 45%;
+  background: #b3b3b3;
+  color: black;
 }
 
 #ktable-wrapper {
@@ -196,24 +202,23 @@
   margin-left: 20%;
   margin-top: 8%;
   height: 40%;
-  width:60%;
-  background:#b3b3b3;
-  color:black;
+  width: 60%;
+  background: #b3b3b3;
+  color: black;
 }
 
-.table-wrapper table thead{ 
-  z-index:2;
+.table-wrapper table thead {
+  z-index: 2;
   height: 10%;
   font-family: myFirstFont;
   font-size: 20px;
 }
 
 .table-wrapper table tbody tr {
-  z-index:2;
+  z-index: 2;
 }
 
-#profile
-{
+#profile {
   margin-left: 10%;
   margin-right: 10%;
   background-color: #b3b3b3;
@@ -224,20 +229,17 @@
   height: 15%;
 }
 
-#b1
-{
+#b1 {
   font-family: myFirstFont;
 }
 
-.progress
-{
+.progress {
   width: 35%;
   margin-left: 10%;
   background-color: gray;
 }
 
-#bio
-{
+#bio {
   text-align: left;
   font-size: 18px;
   margin-left: 43%;
@@ -245,27 +247,27 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-#bio-pic
-{
-  margin-top: -20%;/* depending on how many elements of bio that there are (10% x no of elements)*/
+#bio-pic {
+  margin-top: -20%;
+  /* depending on how many elements of bio that there are (10% x no of elements)*/
 }
 
-#link{
-   color: #6441A4;
+#link {
+  color: #6441a4;
 }
 
-#userResults{
+#userResults {
   margin-top: 5%;
 }
 
-#back-but{
+#back-but {
   margin-left: 5%;
   background-color: #b3b3b3;
   width: 8%;
   margin-top: 4%;
 }
 
-#key-back-but{
+#key-back-but {
   margin-left: 5%;
   background-color: #b3b3b3;
   width: 8%;
@@ -273,7 +275,7 @@
   margin-bottom: 4%;
 }
 
-#stat-but{
+#stat-but {
   float: right;
   margin-right: 5%;
   background-color: #b3b3b3;
@@ -281,51 +283,52 @@
   width: 8%;
 }
 
-
 /* tooltip styling*/
 
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
+
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text */
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 /* Tooltip arrow */
+
 .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
+
 .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
