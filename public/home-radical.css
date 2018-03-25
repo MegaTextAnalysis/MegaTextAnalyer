@@ -277,6 +277,15 @@
   background-color: #b3b3b3;
   margin-top: 4%;
   width: 8%;
+  float: left;
+}
+
+#key-back-but{
+  margin-left: 5%;
+  margin-bottom: 5%;
+  background-color: #b3b3b3;
+  width: 8%;
+  margin-top: 4%;
 }
 
 #stat-but{
