@@ -9,7 +9,6 @@ $(document).ready(function() {
    //username navigation
       document.getElementById("stat-but").style.display = 'none';
       document.getElementById("back-but").style.display = 'none';
-      document.getElementById("stat-back-but").style.display = 'none';
 
 
     
@@ -69,8 +68,7 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word);  
       document.getElementById("stat-but").style.display = 'none';
       document.getElementById("back-but").style.display = 'none';
-      document.getElementById("stat-back-but").style.display = 'none';   
-
+    
     }
   });
 }
