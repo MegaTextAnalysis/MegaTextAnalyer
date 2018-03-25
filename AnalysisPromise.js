@@ -43,6 +43,7 @@ class AnalysisPromise {
         .then(() => resolve(flaggedTweet))
         .catch(error => {
           console.log(error);
+          reject(new Error("AI request limit reached."));
         });
     });
   }

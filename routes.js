@@ -5,10 +5,14 @@ const AnalysisJSON = require("./AnalysisJSON");
 let twitter = new TwitterUtils();
 let analysis = new AnalysisPromise();
 
-exports.getHandle = (db, handle) => {
+let errorSuffix =
+  " Please check server-side console for technical information.";
+
+exports.getHandle = (db, handle, socket) => {
+  console.log(socket);
   // Handles username fetching
   return new Promise((resolve, reject) => {
-    twitter.getTweets(handle, tweets => {
+    twitter.getTweets(handle, socket, tweets => {
       let jsonObj = new AnalysisJSON();
 
       // Create array of Promises of analyses of tweets
@@ -38,15 +42,21 @@ exports.getHandle = (db, handle) => {
           jsonObj.tweets = tweets;
 
           // Check and update database with new results
-          checkDB(db, tweets, handle, jsonObj);
+          checkDB(db, tweets, handle, jsonObj, socket);
 
           resolve(jsonObj);
+        })
+        .catch(error => {
+          console.log(error);
+          socket.emit("alert", {
+            alert: "AI call failed. API request limit reached."
+          });
         });
     });
   });
 };
 
-exports.search = query => {
+exports.search = (query, socket) => {
   // Handles search querying
   return new Promise((resolve, reject) => {
     twitter.search(query, function(tweets) {
@@ -85,11 +95,14 @@ exports.search = query => {
   });
 };
 
-exports.db = db => {
+exports.db = (db, socket) => {
   // Get database of results
   return new Promise((resolve, reject) => {
     db.find({}, (err, docs) => {
       if (err) {
+        socket.emit("alert", {
+          alert: "Database fetching failed." + errorSuffix
+        });
         console.log(err);
       } else {
         resolve(docs);
@@ -98,7 +111,7 @@ exports.db = db => {
   });
 };
 
-function checkDB(db, tweets, handle, jsonObj) {
+function checkDB(db, tweets, handle, jsonObj, socket) {
   if (tweets.length > 0) {
     db.find(
       {
@@ -106,6 +119,9 @@ function checkDB(db, tweets, handle, jsonObj) {
       },
       (err, docs) => {
         if (err) {
+          socket.emit("alert", {
+            alert: "Database search failed." + errorSuffix
+          });
           console.log(err);
         } else if (docs.length > 0) {
           // If exists, update

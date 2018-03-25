@@ -1,6 +1,9 @@
 const Twitter = require("twitter");
 const Credentials = require("./credentials_twitter");
 
+let errorSuffix =
+  " Please check server-side console for technical information.";
+
 class TwitterUtils {
   constructor() {
     this.client = new Twitter({
@@ -12,32 +15,46 @@ class TwitterUtils {
   }
 
   // Handle keyword searching
-  search(query, callback) {
-    this.client.get("search/tweets", {
-      q: query
-    }, function(err, tweets, res) {
-      if (err) {
-        console.log(err);
-      } else {
-        callback(tweets);
+  search(query, socket, callback) {
+    this.client.get(
+      "search/tweets",
+      {
+        q: query
+      },
+      (err, tweets, res) => {
+        if (err) {
+          socket.emit("alert", {
+            alert: "Twitter search failed." + errorSuffix
+          });
+          console.log(err);
+        } else {
+          callback(tweets);
+        }
       }
-    });
+    );
   }
 
   // Handle user searching
-  getTweets(handle, callback) {
-    this.client.get("statuses/user_timeline", {
-      screen_name: handle,
-      exclude_replies: 1,
-      include_rts: 0,
-      trim_user: 1
-    }, function(err, tweets, res) {
-      if (err) {
-        console.log(err);
-      } else {
-        callback(tweets);
+  getTweets(handle, socket, callback) {
+    this.client.get(
+      "statuses/user_timeline",
+      {
+        screen_name: handle,
+        exclude_replies: 1,
+        include_rts: 0,
+        trim_user: 1
+      },
+      (err, tweets, res) => {
+        if (err) {
+          socket.emit("alert", {
+            alert: "Twitter user fetching failed." + errorSuffix
+          });
+          console.log(err);
+        } else {
+          callback(tweets);
+        }
       }
-    });
+    );
   }
 }
 
