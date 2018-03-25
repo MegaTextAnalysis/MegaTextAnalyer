@@ -211,7 +211,7 @@ function parseKeyword(obj) {
   document.getElementById("keyResults").style.display = 'block';
 
   //display back button
-   document.getElementById("back-but").style.display = 'block';
+   document.getElementById("key-back-but").style.display = 'block';
    document.getElementById("key-stat-but").style.display = 'block';
 }
 
