@@ -235,9 +235,9 @@ function drawChart(obj) {
   var options = {
     title: 'Flagged Vs Non-Flagged tweets',
     backgroundColor: '#b3b3b3',
-    width: 400,
-    height: 240,
-    colors: ['#532289', '#b185e0']
+    width: '20%',
+    height: '20%',
+    colors: ['#b185e0', '#f2ebfa']
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
