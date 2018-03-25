@@ -17,7 +17,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
   <script type="text/javascript" src="homePage.js"></script>
+  <script>
+    let socket = io.connect(location.hostname);
+    socket.on("alert", data => {
+      console.log(data.alert);
+    });
+  </script>
 </head>
 
 <body style="background-color: #6441A4 ">
