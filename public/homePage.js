@@ -1,19 +1,19 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
   showhide();
-  
+
   //keyword navigation
-   document.getElementById("key-back-but").style.display = 'none';
-   document.getElementById("key-stat-but").style.display = 'none';
+  document.getElementById("key-back-but").style.display = 'none';
+  document.getElementById("key-stat-but").style.display = 'none';
 
-   //username navigation
-      document.getElementById("stat-but").style.display = 'none';
-      document.getElementById("back-but").style.display = 'none';
+  //username navigation
+  document.getElementById("stat-but").style.display = 'none';
+  document.getElementById("back-but").style.display = 'none';
 
 
-    
+
   //When user clicks search
-  $("#btnSubmit").click(function() {
+  $("#btnSubmit").click(function () {
     var word = document.getElementById("search");
     if (usernameSet()) {
       getUser(word, true);
@@ -22,7 +22,7 @@ $(document).ready(function() {
     }
   });
 
-  
+
   /*
   $('#search').keypress(function (event) {
       var word = document.getElementById("search");
@@ -44,7 +44,7 @@ $(document).ready(function() {
   */
 
   //only display number of results selector when the user is searching for keywords
-  $("#s1").click(function() {
+  $("#s1").click(function () {
     showhide();
   });
 
@@ -59,23 +59,23 @@ function getUser(word, isFromUsername) {
     url += word;
   }
 
-  $.get(url, function(data) {
+  $.get(url, function (data) {
     var obj = data;
     if (isFromUsername) {
       parseUser(obj, word.value);
       drawChart(obj);
     } else {
-      parseUser(obj, word);  
+      parseUser(obj, word);
       document.getElementById("stat-but").style.display = 'none';
       document.getElementById("back-but").style.display = 'none';
-    
+
     }
   });
 }
 
 function getKeyword(word) {
   var url = "/search/" + word.value;
-  $.get(url, function(data) {
+  $.get(url, function (data) {
     var obj = data;
 
     drawChart(obj);
@@ -152,7 +152,7 @@ function parseUser(obj, username) {
   document.getElementById("username").innerText = "Username: " + username;
   //display back-but
   document.getElementById("back-but").style.display = 'block';
-   document.getElementById("stat-but").style.display = 'none';
+  document.getElementById("stat-but").style.display = 'none';
 }
 
 function backToHomepage() {
@@ -163,29 +163,28 @@ function backToHomepage() {
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
-   
+
 }
 
 function backToKeywords() {
-   document.getElementById("keyResults").style.display = 'block';
-   document.getElementById("stats").style.display = 'none';
+  document.getElementById("keyResults").style.display = 'block';
+  document.getElementById("stats").style.display = 'none';
 }
 
 function parseKeyword(obj) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
- 
+
   //construct results table
   var txt = "";
   console.log(obj);
   var row = 1;
   var n = document.getElementById("sel-2");
-  var numResults= n.options[n.selectedIndex].text;
+  var numResults = n.options[n.selectedIndex].text;
 
   if (obj.tweets.statuses.length !== 0) {
     for (let x in obj.tweets.statuses) {
-      if(row > numResults )
-      {
+      if (row > numResults) {
         break;
       }
       let t = "\"" + "t" + row + "\"";
@@ -209,36 +208,39 @@ function parseKeyword(obj) {
   document.getElementById("keyResults").style.display = 'block';
 
   //display back button
-   document.getElementById("key-back-but").style.display = 'block';
-   document.getElementById("key-stat-but").style.display = 'block';
+  document.getElementById("key-back-but").style.display = 'block';
+  document.getElementById("key-stat-but").style.display = 'block';
 }
 
-function drawShortStats()
-{
+function drawShortStats() {
   document.getElementById("stats").style.display = 'block';
 
   document.getElementById("keyResults").style.display = 'none';
 }
 
-google.charts.load("current", {packages: ["corechart"]});
+google.charts.load("current", { packages: ["corechart"] });
 
 function drawChart(obj) {
-        
-        console.log(obj.flagged.length);
 
-        var flagged = obj.flagged.length;
-        var nonFlagged = obj.tweets.statuses.length;
-        var data = google.visualization.arrayToDataTable([
-          ['Tweets', 'Number of tweets'],
-          ['Non-flagged',  nonFlagged ],
-          ['Flagged',  flagged ]
-        ]);
+  console.log(obj.flagged.length);
 
-        var options = {
-          title: 'Flagged Vs Non-Flagged tweets'
-        };
+  var flagged = obj.flagged.length;
+  var nonFlagged = obj.tweets.statuses.length;
+  var data = google.visualization.arrayToDataTable([
+    ['Tweets', 'Number of tweets'],
+    ['Non-flagged', nonFlagged],
+    ['Flagged', flagged]
+  ]);
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  var options = {
+    title: 'Flagged Vs Non-Flagged tweets',
+    backgroundColor: '#b3b3b3',
+    width: 400,
+    height: 240,
+    colors: ['#532289', '#b185e0']
+  };
 
-        chart.draw(data, options);
- }
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+  chart.draw(data, options);
+}
