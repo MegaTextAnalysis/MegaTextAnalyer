@@ -1,79 +1,189 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    <title>Radicle</title>
-    <meta name="description" content="Radicle">
-    <meta name="author" content="Radicle">
-    <link rel="stylesheet" href="home-radicle.css">
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Radical</title>
+  <link rel="icon" href="Favicon.png">
+  <meta name="description" content="radical">
+  <meta name="author" content="radical">
+  <link rel="stylesheet" href="home-radical.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script type="text/javascript" src="homePage.js"></script>
+  <script>
+    let socket = io.connect(location.hostname);
+    socket.on("alert", data => {
+      console.log(data.alert);
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #6441A4 ">
+<header class="headerT">
+  <div class="titleHeader"> Radical</div>
+  <div class="twitter">
+    <img src="twitter-bird-logo.png" alt="Twitter Icon" width="80px" height "80px">
+  </div>
+  <div class="menu" id="m1">
+    <nav class="my-navbar navbar navbar-custom">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="about.html">About</a>
+          </li>
+          <li>
+            <a href="team.html">The Team</a>
+          </li>
+          <li>
+            <a href="stats.html">Stats</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
-    <header class="headerT">
-        <div class="titleHeader"> Radicle</div>
-        <div class = "twitter"><img src="twitter.png" alt="Twitter Icon"   width = "80px" height "80px"></div>
-        <div class="menu">
-            <nav class="my-navbar navbar navbar-custom">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                        <li class = "active"><a href="index.html">Home</a></li>
-                        <li><a href="team.html">The Team</a></li>
-                        <li><a href="#">About</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        
-        <div class="grey-box"> </div>
-    </header>
+  <div class="grey-box"> </div>
+</header>
 
-    <div class="search-box">
-        <div class="container-4">
-            <div class="search-by">
-                <label for="sel1">Search by:</label>
-                <select class="form-control" id="sel-1">
-      <option>Username</option>
-      <option>Keyword</option>
-      </select>
-            </div>
-            <div class="num-results">
-                <label for="sel2">Number of search results:</label>
-                <select class="form-control" id="sel-2">
-        <option>5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
-            </div>
-            <div class="search-bar">
-                <input type="search" id="search" placeholder="Search..." />
-                <button class="icon"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
+<div class="search-box" id="sb">
+  <div class="container-4">
+    <div id="s1" class="search-by">
+      <label for="sel1">Search by:</label>
+      <select class="form-control" id="sel-1">
+          <option>Username</option>
+          <option id="key">Keyword</option>
+        </select>
     </div>
-
-    <div class="footerB">
-        <div class="grey box"> </div>
+    <div id="s2" class="num-results">
+      <label for="sel2">Number of search results:</label>
+      <select class="form-control" id="sel-2">
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+        </select>
     </div>
+    <div class="search-bar">
+      <input type="search" id="search" placeholder="Search..." />
+      <button id="btnSubmit" class="icon">
+          <i class="fa fa-search"></i>
+        </button>
+    </div>
+  </div>
+</div>
 
-    <div class="alert alert-warning text-center" role="alert" style="width: 500px; margin: auto;"><b>Oh no!</b> We're nearly ready, come back soon!</div>
+<p id="demo"></p>
 
-<p class="legal"> Website designed and developed by <a href="team.html" class="alert-link"><b>Radicle</b></a> as part of a
-    <a href="#" class="alert-link"><span class="label label-primary">Software engineering</span></a> group project</p>
+<div id="userResults" style="display: none">
+<div class="table-wrapper" id="utable-wrapper">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Flagged Tweets</th>
+        </tr>
+      </thead>
+      <tbody id="body">
 
-<script src="radicle.js"></script>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="profile">
+  <h2 id="b1">BIO:</h2>
+  <div id="bio">
+    <h5 id="username">Username: Stephen</h5>
+    <h5 id="about"></h5>
+    <a id="link" href="https://twitter.com/profile?lang=en">
+      <h5>Link to profile</h5>
+    </a>
+  </div>
+  <div id="bio-pic">
+    <img id="img1" src="sample_profile.png" alt="Profile picture" width="33%" height="33%">
+  </div>
+</div>
+<div class="progress">
+  <div id="threat" class="progress-bar" role="progressbar" style="width: 36%;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div>
+</div>
+
+
+
+
+<div id="keyResults" style="display: none">
+<div class="table-wrapper" id="ktable-wrapper">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Tweets</th>
+        </tr>
+      </thead>
+      <tbody id="kbody">
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<div id="stats" style="display: none">
+<div id="piechart"></div>
+</div>
+
+
+
+<div id = "contain" style = "font-size: 80px;color:aqua;
+font-family: 'Courier New', Courier, monospace;height:300px;margin-top: 5%;margin-left:0;margin-right:0">
+  <div style = "height:100%;width:100%">
+    <div id = "personality" style = "height:100%;width:25%;float:left;">
+      <h3 id = "header">Personality</h3>
+    </div>
+      <div id = "needs" style = "height:100%;width:25%;float:left">
+        <h3 id = "header">Needs</h3>
+      </div>
+        <div id = "values" style = "height:100%;width:25%;float:left">
+          <h3 id = "header">Values</h3>
+        </div>
+      <div id = "consumption_preferences" style = "height:100%;width:25%;float:left">
+        <h3 id = "header">Preferences</h3>
+      </div>
+    </div>
+</div>
+
+<button type="button" class="btn" id="back-but" onclick="backToHomepage();">
+< Back</button>
+  <button type="button" class="btn" id="stat-but" onclick="drawShortStats();">Statistics</button>
+<button type="button" class="btn" id="key-stat-but" onclick="drawShortStats();">Statistics</button>
+<button type="button" class="btn" id="personality-but" onclick="showPersonalityProfile();">
+Analyse Personality</button>
+
+<!--div id = "personality" ></div-->
+<!--div id = "needs" ></div-->
+<!--div id = "values" ></div>
+<div id = "consumption_preferences" ></div-->
+<!--
+<div class = "footer">
+<p class="legal"> Website designed and developed by
+    <a href="team.html" class="alert-link">
+        <b>radical</b>
+    </a> as part of a software engineering group project</p>
+</div>
+-->
 
 </body>
 

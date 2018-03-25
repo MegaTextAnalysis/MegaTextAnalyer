@@ -1,0 +1,372 @@
+
+ @font-face {
+   font-family: myFirstFont;
+   src: url(DIMIS___.TTF);
+	}
+
+  .titleHeader{
+  	font-family: myFirstFont;
+  	font-size: 80px;
+  	text-align: center;
+    margin-top: 50px;
+    color: white;
+  }
+
+
+  .search-box{
+  	width: 100%;
+  }
+
+  .search-by{
+      width: 150px;
+      margin-bottom: 15px;
+      color: #b3b3b3;
+  }
+
+  .num-results{
+    width: 65px;
+    margin-left: 170px;
+    margin-top: -74px;
+    margin-bottom: 15px;
+    color: #b3b3b3;
+  }
+  
+.my-navbar {
+    margin-top: 30px;
+    margin-bottom: -50px;
+    background-color: #6441A4;
+    width: 70%;
+}
+
+.twitter
+{
+  float: right;
+  margin-right: 90px;
+  margin-top: -40px;
+}
+.navbar-custom .navbar-nav > li > a:hover{
+  background-color: #b3b3b3;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 25px;
+}
+
+.navbar-custom .navbar-nav .active{
+  background-color:  #b3b3b3;
+  color: black;
+  z-index: 10000;
+}
+
+.navbar-custom .navbar-nav > li > a{
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+}
+
+.navbar-custom .navbar-nav > li {
+  border-radius: 25px;
+}
+ .search-bar
+{
+     margin-top: 15px;
+}
+.grey-box{
+  	background-color: #6441A4;
+    width: 100%;
+    height: 15px;
+    margin-bottom: 30px;
+    margin-top: -20px;
+  }
+
+  .menu
+  {
+    background-color: #6441A4 ;
+  }
+
+  .container-4{
+  overflow: hidden;
+  width: 450px;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  margin: auto;
+}
+.container-4 input#search{
+  width: 450px;
+  height: 35px;
+  background: white;
+  border: none;
+  font-size: 15pt;
+  float: left;
+  color: gray;
+  padding-left: 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  align-items: center;
+}
+.container-4 input#search::-webkit-input-placeholder {
+    color: #b3b3b3;  
+}
+ 
+.container-4 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #532289;   
+}
+ 
+.container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #532289;  
+}
+ 
+.container-4 input#search:-ms-input-placeholder {  
+   color: #532289;  
+}
+
+.container-4 button.icon{
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+ 
+  border: none;
+  background: lightgray;
+  height: 35px;
+  width: 75px;
+  color: #29163f;
+  opacity: 0;
+  font-size: 10pt;
+ 
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+  outline: none;
+  opacity: 1;
+  margin-left: -75px;
+}
+ 
+.container-4:hover button.icon:hover{
+  background: dimgray;
+ 
+}
+.info{
+	text-align: center;
+}
+.legal{
+	text-align: center;
+  background-color: #b3b3b3;
+}
+
+.buttons{
+	margin: 50px;
+	margin-bottom: 10px;
+  background-color: #532289;
+  border-color: #532289;
+}
+.headerT{
+	margin-top: 0px;
+}
+
+
+.option{
+  color: black;
+}
+.alert-link{
+  color: #532289;
+}
+
+/* user results table styling*/
+.table-wrapper{
+  margin-bottom: 5%;
+}
+
+#utable-wrapper {
+  float: right;
+  margin-right: 8%;
+  margin-left: 8%;
+  height: 40%;
+  width:45%;
+  background:#b3b3b3;
+  color:black;
+}
+
+#ktable-wrapper {
+  margin-right: 8%;
+  margin-left: 20%;
+  margin-top: 8%;
+  height: 40%;
+  width:60%;
+  background:#b3b3b3;
+  color:black;
+}
+
+/*#personality {
+  float: left;
+  margin-left: 0%;
+  margin-top: 10%;
+  height:40%;
+  width: 60%;
+  font-size: 80px;
+  color:aqua;
+  font-family: "Courier New", Courier, monospace;
+}*/
+
+/*#needs {
+  float: left;
+  margin-left: 50%;
+  margin-top: 0%;
+  height:40%;
+  width: 60%;
+  font-size: 80px;
+  color:aqua;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#values {
+  float: left;
+  margin-left: 20%;
+  margin-top: 0%;
+  height:40%;
+  width: 60%;
+  font-size: 80px;
+  color:aqua;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#consumption_preferences {
+  float: left;
+  margin-left: 20%;
+  margin-top: 0%;
+  height:40%;
+  width: 60%;
+  font-size: 80px;
+  color:aqua;
+  font-family: "Courier New", Courier, monospace;
+}*/
+
+#header{
+  font-family: "Courier New", Courier, monospace;
+  color:aqua;
+  font-size: 24px;
+  text-align: center;
+}
+
+.table-wrapper table thead{ 
+  z-index:2;
+  height: 10%;
+  font-family: myFirstFont;
+  font-size: 20px;
+}
+
+.table-wrapper table tbody tr {
+  z-index:2;
+}
+
+#profile
+{
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #b3b3b3;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  padding: 1%;
+  width: 30%;
+  height: 15%;
+}
+
+#b1
+{
+  font-family: myFirstFont;
+}
+
+.progress
+{
+  width: 35%;
+  margin-left: 10%;
+  background-color: gray;
+}
+
+#bio
+{
+  text-align: left;
+  font-size: 18px;
+  margin-left: 43%;
+  margin-top: 10%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#bio-pic
+{
+  margin-top: -20%;/* depending on how many elements of bio that there are (10% x no of elements)*/
+}
+
+#link{
+   color: #6441A4;
+}
+
+#userResults{
+  margin-top: 5%;
+}
+
+#back-but{
+  margin-left: 5%;
+  margin-bottom: 5%;
+  background-color: #b3b3b3;
+  width: 8%;
+  margin-top: 4%;
+  float: left
+}
+
+#stat-back-but{
+  margin-bottom: 4%;
+  margin-right: 5%;
+  margin-left: 5%;
+  background-color: #b3b3b3;
+  margin-top: 4%;
+  width: 8%;
+}
+
+#stat-but{
+  float: right;
+  margin-bottom: 4%;
+  margin-right: 5%;
+  background-color: #b3b3b3;
+  margin-top: 4%;
+  width: 8%;
+}
+
+
+#key-stat-but{
+  float: right;
+  margin-left: 15%;
+  margin-bottom: 4%;
+  background-color: #b3b3b3;
+  margin-top: 4%;
+  width: 8%;
+}
+
+#personality-but{
+  float:left;
+  margin-left: 2%;
+  margin-bottom: 5%;
+  background-color: #b3b3b3;
+  width: 12%;
+  margin-top: 4%;
+}
+
+#stats{
+  margin: 10%;
+  width: 70%;
+  height: 50%;
+  background-color: #b3b3b3;
+}
+
+#piechart{
+   background-color: #b3b3b3;
+  
+}

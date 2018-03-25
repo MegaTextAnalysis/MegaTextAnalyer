@@ -1,0 +1,148 @@
+const AnalysisPromise = require("./AnalysisPromise");
+const TwitterUtils = require("./TwitterUtils");
+const AnalysisJSON = require("./AnalysisJSON");
+const WatsonJSON = require("./watsonJSON");
+const WatsonAI = require("./watson");
+
+let twitter = new TwitterUtils();
+let analysis = new AnalysisPromise();
+let watsonAI = new WatsonAI();
+
+exports.getHandle = (db, handle) => {
+  // Handles username fetching
+  return new Promise((resolve, reject) => {
+    twitter.getTweets(handle, tweets => {
+      let jsonObj = new AnalysisJSON();
+      let watson = new WatsonJSON();
+      for (let i in tweets)
+      {
+        console.log(tweets[i].text);
+        let tweet = {};
+        tweet.content = tweets[i].text;
+        tweet.contenttype="text/plain";
+        watson.contentItems.push(tweet);
+      }
+
+      // Create array of Promises of analyses of tweets
+      let promises = tweets.map(entries => analysis.analyse(entries.text));
+
+      // Wait for Promises to finish and get total threat level
+      Promise.all(promises)
+        .then(array => {
+          array.forEach(flagged => {
+            if (flagged.flags.length > 0) {
+              jsonObj.totalRisk += flagged.threatLevel;
+              jsonObj.flagged.push(flagged);
+            }
+          });
+        })
+        .then(() => {
+          // Sort flagged tweets by threat level
+          jsonObj.flagged.sort((a, b) => {
+            return b.threatLevel - a.threatLevel;
+          });
+        });
+        watsonAI.callWatson(watson)
+        .then((response) => {
+          jsonObj.watsonAnalysis=response;
+          // Set to risk to 100 if over 100
+          if (jsonObj.totalRisk > 100) {
+            jsonObj.totalRisk = 100;
+          }
+
+          jsonObj.tweets = tweets;
+
+          // Check and update database with new results
+          checkDB(db, tweets, handle, jsonObj);
+
+          resolve(jsonObj);
+        });
+    });
+  });
+};
+
+exports.search = query => {
+  // Handles search querying
+  return new Promise((resolve, reject) => {
+    twitter.search(query, function(tweets) {
+      let jsonObj = new AnalysisJSON();
+
+      // Iterate over tweets and analyse
+      let promises = tweets.statuses.map(entries =>
+        analysis.analyse(entries.text)
+      );
+
+      // Wait for Promises to finish and get total threat level
+      Promise.all(promises)
+        .then(array => {
+          array.forEach(flagged => {
+            if (flagged.flags.length > 0) {
+              jsonObj.totalRisk += flagged.threatLevel;
+              jsonObj.flagged.push(flagged);
+            }
+          });
+        })
+        .then(() => {
+          // Sort flagged tweets by threat level
+          jsonObj.flagged.sort(function(a, b) {
+            return b.threatLevel - a.threatLevel;
+          });
+
+          // Set to risk to 100 if over 100
+          if (jsonObj.totalRisk > 100) {
+            jsonObj.totalRisk = 100;
+          }
+
+          jsonObj.tweets = tweets;
+          resolve(jsonObj);
+        });
+    });
+  });
+};
+
+exports.db = db => {
+  // Get database of results
+  return new Promise((resolve, reject) => {
+    db.find({}, (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(docs);
+      }
+    });
+  });
+};
+
+function checkDB(db, tweets, handle, jsonObj) {
+  if (tweets.length > 0) {
+    db.find(
+      {
+        username: handle
+      },
+      (err, docs) => {
+        if (err) {
+          console.log(err);
+        } else if (docs.length > 0) {
+          // If exists, update
+          db.update(
+            {
+              username: handle
+            },
+            {
+              $set: {
+                time: Date.now(),
+                data: jsonObj
+              }
+            }
+          );
+        } else {
+          db.insert({
+            username: handle,
+            time: Date.now(),
+            data: jsonObj
+          });
+        }
+      }
+    );
+  }
+}

@@ -1,4 +1,4 @@
-// let keywords={
+// module.exports ={
 // "ISIS":2,
 // "ISIL":2,
 // "Caliphate":2,
