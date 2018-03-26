@@ -309,5 +309,13 @@
 }
 
 #stats{
-  margin: 5%;
+  margin: 6%;
+}
+
+#piechart{
+  float:left;
+}
+
+#treechart{
+  float: right;
 }
