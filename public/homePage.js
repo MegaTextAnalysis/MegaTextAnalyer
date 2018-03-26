@@ -263,8 +263,8 @@ function drawChart(obj) {
 
     var optionsTree = {
       minColor: '#42413b',
-      midColor: '#ddd',
-      maxColor: '#0d0',
+      midColor: '#6c6c6c',
+      maxColor: '#B3B3B3',
       headerHeight: 15,
       fontColor: 'black',
       showScale: true,
