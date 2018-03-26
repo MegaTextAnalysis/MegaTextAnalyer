@@ -260,12 +260,14 @@ function drawChart(obj) {
   tree = new google.visualization.TreeMap(document.getElementById('treechart'));
 
   var optionsTree = {
-    minColor: '#FFF',
+    minColor: '#42413b',
     midColor: '#ddd',
     maxColor: '#0d0',
     headerHeight: 15,
     fontColor: 'black',
-    showScale: true
+    showScale: true,
+    width: 500,
+    height: 300
   };
 
   tree.draw(data, optionsTree);
