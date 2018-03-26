@@ -205,55 +205,12 @@
   color:black;
 }
 
-/*#personality {
-  float: left;
-  margin-left: 0%;
-  margin-top: 10%;
-  height:40%;
-  width: 60%;
-  font-size: 80px;
-  color:aqua;
-  font-family: "Courier New", Courier, monospace;
-}*/
-
-/*#needs {
-  float: left;
-  margin-left: 50%;
-  margin-top: 0%;
-  height:40%;
-  width: 60%;
-  font-size: 80px;
-  color:aqua;
-  font-family: "Courier New", Courier, monospace;
-}
-
-#values {
-  float: left;
-  margin-left: 20%;
-  margin-top: 0%;
-  height:40%;
-  width: 60%;
-  font-size: 80px;
-  color:aqua;
-  font-family: "Courier New", Courier, monospace;
-}
-
-#consumption_preferences {
-  float: left;
-  margin-left: 20%;
-  margin-top: 0%;
-  height:40%;
-  width: 60%;
-  font-size: 80px;
-  color:aqua;
-  font-family: "Courier New", Courier, monospace;
-}*/
 
 #header{
   font-family: "Courier New", Courier, monospace;
-  color:aqua;
+  color:#b3b3b3;
   font-size: 24px;
-  text-align: center;
+  margin-left: 15%;
 }
 
 .table-wrapper table thead{ 

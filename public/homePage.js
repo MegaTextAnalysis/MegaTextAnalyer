@@ -269,7 +269,7 @@ function drawChart(obj) {
       var li=document.createElement('li');
 
       ul1.appendChild(li);
-      var y = (json.watsonAnalysis.personality[x].raw_score * 100)/1;
+      var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100)/100);
       li.innerHTML=li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
     }
   document.getElementById("personality").appendChild(ul1);
@@ -280,7 +280,7 @@ function drawChart(obj) {
       var li=document.createElement('li');
 
       ul2.appendChild(li);
-      var y = (json.watsonAnalysis.needs[x].raw_score * 100)/1;
+      var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100)/100);
       li.innerHTML=li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
     }
   document.getElementById("needs").appendChild(ul2);
@@ -291,7 +291,7 @@ function drawChart(obj) {
       var li=document.createElement('li');
 
       ul3.appendChild(li);
-      var y = (json.watsonAnalysis.values[x].raw_score * 100)/1;
+      var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100)/100);
       li.innerHTML=li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
     }
   document.getElementById("values").appendChild(ul3);
