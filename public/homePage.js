@@ -153,7 +153,8 @@ function parseUser(obj, username) {
   document.getElementById("username").innerText = "Username: " + username;
   //display back-but
   document.getElementById("back-but").style.display = 'block';
-  document.getElementById("stat-but").style.display = 'none';
+  document.getElementById("personality-but").style.display = 'block';
+
 }
 
 function backToHomepage() {
@@ -305,6 +306,7 @@ function personalityBack()
 }
 
 function genPerson(json) {
+
   var ul1 = document.createElement('ul');
   ul1.setAttribute("id", "ul1");
   for (let x in json.watsonAnalysis.personality) {
