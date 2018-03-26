@@ -63,7 +63,7 @@ function getUser(word, isFromUsername) {
 
   $.get(url, function (data) {
     var obj = data;
-    genPerson();
+    genPerson(obj);
     if (isFromUsername) {
       parseUser(obj, word.value);
     } else {
@@ -305,7 +305,6 @@ function personalityBack()
 }
 
 function genPerson(json) {
-
   var ul1 = document.createElement('ul');
   ul1.setAttribute("id", "ul1");
   for (let x in json.watsonAnalysis.personality) {
