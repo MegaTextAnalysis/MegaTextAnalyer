@@ -256,21 +256,25 @@ function drawChart(obj) {
     flags[count] = flagsEntry;
   }
 
-  var data = google.visualization.arrayToDataTable(flags);
-  tree = new google.visualization.TreeMap(document.getElementById('treechart'));
+  if (obj.flagged.length !== 0) {
+    var data = google.visualization.arrayToDataTable(flags);
+    tree = new google.visualization.TreeMap(document.getElementById('treechart'));
 
-  var optionsTree = {
-    minColor: '#42413b',
-    midColor: '#ddd',
-    maxColor: '#0d0',
-    headerHeight: 15,
-    fontColor: 'black',
-    showScale: true,
-    width: 500,
-    height: 300
-  };
-
-  tree.draw(data, optionsTree);
+    var optionsTree = {
+      minColor: '#42413b',
+      midColor: '#ddd',
+      maxColor: '#0d0',
+      headerHeight: 15,
+      fontColor: 'black',
+      showScale: true,
+      width: 500,
+      height: 300
+    };
+    tree.draw(data, optionsTree);
+  }
+  else {
+    document.getElementById('treechart').innerHTML = "No flagged tweets";
+  }
 }
 
 
