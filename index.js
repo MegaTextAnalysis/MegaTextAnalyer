@@ -25,26 +25,26 @@ if (cluster.isMaster) {
   const server = http.createServer(app);
   const io = SocketIO.listen(server);
 
+  let sock;
+
   app.use(Express.static("public"));
   server.listen(80);
 
   io.on("connection", socket => {
-    socket.emit("alert", {
-      alert: "real shit"
-    });
+    sock = socket;
   });
 
   app.get("/user/:handle", (req, res) => {
     routes
-      .getHandle(db, req.params.handle)
+      .getHandle(db, req.params.handle, sock)
       .then(jsonHandle => res.json(jsonHandle));
   });
 
   app.get("/search/:query", (req, res) => {
-    routes.search(req.params.query).then(jsonSearch => res.json(jsonSearch));
+    routes.search(req.params.query, sock).then(jsonSearch => res.json(jsonSearch));
   });
 
   app.get("/db", (req, res) => {
-    routes.db(db).then(docs => res.json(docs));
+    routes.db(db, sock).then(docs => res.json(docs));
   });
 }

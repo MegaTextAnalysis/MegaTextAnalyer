@@ -15,10 +15,10 @@
 // };
 
 module.exports = {
-  "Ireland": 2,
+  Ireland: 2,
   "#TeamOfUs": 2,
   "Grand Slam": 5,
-  "Irish": 5,
+  Irish: 5,
   "6 Nations": 5,
   "#ENGvIRE": 5
 };
