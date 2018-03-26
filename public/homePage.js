@@ -252,7 +252,8 @@ function drawChart(obj) {
   for (let x in obj.flagged) {
     var flag = obj.flagged[count - 2].flags[0];
     var threat = obj.flagged[count - 2].threatLevel;
-    flagsEntry = [count - 1 + ". " + flag, "Flags", threat, threat - 3];
+    threat = threat + Math.floor((Math.random() * 10) + 1);
+    flagsEntry = [count - 1 + ". " + flag, "Flags", threat, threat];
     flags[count] = flagsEntry;
     count++;
   }
@@ -267,9 +268,9 @@ function drawChart(obj) {
       maxColor: '#B3B3B3',
       headerHeight: 15,
       fontColor: 'black',
-      showScale: true,
-      width: 500,
-      height: 300
+      showScale: false,
+      width: 600,
+      height: 400
     };
     tree.draw(data, optionsTree);
   }
