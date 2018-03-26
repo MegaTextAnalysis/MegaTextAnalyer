@@ -158,6 +158,7 @@ function backToHomepage() {
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
+  document.getElementById("personality-but").style.display = 'none';
 
 }
 
