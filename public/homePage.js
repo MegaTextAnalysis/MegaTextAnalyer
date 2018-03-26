@@ -273,7 +273,7 @@ function drawChart(obj) {
     tree.draw(data, optionsTree);
   }
   else {
-    document.getElementById('treechart').innerHTML = "No flagged tweets";
+    document.getElementById('treechart').innerHTML = "";
   }
 }
 
