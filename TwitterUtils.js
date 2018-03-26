@@ -13,31 +13,48 @@ class TwitterUtils {
 
   // Handle keyword searching
   search(query, callback) {
-    this.client.get("search/tweets", {
-      q: query
-    }, function(err, tweets, res) {
-      if (err) {
-        console.log(err);
-      } else {
-        callback(tweets);
+    this.client.get(
+      "search/tweets",
+      {
+        q: query
+      },
+      function(err, tweets, res) {
+        if (err) {
+          console.log(err);
+        } else {
+          callback(tweets);
+        }
       }
-    });
+    );
   }
 
   // Handle user searching
-  getTweets(handle, callback) {
-    this.client.get("statuses/user_timeline", {
-      screen_name: handle,
-      exclude_replies: 1,
-      include_rts: 0,
-      trim_user: 1
-    }, function(err, tweets, res) {
-      if (err) {
-        console.log(err);
-      } else {
-        callback(tweets);
+  getTweets(handle, socket, callback) {
+    this.client.get(
+      "statuses/user_timeline",
+      {
+        screen_name: handle,
+        exclude_replies: 1,
+        include_rts: 0,
+        trim_user: 1
+      },
+      function(err, tweets, res) {
+        if (err) {
+          console.log(err);
+          if (err[0].code === 34) {
+            socket.emit("alert", {
+              alert: "User does not exist."
+            });
+          } else {
+            socket.emit("alert", {
+              alert: "Twitter username search failed."
+            });
+          }
+        } else {
+          callback(tweets);
+        }
       }
-    });
+    );
   }
 }
 

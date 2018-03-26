@@ -10,7 +10,9 @@ $(document).ready(function () {
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("back-but").style.display = 'none';
 
-
+  document.getElementById("personality-but").style.display = 'none';
+  document.getElementById("contain").style.display = 'none';
+   document.getElementById("personality-back").style.display = 'none';
 
   //When user clicks search
   $("#btnSubmit").click(function () {
@@ -61,9 +63,9 @@ function getUser(word, isFromUsername) {
 
   $.get(url, function (data) {
     var obj = data;
+    genPerson();
     if (isFromUsername) {
       parseUser(obj, word.value);
-      drawChart(obj);
     } else {
       parseUser(obj, word);
       document.getElementById("stat-but").style.display = 'none';
@@ -77,7 +79,6 @@ function getKeyword(word) {
   var url = "/search/" + word.value;
   $.get(url, function (data) {
     var obj = data;
-
     drawChart(obj);
     parseKeyword(obj);
   });
@@ -237,6 +238,7 @@ function drawChart(obj) {
     backgroundColor: '#b3b3b3',
     width: 400,
     height: 400,
+    fontColor: 'black',
     colors: ['#b185e0', '#f2ebfa']
   };
 
@@ -277,6 +279,79 @@ function drawChart(obj) {
   else {
     document.getElementById('treechart').innerHTML = "";
   }
+}
+
+function showPersonality() {
+  document.getElementById("userResults").style.display = 'none';
+  document.getElementById("keyResults").style.display = 'none';
+  document.getElementById("back-but").style.display = 'none';
+  document.getElementById("stat-but").style.display = 'none';
+  document.getElementById("key-stat-but").style.display = 'none';
+  document.getElementById("personality-but").style.display = 'none';
+  document.getElementById("contain").style.display = 'block';
+  document.getElementById("personality-back").style.display = 'none';
+}
+
+function personalityBack()
+{
+  document.getElementById("userResults").style.display = 'block';
+  document.getElementById("keyResults").style.display = 'block';
+  document.getElementById("back-but").style.display = 'block';
+  document.getElementById("stat-but").style.display = 'block';
+  document.getElementById("key-stat-but").style.display = 'block';
+  document.getElementById("personality-but").style.display = 'block';
+  document.getElementById("contain").style.display = 'none';
+  document.getElementById("personality-back").style.display = 'block';
+}
+
+function genPerson(json) {
+
+  var ul1 = document.createElement('ul');
+  ul1.setAttribute("id", "ul1");
+  for (let x in json.watsonAnalysis.personality) {
+    var li = document.createElement('li');
+
+    ul1.appendChild(li);
+    var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100) / 100);
+    li.innerHTML = li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
+  }
+  document.getElementById("personality").appendChild(ul1);
+
+  var ul2 = document.createElement('ul');
+  ul2.setAttribute("id", "ul2");
+  for (let x in json.watsonAnalysis.needs) {
+    var li = document.createElement('li');
+
+    ul2.appendChild(li);
+    var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100) / 100);
+    li.innerHTML = li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
+  }
+  document.getElementById("needs").appendChild(ul2);
+
+  var ul3 = document.createElement('ul');
+  ul3.setAttribute("id", "ul3");
+  for (let x in json.watsonAnalysis.values) {
+    var li = document.createElement('li');
+
+    ul3.appendChild(li);
+    var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100) / 100);
+    li.innerHTML = li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
+  }
+  document.getElementById("values").appendChild(ul3);
+
+  var ul4 = document.createElement('ul');
+  ul4.setAttribute("id", "ul4");
+  for (let x in json.watsonAnalysis.consumption_preferences) {
+    for (let y in json.watsonAnalysis.consumption_preferences[x].consumption_preferences) {
+      var li = document.createElement('li');
+      if (json.watsonAnalysis.consumption_preferences[x].consumption_preferences[y].score === 1) {
+        ul4.appendChild(li);
+        li.innerHTML = li.innerHTML + json.watsonAnalysis.consumption_preferences[x].consumption_preferences[y].name;
+      }
+    }
+  }
+  document.getElementById("consumption_preferences").appendChild(ul4);
+
 }
 
 
