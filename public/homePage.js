@@ -219,11 +219,11 @@ function drawShortStats() {
 }
 
 google.charts.load("current", { packages: ["corechart"] });
+google.charts.load('current', {'packages':['treemap']});
 
 function drawChart(obj) {
 
-  console.log(obj.flagged.length);
-
+  //draw piechart
   var flagged = obj.flagged.length;
   var nonFlagged = obj.tweets.statuses.length;
   var data = google.visualization.arrayToDataTable([
@@ -241,6 +241,33 @@ function drawChart(obj) {
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
   chart.draw(data, options);
+
+  //draw treemap
+  var flags = [];             
+  flags[0] = ['Flag', 'Parent', 'Threat level', '(color)'];
+  flags[1] = ['Flags', null, 0, 0];
+  var flagsEntry;
+  var count = 2;
+  for(let x in obj.flagged)
+  {
+     var flag = obj.flagged[count - 2].flags[0];
+     var threat = obj.flagged[count - 2].threatLevel;
+     flagsEntry = [flag,"Flags",threatLevel, 50 - threatLevel];   
+     flags[count] = flagsEntry;
+  }
+
+   var data = google.visualization.arrayToDataTable(flags);
+   tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+   tree.draw(data, {
+          minColor: '#f00',
+          midColor: '#ddd',
+          maxColor: '#0d0',
+          headerHeight: 15,
+          fontColor: 'black',
+          showScale: true
+        });
 }
+
+
