@@ -252,7 +252,7 @@ function drawChart(obj) {
   for (let x in obj.flagged) {
     var flag = obj.flagged[count - 2].flags[0];
     var threat = obj.flagged[count - 2].threatLevel;
-    flagsEntry = [flag, "Flags", threat, 20 - threat];
+    flagsEntry = [count - 1 + ". " + flag, "Flags", threat, 20 - threat];
     flags[count] = flagsEntry;
     count++;
   }
