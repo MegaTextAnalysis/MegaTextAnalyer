@@ -5,23 +5,30 @@ $(document).ready(function() {
    document.getElementById("key-stat-but").style.display = 'none';
    document.getElementById("stat-but").style.display = 'none';
    document.getElementById("personality-but").style.display = 'none';
-   document.getElementById("personality").style.display = 'none';
-   document.getElementById("needs").style.display = 'none';
-   document.getElementById("values").style.display = 'none';
-   document.getElementById("consumption_preferences").style.display = 'none';
    document.getElementById("contain").style.display = 'none';
 
-  //When user clicks search
-  $("#btnSubmit").click(function() {
-    var word = document.getElementById("search");
+   var input = document.getElementById("search");
+   input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      buttonClick();
+    }
+   });
+
+function buttonClick()
+{
+   var word = document.getElementById("search");
     if (usernameSet()) {
       getUser(word, true);
     } else {
       getKeyword(word);
     }
-  });
+}
 
-  var json;
+  //When user clicks search
+  $("#btnSubmit").click(function() {
+    buttonClick();
+  });
 
   
   /*
@@ -62,7 +69,6 @@ function getUser(word, isFromUsername) {
 
   $.get(url, function(data) {
     var obj = data;
-    json = data;
     if (isFromUsername) {
       parseUser(obj, word.value);
       drawChart(obj);
@@ -156,6 +162,7 @@ function parseUser(obj, username) {
   //display back-but
   document.getElementById("back-but").style.display = 'block';
   document.getElementById("personality-but").style.display = 'block';
+  drawPersonalityProfile(obj);
 }
 
 function backToHomepage() {
@@ -249,27 +256,30 @@ function drawChart(obj) {
         chart.draw(data, options);
  }
 
- function showPersonalityProfile() {
-  document.getElementById("userResults").style.display = 'none';
-  document.getElementById("keyResults").style.display = 'none';
-  document.getElementById("m1").style.display = 'none';
-  document.getElementById("sb").style.display = 'none';
-  document.getElementById("back-but").style.display = 'block';
-  document.getElementById("stat-but").style.display = 'none';
-  document.getElementById("key-stat-but").style.display = 'none';
-  document.getElementById("personality-but").style.display = 'none';
-  document.getElementById("personality").style.display = 'block';
-  document.getElementById("needs").style.display = 'block';
-  document.getElementById("values").style.display = 'block';
-  document.getElementById("consumption_preferences").style.display = 'block';
-  document.getElementById("contain").style.display = 'block';
+ function showPersonalityProfile(){
+    document.getElementById("userResults").style.display = 'none';
+    document.getElementById("keyResults").style.display = 'none';
+    document.getElementById("m1").style.display = 'none';
+    document.getElementById("sb").style.display = 'none';
+    document.getElementById("back-but").style.display = 'block';
+    document.getElementById("stat-but").style.display = 'none';
+    document.getElementById("key-stat-but").style.display = 'none';
+    document.getElementById("personality-but").style.display = 'none';
+    document.getElementById("personality").style.display = 'block';
+    document.getElementById("needs").style.display = 'block';
+    document.getElementById("values").style.display = 'block';
+    document.getElementById("consumption_preferences").style.display = 'block';
+    document.getElementById("contain").style.display = 'block';
+ }
+
+ function drawPersonalityProfile(json) {
   var ul1=document.createElement('ul');
   ul1.setAttribute("id","ul1");
   for (let x in json.watsonAnalysis.personality) {
       var li=document.createElement('li');
 
       ul1.appendChild(li);
-      var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100)/100);
+      var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100)/1);
       li.innerHTML=li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
     }
   document.getElementById("personality").appendChild(ul1);
@@ -280,7 +290,7 @@ function drawChart(obj) {
       var li=document.createElement('li');
 
       ul2.appendChild(li);
-      var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100)/100);
+      var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100)/1);
       li.innerHTML=li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
     }
   document.getElementById("needs").appendChild(ul2);
@@ -291,7 +301,7 @@ function drawChart(obj) {
       var li=document.createElement('li');
 
       ul3.appendChild(li);
-      var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100)/100);
+      var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100)/1);
       li.innerHTML=li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
     }
   document.getElementById("values").appendChild(ul3);
