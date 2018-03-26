@@ -151,6 +151,7 @@ function parseUser(obj, username) {
 }
 
 function backToHomepage() {
+  document.getElementById("personality-but").style.display = 'none';
   document.getElementById("userResults").style.display = 'none';
   document.getElementById("keyResults").style.display = 'none';
   document.getElementById("m1").style.display = 'block';
@@ -158,8 +159,6 @@ function backToHomepage() {
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
-  document.getElementById("personality-but").style.display = 'none';
-
 }
 
 function backToKeywords() {
