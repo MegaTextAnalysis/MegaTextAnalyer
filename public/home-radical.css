@@ -331,12 +331,12 @@
 }
 
 #personality-back{
-  float:left;
-  margin-left: 2%;
+  margin-left: 5%;
   margin-bottom: 5%;
   background-color: #b3b3b3;
-  width: 12%;
+  width: 8%;
   margin-top: 4%;
+  float: left;
 }
 
 #header{

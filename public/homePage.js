@@ -284,25 +284,20 @@ function drawChart(obj) {
 
 function showPersonality() {
   document.getElementById("userResults").style.display = 'none';
-  document.getElementById("keyResults").style.display = 'none';
   document.getElementById("back-but").style.display = 'none';
-  document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
   document.getElementById("personality-but").style.display = 'none';
   document.getElementById("contain").style.display = 'block';
-  document.getElementById("personality-back").style.display = 'none';
+  document.getElementById("personality-back").style.display = 'block';
 }
 
 function personalityBack()
 {
   document.getElementById("userResults").style.display = 'block';
-  document.getElementById("keyResults").style.display = 'block';
   document.getElementById("back-but").style.display = 'block';
-  document.getElementById("stat-but").style.display = 'block';
-  document.getElementById("key-stat-but").style.display = 'block';
   document.getElementById("personality-but").style.display = 'block';
   document.getElementById("contain").style.display = 'none';
-  document.getElementById("personality-back").style.display = 'block';
+  document.getElementById("personality-back").style.display = 'none';
 }
 
 function genPerson(json) {
@@ -313,7 +308,7 @@ function genPerson(json) {
     var li = document.createElement('li');
 
     ul1.appendChild(li);
-    var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100) / 100);
+    var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100) / 1);
     li.innerHTML = li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
   }
   document.getElementById("personality").appendChild(ul1);
@@ -324,7 +319,7 @@ function genPerson(json) {
     var li = document.createElement('li');
 
     ul2.appendChild(li);
-    var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100) / 100);
+    var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100) / 1);
     li.innerHTML = li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
   }
   document.getElementById("needs").appendChild(ul2);
@@ -335,7 +330,7 @@ function genPerson(json) {
     var li = document.createElement('li');
 
     ul3.appendChild(li);
-    var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100) / 100);
+    var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100) / 1);
     li.innerHTML = li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
   }
   document.getElementById("values").appendChild(ul3);
