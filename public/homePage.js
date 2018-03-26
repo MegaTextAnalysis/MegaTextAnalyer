@@ -15,35 +15,28 @@ $(document).ready(function () {
    document.getElementById("personality-back").style.display = 'none';
 
   //When user clicks search
-  $("#btnSubmit").click(function () {
-    var word = document.getElementById("search");
+   var input = document.getElementById("search");
+   input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      buttonClick();
+    }
+   });
+
+ //When user clicks search
+  $("#btnSubmit").click(function() {
+    buttonClick();
+  });
+
+function buttonClick()
+{
+   var word = document.getElementById("search");
     if (usernameSet()) {
       getUser(word, true);
     } else {
       getKeyword(word);
     }
-  });
-
-
-  /*
-  $('#search').keypress(function (event) {
-      var word = document.getElementById("search");
-      if (usernameSet()) {
-          var url = "/user/" + word.value;
-          $.get(url, function (data) {
-              var obj = data;
-              parseUser(obj);
-          });
-      }
-      else {
-          var url = "/search/" + word.value;
-          $.get(url, function (data) {
-              var obj = data;
-              parseKeyword(obj);
-          });
-      }
-  });
-  */
+}
 
   //only display number of results selector when the user is searching for keywords
   $("#s1").click(function () {
