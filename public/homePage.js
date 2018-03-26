@@ -235,8 +235,8 @@ function drawChart(obj) {
   var options = {
     title: 'Flagged Vs Non-Flagged tweets',
     backgroundColor: '#b3b3b3',
-    width: 350,
-    height: 350,
+    width: 400,
+    height: 400,
     colors: ['#b185e0', '#f2ebfa']
   };
 
@@ -260,7 +260,7 @@ function drawChart(obj) {
   tree = new google.visualization.TreeMap(document.getElementById('treechart'));
 
   var optionsTree = {
-    minColor: '#f00',
+    minColor: '#FFF',
     midColor: '#ddd',
     maxColor: '#0d0',
     headerHeight: 15,
