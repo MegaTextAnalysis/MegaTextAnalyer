@@ -160,6 +160,14 @@ function backToHomepage() {
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
+  var ul1 = document.getElementById("ul1");
+  document.getElementById("personality").removeChild(ul1);
+  var ul2 = document.getElementById("ul2");
+  document.getElementById("needs").removeChild(ul2);
+  var ul3 = document.getElementById("ul3");
+  document.getElementById("values").removeChild(ul3);
+  var ul4 = document.getElementById("ul4");
+  document.getElementById("consumption_preferences").removeChild(ul4);
 }
 
 function backToKeywords() {
@@ -293,7 +301,8 @@ function personalityBack()
 }
 
 function genPerson(json) {
-
+  if(document.getElementById("personality").childElementCount===1)
+  {
   var ul1 = document.createElement('ul');
   ul1.setAttribute("id", "ul1");
   for (let x in json.watsonAnalysis.personality) {
@@ -304,7 +313,10 @@ function genPerson(json) {
     li.innerHTML = li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
   }
   document.getElementById("personality").appendChild(ul1);
+  }
 
+  if(document.getElementById("needs").childElementCount===1)
+  {
   var ul2 = document.createElement('ul');
   ul2.setAttribute("id", "ul2");
   for (let x in json.watsonAnalysis.needs) {
@@ -315,7 +327,10 @@ function genPerson(json) {
     li.innerHTML = li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
   }
   document.getElementById("needs").appendChild(ul2);
+  }
 
+  if(document.getElementById("values").childElementCount===1)
+  {
   var ul3 = document.createElement('ul');
   ul3.setAttribute("id", "ul3");
   for (let x in json.watsonAnalysis.values) {
@@ -326,7 +341,10 @@ function genPerson(json) {
     li.innerHTML = li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
   }
   document.getElementById("values").appendChild(ul3);
+  }
 
+  if(document.getElementById("consumption_preferences").childElementCount===1)
+  {
   var ul4 = document.createElement('ul');
   ul4.setAttribute("id", "ul4");
   for (let x in json.watsonAnalysis.consumption_preferences) {
@@ -339,6 +357,7 @@ function genPerson(json) {
     }
   }
   document.getElementById("consumption_preferences").appendChild(ul4);
+  }
 
 }
 
