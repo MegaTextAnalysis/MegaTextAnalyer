@@ -12,7 +12,7 @@ $(document).ready(function () {
 
   //personality analysis navigation
   document.getElementById("personality-but").style.display = 'none';
-  document.getElementById("contain").style.display = 'none';
+  document.getElementById("personRes").style.display = 'none';
    document.getElementById("personality-back").style.display = 'none';
 
   //When user clicks search
@@ -187,7 +187,7 @@ function parseKeyword(obj) {
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
         "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText, false)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
-        "<td>" + obj.tweets.statuses[x].text + "<br>" + + "</td>" +
+        "<td>" + obj.tweets.statuses[x].text + "</td>" +
         "</tr>";
       row++;
     }
@@ -210,7 +210,6 @@ function parseKeyword(obj) {
 
 function drawShortStats() {
   document.getElementById("stats").style.display = 'block';
-
   document.getElementById("keyResults").style.display = 'none';
 }
 
@@ -218,7 +217,6 @@ google.charts.load("current", { packages: ["corechart"] });
 google.charts.load('current', { 'packages': ['treemap'] });
 
 function drawChart(obj) {
-
   //draw piechart
   var flagged = obj.flagged.length;
   var nonFlagged = obj.tweets.statuses.length;
@@ -281,7 +279,7 @@ function showPersonality() {
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
   document.getElementById("personality-but").style.display = 'none';
-  document.getElementById("contain").style.display = 'block';
+  document.getElementById("personRes").style.display = 'block';
   document.getElementById("personality-back").style.display = 'block';
 }
 
@@ -290,7 +288,7 @@ function personalityBack()
   document.getElementById("userResults").style.display = 'block';
   document.getElementById("back-but").style.display = 'block';
   document.getElementById("personality-but").style.display = 'block';
-  document.getElementById("contain").style.display = 'none';
+  document.getElementById("personRes").style.display = 'none';
   document.getElementById("personality-back").style.display = 'none';
 }
 
