@@ -10,6 +10,7 @@ $(document).ready(function () {
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("back-but").style.display = 'none';
 
+  //personality analysis navigation
   document.getElementById("personality-but").style.display = 'none';
   document.getElementById("contain").style.display = 'none';
    document.getElementById("personality-back").style.display = 'none';
@@ -69,8 +70,8 @@ function getUser(word, isFromUsername) {
 }
 
 function getKeyword(word) {
-  var url = "/search/" + word.value;
-  $.get(url, function (data) {
+    var url = "/search/" + word.value;
+    $.get(url, function (data) {
     var obj = data;
     drawChart(obj);
     parseKeyword(obj);
