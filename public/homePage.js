@@ -160,6 +160,7 @@ function backToHomepage() {
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
+  /*
   var ul1 = document.getElementById("ul1");
   document.getElementById("personality").removeChild(ul1);
   var ul2 = document.getElementById("ul2");
@@ -168,6 +169,7 @@ function backToHomepage() {
   document.getElementById("values").removeChild(ul3);
   var ul4 = document.getElementById("ul4");
   document.getElementById("consumption_preferences").removeChild(ul4);
+  */
 }
 
 function backToKeywords() {
