@@ -13,7 +13,7 @@ $(document).ready(function () {
   //personality analysis navigation
   document.getElementById("personality-but").style.display = 'none';
   document.getElementById("personRes").style.display = 'none';
-   document.getElementById("personality-back").style.display = 'none';
+  document.getElementById("personality-back").style.display = 'none';
 
   //When user clicks search
    var input = document.getElementById("search");

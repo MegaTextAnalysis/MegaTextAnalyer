@@ -308,7 +308,7 @@
 }
 
 /*styling of short-term stats*/
-#stats{s
+#stats{
   margin: 6%;
 }
 
@@ -321,7 +321,7 @@
 }
 
 /*styling of personailty insights*/
-#header{
+.header{
   font-family: "Courier New", Courier, monospace;
   color:#b3b3b3;
   font-size: 24px;
