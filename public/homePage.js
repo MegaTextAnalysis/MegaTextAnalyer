@@ -12,7 +12,6 @@ $(document).ready(function () {
   document.getElementById("key-stat-but").style.display = 'none';
 
   //username navigation
-  document.getElementById("stat-but").style.display = 'none';
   document.getElementById("back-but").style.display = 'none';
 
   //When user clicks search
@@ -62,7 +61,7 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word.value);
     } else {
       parseUser(obj, word);
-      document.getElementById("stat-but").style.display = 'none';
+
       document.getElementById("back-but").style.display = 'none';
 
     }
@@ -158,7 +157,6 @@ function backToHomepage() {
   document.getElementById("m1").style.display = 'block';
   document.getElementById("sb").style.display = 'block';
   document.getElementById("back-but").style.display = 'none';
-  document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
   /*
   var ul1 = document.getElementById("ul1");
