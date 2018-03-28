@@ -2,6 +2,11 @@
 $(document).ready(function () {
   showhide();
 
+    //personality analysis navigation
+  document.getElementById("personality-but").style.display = 'none';
+  document.getElementById("personRes").style.display = 'none';
+  document.getElementById("personality-back").style.display = 'none';
+
   //keyword navigation
   document.getElementById("key-back-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
@@ -9,11 +14,6 @@ $(document).ready(function () {
   //username navigation
   document.getElementById("stat-but").style.display = 'none';
   document.getElementById("back-but").style.display = 'none';
-
-  //personality analysis navigation
-  document.getElementById("personality-but").style.display = 'none';
-  document.getElementById("personRes").style.display = 'none';
-  document.getElementById("personality-back").style.display = 'none';
 
   //When user clicks search
    var input = document.getElementById("search");
