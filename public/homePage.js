@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   showhide();
 
@@ -14,8 +13,9 @@ $(document).ready(function () {
   //username navigation
   document.getElementById("back-but").style.display = 'none';
 
-  //When user clicks search
+  //search input
    var input = document.getElementById("search");
+   //When user hits enter
    input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
@@ -28,6 +28,8 @@ $(document).ready(function () {
     buttonClick();
   });
 
+
+//checking what type of search is set
 function buttonClick()
 {
    var word = document.getElementById("search");
@@ -45,6 +47,7 @@ function buttonClick()
 
 });
 
+//get request for user
 function getUser(word, isFromUsername) {
   var url = "/user/";
 
@@ -68,6 +71,7 @@ function getUser(word, isFromUsername) {
   });
 }
 
+//get request for keyword
 function getKeyword(word) {
     var url = "/search/" + word.value;
     $.get(url, function (data) {
@@ -99,12 +103,8 @@ function showhide() {
   }
 }
 
-//parse the incoming JSON
-function parseJSON(obj) {
-  console.log(obj.flagged);
-}
 
-//parse the incoming JSON
+//parse the incoming Juser SON
 function parseUser(obj, username) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
@@ -144,12 +144,14 @@ function parseUser(obj, username) {
   //set link to profile
   document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
   document.getElementById("username").innerText = "Username: " + username;
-  //display back-but
+  
+  //display buttons
   document.getElementById("back-but").style.display = 'block';
   document.getElementById("personality-but").style.display = 'block';
 
 }
 
+//back to homapage
 function backToHomepage() {
   document.getElementById("personality-but").style.display = 'none';
   document.getElementById("userResults").style.display = 'none';
@@ -158,7 +160,6 @@ function backToHomepage() {
   document.getElementById("sb").style.display = 'block';
   document.getElementById("back-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
-  /*
   var ul1 = document.getElementById("ul1");
   document.getElementById("personality").removeChild(ul1);
   var ul2 = document.getElementById("ul2");
@@ -167,14 +168,15 @@ function backToHomepage() {
   document.getElementById("values").removeChild(ul3);
   var ul4 = document.getElementById("ul4");
   document.getElementById("consumption_preferences").removeChild(ul4);
-  */
 }
 
+//back to keywords
 function backToKeywords() {
   document.getElementById("keyResults").style.display = 'block';
   document.getElementById("stats").style.display = 'none';
 }
 
+//parse incoming keywords JSON
 function parseKeyword(obj) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
@@ -216,14 +218,20 @@ function parseKeyword(obj) {
   document.getElementById("key-stat-but").style.display = 'block';
 }
 
+//displaykeywords stats when button pressed
 function drawShortStats() {
   document.getElementById("stats").style.display = 'block';
   document.getElementById("keyResults").style.display = 'none';
 }
 
+
+//GOOGLE CHARTS 
 google.charts.load("current", { packages: ["corechart"] });
 google.charts.load('current', { 'packages': ['treemap'] });
 
+
+
+//draw charts 
 function drawChart(obj) {
   //draw piechart
   var flagged = obj.flagged.length;
@@ -234,6 +242,7 @@ function drawChart(obj) {
     ['Flagged', flagged]
   ]);
 
+  // display options of piechart
   var options = {
     title: 'Flagged Vs Non-Flagged tweets',
     backgroundColor: '#b3b3b3',
@@ -265,6 +274,7 @@ function drawChart(obj) {
     var data = google.visualization.arrayToDataTable(flags);
     tree = new google.visualization.TreeMap(document.getElementById('treechart'));
 
+    //display options for keywords 
     var optionsTree = {
       minColor: '#42413b',
       midColor: '#6c6c6c',
@@ -282,6 +292,7 @@ function drawChart(obj) {
   }
 }
 
+//show personailty analysis when button pressed
 function showPersonality() {
   document.getElementById("userResults").style.display = 'none';
   document.getElementById("back-but").style.display = 'none';
@@ -291,6 +302,7 @@ function showPersonality() {
   document.getElementById("personality-back").style.display = 'block';
 }
 
+//return from personailty page
 function personalityBack()
 {
   document.getElementById("userResults").style.display = 'block';
@@ -300,6 +312,7 @@ function personalityBack()
   document.getElementById("personality-back").style.display = 'none';
 }
 
+//generate personality results
 function genPerson(json) {
   if(document.getElementById("personality").childElementCount===1)
   {
@@ -358,7 +371,6 @@ function genPerson(json) {
   }
   document.getElementById("consumption_preferences").appendChild(ul4);
   }
-
 }
 
 
