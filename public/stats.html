@@ -17,79 +17,79 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body style="background-color: #6441A4 ">
-<header class="headerT">
-  <div class="titleHeader"> radical</div>
-  <div class="twitter">
-    <img src="twitter-bird-logo.png" alt="Twitter Icon" width="80px" height "80px">
-  </div>
-  <div class="menu" id="m1">
-    <nav class="my-navbar navbar navbar-custom">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="about.html">About</a>
-          </li>
-          <li>
-            <a href="team.html">The Team</a>
-          </li>
-          <li class="active">
-            <a href="stats.html">Stats</a>
-          </li>
-        </ul>
+  <header class="headerT">
+    <div class="titleHeader"> radical</div>
+    <div class="twitter">
+      <img src="twitter-bird-logo.png" alt="Twitter Icon" width="80px" height "80px">
+    </div>
+    <div class="menu" id="m1">
+      <nav class="my-navbar navbar navbar-custom">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="about.html">About</a>
+            </li>
+            <li>
+              <a href="team.html">The Team</a>
+            </li>
+            <li class="active">
+              <a href="stats.html">Stats</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="grey-box"> </div>
+  </header>
+
+
+  <div id="userResults">
+    <div class="table-wrapper" id="utable-wrapper">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Search History</th>
+            </tr>
+          </thead>
+          <tbody id="body">
+          </tbody>
+        </table>
       </div>
-    </nav>
-  </div>
-
-  <div class="grey-box"> </div>
-</header>
-
-
-<div id="userResults">
-  <div class="table-wrapper" id="utable-wrapper">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Search History</th>
-          </tr>
-        </thead>
-        <tbody id="body">
-        </tbody>
-      </table>
+    </div>
+    <div id="profile" style="display: none">
+      <h2 id="b1">BIO:</h2>
+      <div id="bio">
+        <h5 id="username">Username: Stephen</h5>
+        <h5 id="about"></h5>
+        <a id="link" href="https://twitter.com/profile?lang=en">
+          <h5>Link to profile</h5>
+        </a>
+      </div>
+      <div id="bio-pic" style="display: none">
+        <img id="img1" src="sample_profile.png" alt="Profile picture" width="33%" height="33%">
+      </div>
+    </div>
+    <div class="progress" id="threatbar" style="display: none">
+      <div id="threat" class="progress-bar" role="progressbar" style="width: 36%;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100">25%</div>
     </div>
   </div>
-  <div id="profile" style="display: none">
-<h2 id="b1">BIO:</h2>
-<div id="bio">
-  <h5 id="username">Username: Stephen</h5>
-  <h5 id="about"></h5>
-  <a id="link" href="https://twitter.com/profile?lang=en">
-    <h5>Link to profile</h5>
-  </a>
-</div>
-<div id="bio-pic" style="display: none">
-<img id="img1" src="sample_profile.png" alt="Profile picture" width="33%" height="33%">
-</div>
-</div>
-<div class="progress" id="threatbar" style="display: none">
-<div id="threat" class="progress-bar" role="progressbar" style="width: 36%;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100">25%</div>
-</div>
-</div>
-<div id="stats" style="display: none">
+  <div id="stats" style="display: none">
 </body>
 
 <script type="text/javascript">
   let db_data;
-  $(document).ready(function () {
-    $.get("/db", function (json) {
+  $(document).ready(function() {
+    $.get("/db", function(json) {
       let txt = "";
       let row = 1;
       db_data = json;
@@ -113,67 +113,55 @@
       drawChart(db_data);
     });
   });
-  google.charts.load("current", { 'packages': ["corechart"] });
-  google.load("visualization", "1", {packages:["corechart"]});
+  google.charts.load("current", {
+    'packages': ["corechart"]
+  });
+  google.load("visualization", "1", {
+    packages: ["corechart"]
+  });
+
   function drawChart(obj) {
-      var Ireland = 0;
-      var TeamofUs = 0;
-      var GrandSlam = 0;
-      var Irish = 0;
-      var SixNations = 0;
-      var EngVIre = 0;
-      for(let x of obj)
-      {
-        if (x.data.flagged.length !== 0) {
-        for(let i in x.data.flagged)
-        var words = x.data.flagged[i].flags;
-        if (words.includes("Irish")) {
-          Irish++;
-        }
-        if (words.includes("Ireland")) {
-          Ireland++;
-        }
-        if (words.includes("Grand Slam")) {
-          GrandSlam++;
-        }
-        if (words.includes("#TeamOfUs")) {
-          TeamofUs++;
-        }
-        if (words.includes("#ENGvIRE")) {
-          EngVIre++;
-        }
-        if (words.includes("6 Nations")) {
-          SixNations++;
+    let wordFrequency = {};
+
+    for (let x of obj) {
+      for (let i of x.data.flagged) {
+        for (let y of i.flags) {
+          if (wordFrequency[y] !== undefined) {
+            wordFrequency[y] += 1;
+          } else {
+            wordFrequency[y] = 0;
+          }
         }
       }
+    }
 
-      }
-      var data = google.visualization.arrayToDataTable([
-      ['Tweets', 'Number of tweets'],
-      ['Irish', Irish],
-      ['Ireland', Ireland],
-      ['Grand Slam', GrandSlam],
-      ['#TeamOfUs', TeamofUs],
-      ['#ENGvIRE', EngVIre],
-      ['6 Nations', SixNations]
-      ]);
+    let visuals = [
+      ['Tweets', 'Number of tweets']
+    ];
 
-      var options = {
-      title: 'Frequency of Word',
+    for (let i in wordFrequency) {
+      visuals.push([i, wordFrequency[i]]);
+    }
+
+    let data = google.visualization.arrayToDataTable(visuals);
+
+    let options = {
+      title: 'Frequency of flagged words',
       backgroundColor: '#b3b3b3',
       width: 400,
       height: 400,
       pieHole: 0.4,
       fontColor: 'black',
-      colors: ['#F30E0E', '#FFFB00','#16D100',
-      '#00E7E4','#061CFF','#FF06EC']
-      };
+      colors: ['#F30E0E', '#FFFB00', '#16D100',
+        '#00E7E4', '#061CFF', '#FF06EC'
+      ]
+    };
 
-      var chart = new google.visualization.PieChart(document.getElementById('stats'));
-      chart.draw(data, options);
-      //draw Piechart
+    let chart = new google.visualization.PieChart(document.getElementById('stats'));
+    chart.draw(data, options);
+    // draw Piechart
     document.getElementById("stats").style.display = "block";
-    }
+  }
 
   function parseUser(index) {
     //construct results table
@@ -206,7 +194,8 @@
     document.getElementById("threat").innerHTML = obj.totalRisk;
 
     //set image
-    document.getElementById("img1").src = "https://twitter.com/" + db_data[index].username + "/profile_image?size=original";
+    document.getElementById("img1").src = "https://twitter.com/" + db_data[index].username +
+      "/profile_image?size=original";
 
     //set link to profile
     document.getElementById("link").href = "https://twitter.com/" + db_data[index].username + "?lang=en";
@@ -215,7 +204,6 @@
     document.getElementById("threatbar").style.display = "block";
     document.getElementById("username").innerText = "Username: " + db_data[index].username;
   }
-
 </script>
 
 </html>
