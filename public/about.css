@@ -3,6 +3,7 @@
    src: url(DIMIS___.TTF);
 	}
 
+/*styling for heading and navigation menu*/
 .titleHeader{
   	font-family: myFirstFont;
   	font-size: 80px;
@@ -45,6 +46,7 @@
   border-radius: 25px;
 }
 
+/* atlying for intro paragraph and twitter image*/
 #intro{
   float:left;
   width: 45%;
@@ -63,6 +65,15 @@
   line-height: 220%;
 }
 
+.intro-pic{
+  float: right;
+  margin-left: 2%;
+  margin-right: 5%;
+  margin-top: 10%;
+  border-radius: 10px;
+}
+
+/*styling for algorithm paragraph and gltich animation*/
 #algorithm{
 
   word-wrap: break-word;
@@ -82,42 +93,6 @@
   
 }
 
-#disclaimer{
-  float:left;
-  width: 45%;
-  height: 45%;
-  font-family: 'roboto' ;
-  color: white;
-  background-color: #b3b3b3;
-  border-radius: 10px;
-  padding: 50px;
-  margin-top: 5%;
-  margin-right: 5%;
-  margin-bottom: 10%;
-  margin-left: 8%;
-  
-  
-}
-
-#disHeading
-{
-  color: #6441A4;
-  word-wrap: break-word;
-  line-height: 220%;
-}
-
-#disText
-{
-   font-size: 30px;
-}
-.intro-pic{
-  float: right;
-  margin-left: 2%;
-  margin-right: 5%;
-  margin-top: 10%;
-  border-radius: 10px;
-}
-
 .graphic
 {
     font-family: myFirstFont;
@@ -127,20 +102,7 @@
 }
 
 @import "compass/css3";
-
 @import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
-
-
-.info {
-  color: white;
-  font-family: myFirstFont;
-  font-size: 8em;
-  text-align: center;
-}
-
-.info a{
-  color: white;
-}
 
 #Ebene_1{
   width: 90%;
@@ -157,12 +119,41 @@
 }
 
 
+/*styling cogs and disclaimer paragraph*/
+
+#disclaimer{
+  float:left;
+  width: 45%;
+  height: 45%;
+  font-family: 'roboto' ;
+  color: white;
+  background-color: #b3b3b3;
+  border-radius: 10px;
+  padding: 50px;
+  margin-top: 5%;
+  margin-right: 5%;
+  margin-bottom: 10%;
+  margin-left: 8%;
+}
+
+#disHeading
+{
+  color: #6441A4;
+  word-wrap: break-word;
+  line-height: 220%;
+}
+
+#disText
+{
+   font-size: 30px;
+}
+
 #development_icon{
   margin:80px;
   -webkit-animation: pop 0.4s ease-in;
 }
 
-/*Animate cogs*/
+/*Animate cogs* taken from codepen.io. ref:https://codepen.io/marclloyd77/pen/tAlmd */
 #large-cog, #small-cog{
   -webkit-animation:spin 4s linear infinite;
   -webkit-transform-origin: 50% 50%;

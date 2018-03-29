@@ -1,13 +1,21 @@
-
-$(document).ready(function() {
+$(document).ready(function () {
   showhide();
-   document.getElementById("back-but").style.display = 'none';
-   document.getElementById("key-stat-but").style.display = 'none';
-   document.getElementById("stat-but").style.display = 'none';
-   document.getElementById("personality-but").style.display = 'none';
-   document.getElementById("contain").style.display = 'none';
 
+    //personality analysis navigation
+  document.getElementById("personality-but").style.display = 'none';
+  document.getElementById("personRes").style.display = 'none';
+  document.getElementById("personality-back").style.display = 'none';
+
+  //keyword navigation
+  document.getElementById("key-back-but").style.display = 'none';
+  document.getElementById("key-stat-but").style.display = 'none';
+
+  //username navigation
+  document.getElementById("back-but").style.display = 'none';
+
+  //search input
    var input = document.getElementById("search");
+   //When user hits enter
    input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
@@ -15,6 +23,13 @@ $(document).ready(function() {
     }
    });
 
+ //When user clicks search
+  $("#btnSubmit").click(function() {
+    buttonClick();
+  });
+
+
+//checking what type of search is set
 function buttonClick()
 {
    var word = document.getElementById("search");
@@ -25,39 +40,14 @@ function buttonClick()
     }
 }
 
-  //When user clicks search
-  $("#btnSubmit").click(function() {
-    buttonClick();
-  });
-
-  
-  /*
-  $('#search').keypress(function (event) {
-      var word = document.getElementById("search");
-      if (usernameSet()) {
-          var url = "/user/" + word.value;
-          $.get(url, function (data) {
-              var obj = data;
-              parseUser(obj);
-          });
-      }
-      else {
-          var url = "/search/" + word.value;
-          $.get(url, function (data) {
-              var obj = data;
-              parseKeyword(obj);
-          });
-      }
-  });
-  */
-
   //only display number of results selector when the user is searching for keywords
-  $("#s1").click(function() {
+  $("#s1").click(function () {
     showhide();
   });
 
 });
 
+//get request for user
 function getUser(word, isFromUsername) {
   var url = "/user/";
 
@@ -67,26 +57,25 @@ function getUser(word, isFromUsername) {
     url += word;
   }
 
-  $.get(url, function(data) {
+  $.get(url, function (data) {
     var obj = data;
+    genPerson(obj);
     if (isFromUsername) {
       parseUser(obj, word.value);
-      drawChart(obj);
     } else {
       parseUser(obj, word);
-       document.getElementById("back-but").style.display = 'block';
-       document.getElementById("key-stat-but").style.display = 'none';
-       document.getElementById("stat-but").style.display = 'block';
-       document.getElementById("personality-but").style.display = 'none';
+
+      document.getElementById("back-but").style.display = 'none';
+
     }
   });
 }
 
+//get request for keyword
 function getKeyword(word) {
-  var url = "/search/" + word.value;
-  $.get(url, function(data) {
+    var url = "/search/" + word.value;
+    $.get(url, function (data) {
     var obj = data;
-
     drawChart(obj);
     parseKeyword(obj);
   });
@@ -114,12 +103,8 @@ function showhide() {
   }
 }
 
-//parse the incoming JSON
-function parseJSON(obj) {
-  console.log(obj.flagged);
-}
 
-//parse the incoming JSON
+//parse the incoming Juser SON
 function parseUser(obj, username) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
@@ -159,22 +144,22 @@ function parseUser(obj, username) {
   //set link to profile
   document.getElementById("link").href = "https://twitter.com/" + username + "?lang=en";
   document.getElementById("username").innerText = "Username: " + username;
-  //display back-but
+  
+  //display buttons
   document.getElementById("back-but").style.display = 'block';
   document.getElementById("personality-but").style.display = 'block';
-  drawPersonalityProfile(obj);
+
 }
 
+//back to homapage
 function backToHomepage() {
+  document.getElementById("personality-but").style.display = 'none';
   document.getElementById("userResults").style.display = 'none';
   document.getElementById("keyResults").style.display = 'none';
   document.getElementById("m1").style.display = 'block';
   document.getElementById("sb").style.display = 'block';
   document.getElementById("back-but").style.display = 'none';
-  document.getElementById("stat-but").style.display = 'none';
   document.getElementById("key-stat-but").style.display = 'none';
-  document.getElementById("personality-but").style.display = 'none';
-  document.getElementById("contain").style.display = 'none';
   var ul1 = document.getElementById("ul1");
   document.getElementById("personality").removeChild(ul1);
   var ul2 = document.getElementById("ul2");
@@ -185,28 +170,34 @@ function backToHomepage() {
   document.getElementById("consumption_preferences").removeChild(ul4);
 }
 
+//back to keywords
+function backToKeywords() {
+  document.getElementById("keyResults").style.display = 'block';
+  document.getElementById("stats").style.display = 'none';
+}
+
+//parse incoming keywords JSON
 function parseKeyword(obj) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
- 
+
   //construct results table
   var txt = "";
   console.log(obj);
   var row = 1;
   var n = document.getElementById("sel-2");
-  var numResults= n.options[n.selectedIndex].text;
+  var numResults = n.options[n.selectedIndex].text;
 
   if (obj.tweets.statuses.length !== 0) {
     for (let x in obj.tweets.statuses) {
-      if(row > numResults )
-      {
+      if (row > numResults) {
         break;
       }
       let t = "\"" + "t" + row + "\"";
       txt += "<tr>" +
         "<th scope='row'>" + row + "</th>" +
         "<td id = 't" + row + "'>" + "<a onclick='getUser(document.getElementById(" + t + ").innerText, false)'>" + obj.tweets.statuses[row - 1].user.screen_name + "</a></td>" +
-        "<td>" + obj.tweets.statuses[x].text + "<br>" + + "</td>" +
+        "<td>" + obj.tweets.statuses[x].text + "</td>" +
         "</tr>";
       row++;
     }
@@ -223,99 +214,163 @@ function parseKeyword(obj) {
   document.getElementById("keyResults").style.display = 'block';
 
   //display back button
-   document.getElementById("back-but").style.display = 'block';
-   document.getElementById("key-stat-but").style.display = 'block';
+  document.getElementById("key-back-but").style.display = 'block';
+  document.getElementById("key-stat-but").style.display = 'block';
 }
 
-function drawShortStats()
-{
+//displaykeywords stats when button pressed
+function drawShortStats() {
   document.getElementById("stats").style.display = 'block';
   document.getElementById("keyResults").style.display = 'none';
 }
 
-google.charts.load("current", {packages: ["corechart"]});
 
+//GOOGLE CHARTS 
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.load('current', { 'packages': ['treemap'] });
+
+
+
+//draw charts 
 function drawChart(obj) {
-        
-        console.log(obj.flagged.length);
+  //draw piechart
+  var flagged = obj.flagged.length;
+  var nonFlagged = obj.tweets.statuses.length;
+  var data = google.visualization.arrayToDataTable([
+    ['Tweets', 'Number of tweets'],
+    ['Non-flagged', nonFlagged],
+    ['Flagged', flagged]
+  ]);
 
-        var flagged = obj.flagged.length;
-        var nonFlagged = obj.tweets.statuses.length;
-        var data = google.visualization.arrayToDataTable([
-          ['Tweets', 'Number of tweets'],
-          ['Non-flagged',  nonFlagged ],
-          ['Flagged',  flagged ]
-        ]);
+  // display options of piechart
+  var options = {
+    title: 'Flagged Vs Non-Flagged tweets',
+    backgroundColor: '#b3b3b3',
+    width: 400,
+    height: 400,
+    fontColor: 'black',
+    colors: ['#b185e0', '#f2ebfa']
+  };
 
-        var options = {
-          title: 'Flagged Vs Non-Flagged tweets'
-        };
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  //draw treemap
+  var flags = [];
+  flags[0] = ['Flag', 'Parent', 'Threat level', '(color)'];
+  flags[1] = ['Flags', null, 0, 0];
+  var flagsEntry;
+  var count = 2;
+  for (let x in obj.flagged) {
+    var flag = obj.flagged[count - 2].flags[0];
+    var threat = obj.flagged[count - 2].threatLevel;
+    threat = threat + Math.floor((Math.random() * 10) + 1);
+    flagsEntry = [count - 1 + ". " + flag, "Flags", threat, threat];
+    flags[count] = flagsEntry;
+    count++;
+  }
 
-        chart.draw(data, options);
- }
+  if (obj.flagged.length !== 0) {
+    var data = google.visualization.arrayToDataTable(flags);
+    tree = new google.visualization.TreeMap(document.getElementById('treechart'));
 
- function showPersonalityProfile(){
-    document.getElementById("userResults").style.display = 'none';
-    document.getElementById("keyResults").style.display = 'none';
-    document.getElementById("m1").style.display = 'none';
-    document.getElementById("sb").style.display = 'none';
-    document.getElementById("back-but").style.display = 'block';
-    document.getElementById("stat-but").style.display = 'none';
-    document.getElementById("key-stat-but").style.display = 'none';
-    document.getElementById("personality-but").style.display = 'none';
-    document.getElementById("personality").style.display = 'block';
-    document.getElementById("needs").style.display = 'block';
-    document.getElementById("values").style.display = 'block';
-    document.getElementById("consumption_preferences").style.display = 'block';
-    document.getElementById("contain").style.display = 'block';
- }
+    //display options for keywords 
+    var optionsTree = {
+      minColor: '#42413b',
+      midColor: '#6c6c6c',
+      maxColor: '#B3B3B3',
+      headerHeight: 15,
+      fontColor: 'black',
+      showScale: false,
+      width: 600,
+      height: 400
+    };
+    tree.draw(data, optionsTree);
+  }
+  else {
+    document.getElementById('treechart').innerHTML = "";
+  }
+}
 
- function drawPersonalityProfile(json) {
-  var ul1=document.createElement('ul');
-  ul1.setAttribute("id","ul1");
+//show personailty analysis when button pressed
+function showPersonality() {
+  document.getElementById("userResults").style.display = 'none';
+  document.getElementById("back-but").style.display = 'none';
+  document.getElementById("key-stat-but").style.display = 'none';
+  document.getElementById("personality-but").style.display = 'none';
+  document.getElementById("personRes").style.display = 'block';
+  document.getElementById("personality-back").style.display = 'block';
+}
+
+//return from personailty page
+function personalityBack()
+{
+  document.getElementById("userResults").style.display = 'block';
+  document.getElementById("back-but").style.display = 'block';
+  document.getElementById("personality-but").style.display = 'block';
+  document.getElementById("personRes").style.display = 'none';
+  document.getElementById("personality-back").style.display = 'none';
+}
+
+//generate personality results
+function genPerson(json) {
+  if(document.getElementById("personality").childElementCount===1)
+  {
+  var ul1 = document.createElement('ul');
+  ul1.setAttribute("id", "ul1");
   for (let x in json.watsonAnalysis.personality) {
-      var li=document.createElement('li');
+    var li = document.createElement('li');
 
-      ul1.appendChild(li);
-      var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100)/1);
-      li.innerHTML=li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
-    }
+    ul1.appendChild(li);
+    var y = Math.round((json.watsonAnalysis.personality[x].raw_score * 100) / 1);
+    li.innerHTML = li.innerHTML + json.watsonAnalysis.personality[x].name + ": " + y + "%";
+  }
   document.getElementById("personality").appendChild(ul1);
+  }
 
-  var ul2=document.createElement('ul');
-  ul2.setAttribute("id","ul2");
+  if(document.getElementById("needs").childElementCount===1)
+  {
+  var ul2 = document.createElement('ul');
+  ul2.setAttribute("id", "ul2");
   for (let x in json.watsonAnalysis.needs) {
-      var li=document.createElement('li');
+    var li = document.createElement('li');
 
-      ul2.appendChild(li);
-      var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100)/1);
-      li.innerHTML=li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
-    }
+    ul2.appendChild(li);
+    var y = Math.round((json.watsonAnalysis.needs[x].raw_score * 100) / 1);
+    li.innerHTML = li.innerHTML + json.watsonAnalysis.needs[x].name + ": " + y + "%";
+  }
   document.getElementById("needs").appendChild(ul2);
+  }
 
-  var ul3=document.createElement('ul');
-  ul3.setAttribute("id","ul3");
+  if(document.getElementById("values").childElementCount===1)
+  {
+  var ul3 = document.createElement('ul');
+  ul3.setAttribute("id", "ul3");
   for (let x in json.watsonAnalysis.values) {
-      var li=document.createElement('li');
+    var li = document.createElement('li');
 
-      ul3.appendChild(li);
-      var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100)/1);
-      li.innerHTML=li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
-    }
+    ul3.appendChild(li);
+    var y = Math.round((json.watsonAnalysis.values[x].raw_score * 100) / 1);
+    li.innerHTML = li.innerHTML + json.watsonAnalysis.values[x].name + ": " + y + "%";
+  }
   document.getElementById("values").appendChild(ul3);
+  }
 
-  var ul4=document.createElement('ul');
-  ul4.setAttribute("id","ul4");
+  if(document.getElementById("consumption_preferences").childElementCount===1)
+  {
+  var ul4 = document.createElement('ul');
+  ul4.setAttribute("id", "ul4");
   for (let x in json.watsonAnalysis.consumption_preferences) {
-      for(let y in json.watsonAnalysis.consumption_preferences[x].consumption_preferences){
-        var li=document.createElement('li');
-        if(json.watsonAnalysis.consumption_preferences[x].consumption_preferences[y].score===1){
-          ul4.appendChild(li);
-          li.innerHTML=li.innerHTML + json.watsonAnalysis.consumption_preferences[x].consumption_preferences[y].name;
-        }
+    for (let y in json.watsonAnalysis.consumption_preferences[x].consumption_preferences) {
+      var li = document.createElement('li');
+      if (json.watsonAnalysis.consumption_preferences[x].consumption_preferences[y].score === 1) {
+        ul4.appendChild(li);
+        li.innerHTML = li.innerHTML + json.watsonAnalysis.consumption_preferences[x].consumption_preferences[y].name;
       }
     }
+  }
   document.getElementById("consumption_preferences").appendChild(ul4);
- }
+  }
+}
+
+

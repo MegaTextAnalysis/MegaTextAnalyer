@@ -1,10 +1,11 @@
 
- @font-face {
+@font-face {
    font-family: myFirstFont;
    src: url(DIMIS___.TTF);
 	}
 
-  .titleHeader{
+/*Webpage heading*/
+.titleHeader{
   	font-family: myFirstFont;
   	font-size: 80px;
   	text-align: center;
@@ -12,18 +13,18 @@
     color: white;
   }
 
-
-  .search-box{
+/*search bar and search option*/
+.search-box{
   	width: 100%;
   }
 
-  .search-by{
+.search-by{
       width: 150px;
       margin-bottom: 15px;
       color: #b3b3b3;
   }
 
-  .num-results{
+.num-results{
     width: 65px;
     margin-left: 170px;
     margin-top: -74px;
@@ -31,58 +32,6 @@
     color: #b3b3b3;
   }
   
-.my-navbar {
-    margin-top: 30px;
-    margin-bottom: -50px;
-    background-color: #6441A4;
-    width: 70%;
-}
-
-.twitter
-{
-  float: right;
-  margin-right: 90px;
-  margin-top: -40px;
-}
-.navbar-custom .navbar-nav > li > a:hover{
-  background-color: #b3b3b3;
-  color: black;
-  font-family: "Courier New", Courier, monospace;
-  border-radius: 25px;
-}
-
-.navbar-custom .navbar-nav .active{
-  background-color:  #b3b3b3;
-  color: black;
-  z-index: 10000;
-}
-
-.navbar-custom .navbar-nav > li > a{
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
-}
-
-.navbar-custom .navbar-nav > li {
-  border-radius: 25px;
-}
- .search-bar
-{
-     margin-top: 15px;
-}
-.grey-box{
-  	background-color: #6441A4;
-    width: 100%;
-    height: 15px;
-    margin-bottom: 30px;
-    margin-top: -20px;
-  }
-
-  .menu
-  {
-    background-color: #6441A4 ;
-  }
-
   .container-4{
   overflow: hidden;
   width: 450px;
@@ -92,6 +41,7 @@
   margin-bottom: 50px;
   margin: auto;
 }
+
 .container-4 input#search{
   width: 450px;
   height: 35px;
@@ -154,25 +104,55 @@
   background: dimgray;
  
 }
-.info{
-	text-align: center;
-}
-.legal{
-	text-align: center;
-  background-color: #b3b3b3;
+/*nagivation bar styling*/
+.my-navbar {
+    margin-top: 30px;
+    margin-bottom: -50px;
+    background-color: #6441A4;
+    width: 70%;
 }
 
-.buttons{
-	margin: 50px;
-	margin-bottom: 10px;
-  background-color: #532289;
-  border-color: #532289;
+.navbar-custom .navbar-nav > li > a:hover{
+  background-color: #b3b3b3;
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 25px;
 }
+
+.navbar-custom .navbar-nav .active{
+  background-color:  #b3b3b3;
+  color: black;
+  z-index: 10000;
+}
+
+.navbar-custom .navbar-nav > li > a{
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+}
+
+.navbar-custom .navbar-nav > li {
+  border-radius: 25px;
+}
+.search-bar{
+     margin-top: 15px;
+}
+
+.menu{
+    background-color: #6441A4 ;
+  }
+
+/*twitter pic */
+.twitter
+{
+  float: right;
+  margin-right: 90px;
+  margin-top: -40px;
+}
+
 .headerT{
 	margin-top: 0px;
 }
-
-
 .option{
   color: black;
 }
@@ -180,7 +160,7 @@
   color: #532289;
 }
 
-/* user results table styling*/
+/* user and key results table styling*/
 .table-wrapper{
   margin-bottom: 5%;
 }
@@ -203,14 +183,6 @@
   width:60%;
   background:#b3b3b3;
   color:black;
-}
-
-
-#header{
-  font-family: "Courier New", Courier, monospace;
-  color:#b3b3b3;
-  font-size: 24px;
-  margin-left: 15%;
 }
 
 .table-wrapper table thead{ 
@@ -270,13 +242,15 @@
   margin-top: 5%;
 }
 
+
+/*styling of all navigation buttons on page */
 #back-but{
   margin-left: 5%;
   margin-bottom: 5%;
   background-color: #b3b3b3;
   width: 8%;
   margin-top: 4%;
-  float: left
+  float: left;
 }
 
 #stat-back-but{
@@ -284,8 +258,17 @@
   margin-right: 5%;
   margin-left: 5%;
   background-color: #b3b3b3;
-  margin-top: 4%;
+  margin-top: 2%;
   width: 8%;
+}
+
+#key-back-but{
+  margin-left: 5%;
+  margin-bottom: 5%;
+  background-color: #b3b3b3;
+  width: 8%;
+  margin-top: 4%;
+  float: left;
 }
 
 #stat-but{
@@ -297,10 +280,9 @@
   width: 8%;
 }
 
-
 #key-stat-but{
   float: right;
-  margin-left: 15%;
+  margin-right: 5%;
   margin-bottom: 4%;
   background-color: #b3b3b3;
   margin-top: 4%;
@@ -316,14 +298,33 @@
   margin-top: 4%;
 }
 
-#stats{
-  margin: 10%;
-  width: 70%;
-  height: 50%;
+#personality-back{
+  margin-left: 5%;
+  margin-bottom: 5%;
   background-color: #b3b3b3;
+  width: 8%;
+  margin-top: 10%;
+  float: left;
+}
+
+/*styling of short-term stats*/
+#stats{
+  margin: 6%;
 }
 
 #piechart{
-   background-color: #b3b3b3;
-  
+  float:left;
 }
+
+#treechart{
+  float: right;
+}
+
+/*styling of personailty insights*/
+.header{
+  font-family: "Courier New", Courier, monospace;
+  color:#b3b3b3;
+  font-size: 24px;
+  margin-left: 15%;
+}
+
