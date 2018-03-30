@@ -61,8 +61,7 @@ function getUser(word, isFromUsername) {
       parseUser(obj, word.value);
     } else {
       parseUser(obj, word);
-
-      document.getElementById("back-but").style.display = "none";
+      document.getElementById("back-but").style.display = "block";
     }
   });
 }
