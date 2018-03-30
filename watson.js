@@ -1,13 +1,15 @@
 const PersonalityInsightsV3 = require("watson-developer-cloud/personality-insights/v3");
+const credentials = require("./credentials_watson.js");
 
 class WatsonAI {
   static callWatson(input) {
     return new Promise((resolve, reject) => {
       const personalityInsights = new PersonalityInsightsV3({
-        username: "fac64b94-607e-4369-b3cc-445ef0d1c9a9",
-        password: "2uVkX5OLLleO",
+        username: credentials.username,
+        password: credentials.password,
         version_date: "2017-10-13"
       });
+
       console.log(input);
 
       var params = {
@@ -19,8 +21,22 @@ class WatsonAI {
       };
 
       personalityInsights.profile(params, (error, response) => {
-        if (error) reject(new Error("Watson AI call failed."));
-        else resolve(response);
+        console.log(error);
+        if (error) {
+          if (error.code === 400) {
+            resolve({
+              customError: true
+            });
+          } else {
+            reject(
+              Error(
+                "Watson personality analysis failed. Check server console for details."
+              )
+            );
+          }
+        } else {
+          resolve(response);
+        }
       });
     });
   }
