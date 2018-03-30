@@ -12,18 +12,23 @@ class AylienAI {
   callAI(text) {
     // Create Promise for AI call
     return new Promise((resolve, reject) => {
-      this.textapi.classifyByTaxonomy({
-        "text": text,
-        "taxonomy": "iptc-subjectcode"
-      }, function(error, response) {
-        if (!error) {
-          let x = response["categories"];
-          let labels = x[0].label;
-          resolve(labels);
-        } else {
-          reject(new Error("Call AI failed."));
+      this.textapi.classifyByTaxonomy(
+        {
+          text: text,
+          taxonomy: "iptc-subjectcode"
+        },
+        function(error, response) {
+          if (!error) {
+            let label = "";
+            if (response.categories.length !== 0) {
+              label = response.categories[0].label;
+            }
+            resolve(label);
+          } else {
+            reject(new Error("Call AI failed."));
+          }
         }
-      });
+      );
     });
   }
 }
