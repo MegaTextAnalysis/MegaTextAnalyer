@@ -108,6 +108,9 @@ function showhide() {
 function parseUser(obj, username) {
   document.getElementById("m1").style.display = 'none';
   document.getElementById("sb").style.display = 'none';
+  document.getElementById("key-back-but").style.display = 'none';
+  document.getElementById("key-stat-but").style.display = 'none';
+  document.getElementById("stats").style.display = 'none';
 
   //construct results table
   var txt = "";
