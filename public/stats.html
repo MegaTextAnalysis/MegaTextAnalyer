@@ -161,6 +161,7 @@
     chart.draw(data, options);
     // draw Piechart
     document.getElementById("stats").style.display = "block";
+    document.getElementById("stats").style.position = "absolute";
   }
 
   function parseUser(index) {
@@ -203,6 +204,7 @@
     document.getElementById("bio-pic").style.display = "block";
     document.getElementById("threatbar").style.display = "block";
     document.getElementById("username").innerText = "Username: " + db_data[index].username;
+    document.getElementById("stats").style.display = "none";
   }
 </script>
 
