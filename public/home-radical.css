@@ -322,8 +322,26 @@
 /*styling of personailty insights*/
 .header{
   font-family: myFirstFont;
-  color:#b3b3b3;
+  color:white;
   font-size: 24px;
   margin-left: 15%;
 }
 
+.personRes{
+color: white;
+}
+.personality{
+  margin: 5%;
+}
+
+.needs{
+  margin:5%;
+}
+
+.values{
+  margin:5%;
+}
+
+.consumption_preferences{
+margin:5%;
+}
