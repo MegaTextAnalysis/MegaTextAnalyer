@@ -47,7 +47,7 @@ $(document).ready(function() {
 //get request for user
 function getUser(word, isFromUsername) {
   var url = "/user/";
-
+  document.getElementById("personRes").style.display = "none";
   if (isFromUsername) {
     url += word.value;
   } else {

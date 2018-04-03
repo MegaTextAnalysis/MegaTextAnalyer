@@ -1,35 +1,14 @@
-.row
-{
-	margin-bottom: 0px;
-}
-.demo-card-square.mdl-card {
-   width: 400px;
-   height: 320px;
-   float: left;
-   margin: 1rem;
-   position: relative;
-}
 body{
 	position: relative;
 	padding: 20px;
 }
-.demo-card-square > .mdl-card__title {
-  color: #fff;
-  background:
-    url('https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/ee98d6f540ed7eaed1c76086f31b6b86-1506975702278/429771a1-4fdb-4e7c-bb74-a7043638f3e4.jpg') bottom right 15% no-repeat #46B6AC;
+
+.row
+{
+	margin-bottom: 0px;
 }
-.demo-card-square.mdl-card:hover {
-    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
-  } 
-  svg {
-    display: block;
-    font: 80px 'Roboto';
-    font-family: 'Roboto', sans-serif;
-    width: 960px;
-    height: 250px;
-    margin: 0 auto;
-    margin-top: -50px;
-}
+
+/* Navigation bar styling */
 .menu-team
 {
 	margin-top: -150px;
@@ -65,6 +44,32 @@ body{
   border-radius: 25px;
 }
 
+
+/* Page header styling . Code snippets taken from: REF - http://webcoderskull.com/ */
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/ee98d6f540ed7eaed1c76086f31b6b86-1506975702278/429771a1-4fdb-4e7c-bb74-a7043638f3e4.jpg') bottom right 15% no-repeat #46B6AC;
+}
+.demo-card-square.mdl-card {
+   width: 400px;
+   height: 320px;
+   float: left;
+   margin: 1rem;
+   position: relative;
+}
+.demo-card-square.mdl-card:hover {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+  } 
+  svg {
+    display: block;
+    font: 80px 'Roboto';
+    font-family: 'Roboto', sans-serif;
+    width: 960px;
+    height: 250px;
+    margin: 0 auto;
+    margin-top: -50px;
+}
 .web-coder-skull {
     fill: none;
     stroke: white;
