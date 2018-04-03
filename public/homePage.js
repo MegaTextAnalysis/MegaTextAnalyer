@@ -310,7 +310,7 @@ function drawChart(obj) {
   }
 }
 
-//show personailty analysis when button pressed
+//show personality analysis when button pressed
 function showPersonality() {
   document.getElementById("userResults").style.display = "none";
   document.getElementById("back-but").style.display = "none";
@@ -320,7 +320,7 @@ function showPersonality() {
   document.getElementById("personality-back").style.display = "block";
 }
 
-//return from personailty page
+//return from personality page
 function personalityBack() {
   document.getElementById("userResults").style.display = "block";
   document.getElementById("back-but").style.display = "block";

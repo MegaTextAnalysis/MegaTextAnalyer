@@ -44,8 +44,7 @@ body{
   border-radius: 25px;
 }
 
-
-/* Page header styling . Code snippets taken from: REF - http://webcoderskull.com/ */
+/*MDL. styling of cards showing team members*/
 .demo-card-square > .mdl-card__title {
   color: #fff;
   background:
@@ -70,6 +69,8 @@ body{
     margin: 0 auto;
     margin-top: -50px;
 }
+
+/* Page header styling . Code snippets taken from: REF - http://webcoderskull.com/ */
 .web-coder-skull {
     fill: none;
     stroke: white;
