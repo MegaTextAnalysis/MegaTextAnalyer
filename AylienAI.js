@@ -19,9 +19,11 @@ class AylienAI {
         },
         function(error, response) {
           if (!error) {
-            let labels = response["categories"][0].label;
-            console.log(labels);
-            resolve(labels);
+            let label = "";
+            if (response.categories.length !== 0) {
+              label = response.categories[0].label;
+            }
+            resolve(label);
           } else {
             reject(new Error("Call AI failed."));
           }

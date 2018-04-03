@@ -15,7 +15,7 @@ exports.getHandle = (db, handle, socket) => {
       let watson = new WatsonJSON();
 
       for (let i in tweets) {
-        console.log(tweets[i].text);
+        // console.log(tweets[i].text);
         let tweet = {};
         tweet.content = tweets[i].text;
         tweet.contenttype = "text/plain";
@@ -41,18 +41,9 @@ exports.getHandle = (db, handle, socket) => {
             return b.threatLevel - a.threatLevel;
           });
         });
-
-      WatsonAI.callWatson(watson)
+      WatsonAI.callWatson(watson, socket)
         .then(response => {
-          if (response.customError) {
-            socket.emit("alert", {
-              alert:
-                "Watson will not perform personality analysis on this user. There is not enough data available for analysis."
-            });
-          } else {
-            jsonObj.watsonAnalysis = response;
-          }
-
+          jsonObj.watsonAnalysis = response;
           // Set to risk to 100 if over 100
           if (jsonObj.totalRisk > 100) {
             jsonObj.totalRisk = 100;
