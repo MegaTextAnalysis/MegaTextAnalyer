@@ -229,8 +229,7 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-#bio-pic
-{
+#bio-pic{
   margin-top: -20%;/* depending on how many elements of bio that there are (10% x no of elements)*/
 }
 
@@ -322,7 +321,7 @@
 
 /*styling of personailty insights*/
 .header{
-  font-family: "Courier New", Courier, monospace;
+  font-family: myFirstFont;
   color:#b3b3b3;
   font-size: 24px;
   margin-left: 15%;
