@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-
+  
   <title>Radical</title>
   <link rel="icon" href="Favicon.png">
   <meta name="description" content="radical">
@@ -87,6 +87,7 @@
 </body>
 
 <script type="text/javascript">
+  //Get Database of previous searches
   let db_data;
   $(document).ready(function() {
     $.get("/db", function(json) {
@@ -94,7 +95,7 @@
       let row = 1;
       db_data = json;
 
-
+      //Show Database in a Table
       for (let entries of json) {
         let username = "\"" + entries.username + "\"";
         let json_data = "\"" + entries.data + "\"";
@@ -108,11 +109,14 @@
         row++;
       }
 
+      //Show table
       document.getElementById("body").innerHTML = txt;
       document.getElementById("body").style = "show";
       drawChart(db_data);
     });
   });
+
+  //load libraries for charts
   google.charts.load("current", {
     'packages': ["corechart"]
   });
@@ -120,6 +124,7 @@
     packages: ["corechart"]
   });
 
+  //function to create a chart of keywords
   function drawChart(obj) {
     let wordFrequency = {};
 
@@ -144,7 +149,7 @@
     }
 
     let data = google.visualization.arrayToDataTable(visuals);
-
+    //set options for chart
     let options = {
       title: 'Frequency of flagged words',
       backgroundColor: '#b3b3b3',
@@ -164,6 +169,7 @@
     document.getElementById("stats").style.position = "absolute";
   }
 
+  //displays Users in table
   function parseUser(index) {
     //construct results table
     var txt = "";
