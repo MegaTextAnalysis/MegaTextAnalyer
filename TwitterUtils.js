@@ -41,7 +41,7 @@ class TwitterUtils {
       function(err, tweets, res) {
         if (err) {
           console.log(err);
-          if (err[0] && err[0].code === 34) {
+          if (err[0].code === 34) {
             socket.emit("alert", {
               alert: "User does not exist."
             });
