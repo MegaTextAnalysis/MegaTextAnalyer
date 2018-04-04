@@ -48,6 +48,16 @@ $(document).ready(function() {
 function getUser(word, isFromUsername) {
   var url = "/user/";
   document.getElementById("personRes").style.display = "none";
+  if (document.getElementById("personality").childElementCount === 2) {
+  var ul1 = document.getElementById("ul1");
+  document.getElementById("personality").removeChild(ul1);
+  var ul2 = document.getElementById("ul2");
+  document.getElementById("needs").removeChild(ul2);
+  var ul3 = document.getElementById("ul3");
+  document.getElementById("values").removeChild(ul3);
+  var ul4 = document.getElementById("ul4");
+  document.getElementById("consumption_preferences").removeChild(ul4);
+}
   if (isFromUsername) {
     url += word.value;
   } else {
