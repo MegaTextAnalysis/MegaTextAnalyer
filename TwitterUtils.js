@@ -34,8 +34,8 @@ class TwitterUtils {
       "statuses/user_timeline",
       {
         screen_name: handle,
-        exclude_replies: 1,
-        include_rts: 0,
+        exclude_replies: 0,
+        include_rts: 1,
         trim_user: 1
       },
       function(err, tweets, res) {

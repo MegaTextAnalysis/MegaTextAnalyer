@@ -15,7 +15,6 @@ exports.getHandle = (db, handle, socket) => {
       let watson = new WatsonJSON();
 
       for (let i in tweets) {
-        // console.log(tweets[i].text);
         let tweet = {};
         tweet.content = tweets[i].text;
         tweet.contenttype = "text/plain";
